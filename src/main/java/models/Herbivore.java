@@ -1,4 +1,4 @@
 package models;
 
-public class Herbivore {
+public class Herbivore extends Dinosaur {
 }
