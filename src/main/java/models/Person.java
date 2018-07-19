@@ -10,9 +10,9 @@ public abstract class Person {
 
     public Person(){}
 
-    public Person(String name, int nutritionalValue, Park park) {
+    public Person(String name, Park park) {
         this.name = name;
-        this.nutritionalValue = nutritionalValue;
+        this.nutritionalValue = 10;
         this.park = park;
     }
 

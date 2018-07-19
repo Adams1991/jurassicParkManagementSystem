@@ -9,8 +9,8 @@ public class Visitor extends Person {
     public Visitor() {
     }
 
-    public Visitor(String name, int age, int height,int nutritionalValue,Park park) {
-        super(name, nutritionalValue, park);
+    public Visitor(String name, int age, int height,Park park) {
+        super(name, park);
         this.age = age;
         this.height = height;
     }
