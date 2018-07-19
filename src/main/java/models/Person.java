@@ -27,6 +27,7 @@ public abstract class Person {
         this.id = id;
     }
 
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -34,7 +35,7 @@ public abstract class Person {
     public void setName(String name) {
         this.name = name;
     }
-
+    @Column(name = "nutritional_value")
     public int getNutritionalValue() {
         return nutritionalValue;
     }
