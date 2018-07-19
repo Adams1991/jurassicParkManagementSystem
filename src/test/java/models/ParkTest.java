@@ -50,17 +50,23 @@ public class ParkTest {
 
     @Test
     public void getVisitors() {
+        assertEquals(null, park.getVisitors());
     }
 
     @Test
     public void setVisitors() {
+        park.setVisitors(visitors);
+        assertEquals(visitors, park.getVisitors());
     }
 
     @Test
     public void getPaddocks() {
+        assertEquals(null, park.getPaddocks());
     }
 
     @Test
     public void setPaddocks() {
+        park.setPaddocks(paddocks);
+        assertEquals(paddocks, park.getPaddocks());
     }
 }
