@@ -4,6 +4,7 @@ package models;
 import behaviours.IEdible;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity
 @Table(name="dinosaurs")
@@ -55,7 +56,7 @@ public abstract class Dinosaur implements IEdible {
         this.hungerLevel = hungerLevel;
     }
 
-    @Column(name = "species")
+    @Enumerated(value = EnumType.STRING)
     public SpeciesType getSpecies() {
         return species;
     }
@@ -73,6 +74,7 @@ public abstract class Dinosaur implements IEdible {
     public void setPaddock(Paddock paddock) {
         this.paddock = paddock;
     }
+
 
     public int nutritionalValueForEating(){
         return species.getNutritionalValue();
