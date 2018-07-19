@@ -1,12 +1,14 @@
 package models;
 
 
+import behaviours.IEdible;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="dinosaurs")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Dinosaur {
+public abstract class Dinosaur implements IEdible {
     int id;
     String name;
     int hungerLevel;
@@ -71,4 +73,8 @@ public abstract class Dinosaur {
     public void setPaddock(Paddock paddock) {
         this.paddock = paddock;
     }
+
+    public int nutritionalValueForEating(){
+        return species.getNutritionalValue();
+    };
 }
