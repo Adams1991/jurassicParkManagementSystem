@@ -35,25 +35,34 @@ public class PaddockTest {
 
     @Test
     public void getName() {
+        assertEquals("Paddock One", paddock.getName());
     }
 
     @Test
     public void setName() {
+        paddock.setName("Paddock Two");
+        assertEquals("Paddock Two", paddock.getName());
     }
 
     @Test
     public void getCarnivores() {
+        assertEquals(null, paddock.getCarnivores());
     }
 
     @Test
     public void setCarnivores() {
+        paddock.setCarnivores(carnivores);
+        assertEquals(carnivores, paddock.getCarnivores());
     }
 
     @Test
     public void getHerbivores() {
+        assertEquals(null, paddock.getHerbivores());
     }
 
     @Test
     public void setHerbivores() {
+        paddock.setHerbivores(herbivores);
+        assertEquals(herbivores, paddock.getHerbivores());
     }
 }
