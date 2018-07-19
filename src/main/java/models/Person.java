@@ -1,8 +1,10 @@
 package models;
 
+import behaviours.IEdible;
+
 import javax.persistence.*;
 
-public abstract class Person {
+public abstract class Person implements IEdible {
     private int id;
     private String name;
     private int nutritionalValue;
