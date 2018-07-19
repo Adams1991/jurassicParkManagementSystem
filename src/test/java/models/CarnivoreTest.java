@@ -7,6 +7,9 @@ import static org.junit.Assert.*;
 
 public class CarnivoreTest {
 
+    Carnivore carnivore;
+
+
     @Before
     public void setUp(){
     }
