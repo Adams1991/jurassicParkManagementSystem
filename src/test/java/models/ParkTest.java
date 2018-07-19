@@ -10,6 +10,10 @@ import static org.junit.Assert.*;
 public class ParkTest {
 
     Park park;
+    ArrayList staff;
+    ArrayList paddocks;
+    ArrayList visitors;
+
 
 
 
@@ -17,7 +21,9 @@ public class ParkTest {
     @Before
     public void setUp() {
     park = new Park ("Park One");
-
+    paddocks = new ArrayList<Paddock>();
+    visitors = new ArrayList<Visitor>();
+    staff = new ArrayList<Staff>();
     }
 
     @Test
@@ -27,14 +33,19 @@ public class ParkTest {
 
     @Test
     public void setName() {
+        park.setName("Park Two");
+        assertEquals("Park Two", park.getName());
     }
 
     @Test
     public void getStaff() {
+        assertEquals(null, park.getStaff());
     }
 
     @Test
     public void setStaff() {
+        park.setStaff(staff);
+        assertEquals(staff, park.getStaff());
     }
 
     @Test
