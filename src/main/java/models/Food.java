@@ -27,7 +27,8 @@ public class Food {
         this.id = id;
     }
 
-    @Column(name = "staff")
+    @ManyToOne
+    @JoinColumn(name="staff_id", nullable=false)
     public Staff getStaff() {
         return staff;
     }
@@ -35,7 +36,7 @@ public class Food {
     public void setStaff(Staff staff) {
         this.staff = staff;
     }
-    @Column(name = "food")
+    @Enumerated(value = EnumType.STRING)
     public FoodType getFood() {
         return food;
     }

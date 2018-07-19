@@ -23,7 +23,7 @@ public class Staff extends Person {
     public void setJob(RoleType job) {
         this.job = job;
     }
-    @Column(name = "foods")
+    @OneToMany(mappedBy = "staff", fetch = FetchType.LAZY)
     public ArrayList<Food> getFoods() {
         return foods;
     }
