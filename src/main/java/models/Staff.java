@@ -1,10 +1,10 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.util.ArrayList;
 
+@Entity
+@Table(name = "staff")
 public class Staff extends Person {
     private RoleType job;
     private ArrayList<Food> foods;
@@ -31,4 +31,5 @@ public class Staff extends Person {
     public void setFoods(ArrayList<Food> foods) {
         this.foods = foods;
     }
+
 }
