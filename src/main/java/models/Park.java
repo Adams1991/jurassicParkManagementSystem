@@ -12,11 +12,8 @@ public class Park {
     public Park() {
     }
 
-    public Park(String name, ArrayList<Staff> staff, ArrayList<Visitor> visitors, ArrayList<Paddock> paddocks) {
+    public Park(String name) {
         this.name = name;
-        this.staff = staff;
-        this.visitors = visitors;
-        this.paddocks = paddocks;
     }
 
     public int getId() {

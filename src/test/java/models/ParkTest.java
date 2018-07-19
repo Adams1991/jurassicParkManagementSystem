@@ -3,6 +3,8 @@ package models;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class ParkTest {
@@ -10,12 +12,17 @@ public class ParkTest {
     Park park;
 
 
+
+
     @Before
     public void setUp() {
+    park = new Park ("Park One");
+
     }
 
     @Test
     public void getName() {
+        assertEquals("Park One", park.getName());
     }
 
     @Test
