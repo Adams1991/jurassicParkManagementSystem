@@ -4,6 +4,8 @@ import behaviours.IEdible;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "persons")
 public abstract class Person implements IEdible {
     private int id;
     private String name;
@@ -53,5 +55,9 @@ public abstract class Person implements IEdible {
 
     public void setPark(Park park) {
         this.park = park;
+    }
+
+    public int nutritionalValueForEating(){
+        return this.nutritionalValue;
     }
 }

@@ -1,7 +1,11 @@
 package models;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "visitors")
 public class Visitor extends Person {
     private int age;
     private int height;
