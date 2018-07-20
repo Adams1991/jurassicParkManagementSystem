@@ -24,7 +24,7 @@ public class Runner {
 
         List<Park> allParks2 = DBHelper.getAll(Park.class);
 
-        DBHelper.find(Park.class, 1);
+        Park foundPark = DBHelper.find(Park.class, 1);
 
         //CRUD Function for Staff
 
@@ -42,6 +42,23 @@ public class Runner {
 
         List<Staff> allStaff2 = DBHelper.getAll(Staff.class);
 
+        //CRUD Function For Visitor
+
+        Visitor visitorMember = new Visitor("Pavel Cody", 10,182, park);
+        DBHelper.save(visitorMember);
+        visitorMember.setHeight(192);
+        DBHelper.update(visitorMember);
+
+        Visitor visitorMember2 =  new Visitor("Pavel Cody", 10,182, park);;
+        DBHelper.save(visitorMember2);
+
+        List<Visitor> allVisitor = DBHelper.getAll(Visitor.class);
+
+        DBHelper.delete(visitorMember2);
+
+        List<Visitor> allVisitor2 = DBHelper.getAll(Visitor.class);
+
+        List<Person> allFolk = DBHelper.getAll(Person.class);
 
         //CRUD Function for Paddock
         Paddock tRexEnclosure = new Paddock(park, "Tyranasaurs");
@@ -49,19 +66,34 @@ public class Runner {
         tRexEnclosure.setName("Bla");
         DBHelper.update(tRexEnclosure);
 
-
         Paddock grassEateres = new Paddock(park, "Field");
         DBHelper.save(grassEateres);
+
+        List<Paddock> allPaddock = DBHelper.getAll(Paddock.class);
+
         DBHelper.delete(grassEateres);
+
+        List<Paddock> allPaddock2 = DBHelper.getAll(Paddock.class);
+        
+        //CRUD Function for Dinosaur
 
         Carnivore tRex = new Carnivore("Lizard King", 100, SpeciesType.TREX, tRexEnclosure);
         DBHelper.save(tRex);
+        tRex.setSpecies(SpeciesType.RAPTOR);
+        DBHelper.update(tRex);
 
         Herbivore dippy = new Herbivore("Long Tail", 100, SpeciesType.DIPLODOCUS, tRexEnclosure);
         DBHelper.save(dippy);
 
-        Visitor visitor = new Visitor("Dan", 26, 182, park);
-        DBHelper.save(visitor);
+        List<Dinosaur> allDino = DBHelper.getAll(Dinosaur.class);
+
+        DBHelper.delete(dippy);
+
+        List<Carnivore> allCarn = DBHelper.getAll(Carnivore.class);
+        List<Herbivore> allHerb = DBHelper.getAll(Herbivore.class);
+
+
+
 
 
     }

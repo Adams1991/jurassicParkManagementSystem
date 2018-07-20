@@ -56,7 +56,7 @@ public class Paddock {
         return carnivores;
     }
 
-    public void setCarnivores(ArrayList<Carnivore> carnivores) {
+    public void setCarnivores(List<Carnivore> carnivores) {
         this.carnivores = carnivores;
     }
 
@@ -65,7 +65,7 @@ public class Paddock {
         return herbivores;
     }
 
-    public void setHerbivores(ArrayList<Herbivore> herbivores) {
+    public void setHerbivores(List<Herbivore> herbivores) {
         this.herbivores = herbivores;
     }
 }
