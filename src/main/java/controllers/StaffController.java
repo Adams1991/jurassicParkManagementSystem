@@ -1,9 +1,8 @@
 package controllers;
 
 import db.DBHelper;
-import models.Park;
-import models.RoleType;
-import models.Staff;
+import db.DBStaff;
+import models.*;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -116,6 +115,57 @@ public class StaffController {
             staff.setJob(job);
             staff.setPark(park);
             DBHelper.update(staff);
+
+            res.redirect("/staffs");
+            return null;
+        }, new VelocityTemplateEngine());
+
+
+        // FEED GET
+        get("/staffs/:id/feed",(req, res) -> {
+            HashMap<String, Object> model = new HashMap();
+
+            int id = Integer.parseInt(req.params(":id"));
+
+
+            Staff staff = DBHelper.find(Staff.class, id);
+
+            List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
+
+            List<Food> staffFoods = DBStaff.getFoods(staff);
+
+
+
+            model.put("staff", staff);
+            model.put("dinosaurs", dinosaurs);
+            model.put("staffFoods", staffFoods);
+
+            model.put("template", "templates/staff/feed.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+
+        }, new VelocityTemplateEngine());
+
+        //Feed POST
+
+        post(":id/feed",(req, res) ->{
+            Map<String, Object> model = new HashMap<>();
+
+            int id = Integer.parseInt(req.params(":id"));
+
+            Staff staff = DBHelper.find(Staff.class, id);
+
+            String food = req.queryParams("staffFoods");
+            FoodType foodType = FoodType.valueOf(food.toUpperCase());
+
+            int foodValue = staff.feedDinosaur(foodType);
+
+            int dinoId = Integer.parseInt(req.queryParams("dinosaur"));
+            Dinosaur dinosaur = DBHelper.find(Dinosaur.class, dinoId);
+
+            dinosaur.eat(foodValue);
+
+
+            DBHelper.update(dinosaur);
 
             res.redirect("/staffs");
             return null;
