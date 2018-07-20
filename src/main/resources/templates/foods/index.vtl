@@ -1,0 +1,39 @@
+<p class="pageHeader">All Food</p>
+
+
+
+<div>
+    <a href="/foods/new" class="button center">New Food item</a>
+</div>
+
+<br>
+
+<div class="container">
+
+
+    <table>
+        <tr>
+            <th>Food</th>
+            <th>Associated Staff Member</th>
+        </tr>
+
+        #foreach($food in $foods)
+        <tr>
+            <td>$food.getFood()</td>
+            <td>$food.getStaff().getName()</td>
+
+            <td><form method="post" action="/foods/$food.getId()/delete">
+                <input type="submit" value="delete"/>
+
+            </form>
+            </td>
+            <td>
+                <a href="/foods/$food.getId()/edit">Edit Food Item</a>
+            </td>
+        </tr>
+        #end
+
+    </table>
+
+
+</div>

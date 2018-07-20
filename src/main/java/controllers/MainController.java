@@ -18,6 +18,7 @@ public class MainController {
         PaddockController paddockContoller = new PaddockController();
         VisitorController visitorController = new VisitorController();
         StaffController staffController = new StaffController();
+        FoodController foodController = new FoodController();
 
         VelocityTemplateEngine velocityTemplateEngine = new VelocityTemplateEngine();
 

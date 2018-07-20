@@ -1,0 +1,21 @@
+<h1>Edit Food Item</h1>
+
+<form action="/foods/$food.getId()" method="post">
+
+    <label for="cuisine">Cuisine:</label>
+    <select name="cuisine" id="cuisine" selected="$food.getFood">
+        #foreach($cuisine in $cuisines)
+        <option value="$cuisine">$cuisine</option>
+        #end
+    </select>
+
+    <label for="staff">Staff:</label>
+    <select name="staff" id="staff" selected="$food.getStaff.getName()">
+        #foreach ($staff in $staffs)
+        <option value="$staff.getId()">$staff.getName()</option>
+        #end
+    </select>
+
+    <input type="submit" value="save">
+
+</form>

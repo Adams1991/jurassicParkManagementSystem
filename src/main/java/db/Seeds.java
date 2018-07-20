@@ -19,5 +19,8 @@ public class Seeds {
         Staff staff = new Staff("Stewart", RoleType.GAMEKEEPER, park);
         DBHelper.save(staff);
 
+        Food food = new Food(FoodType.BADLYBEHAVEDCHILD,staff);
+        DBHelper.save(food);
+
     }
 }
