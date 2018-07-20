@@ -14,16 +14,15 @@ public abstract class Dinosaur  implements IEdible {
     String name;
     int hungerLevel;
     SpeciesType species;
-    Paddock paddock;
+
 
     public Dinosaur() {
     }
 
-    public Dinosaur(String name, int hungerLevel, SpeciesType species, Paddock paddock) {
+    public Dinosaur(String name, int hungerLevel, SpeciesType species) {
         this.name = name;
         this.hungerLevel = hungerLevel;
         this.species = species;
-        this.paddock = paddock;
     }
 
 
@@ -65,15 +64,6 @@ public abstract class Dinosaur  implements IEdible {
         this.species = species;
     }
 
-    @ManyToOne
-    @JoinColumn(name="paddock_id", nullable=false)
-    public Paddock getPaddock() {
-        return paddock;
-    }
-
-    public void setPaddock(Paddock paddock) {
-        this.paddock = paddock;
-    }
 
     public int nutritionalValueForEating(){
         return species.getNutritionalValue();

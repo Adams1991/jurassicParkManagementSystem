@@ -2,6 +2,7 @@ package models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "paddocks")
@@ -9,8 +10,8 @@ public class Paddock {
     int id;
     Park park;
     String name;
-    ArrayList<Carnivore> carnivores;
-    ArrayList<Herbivore> herbivores;
+    List<Carnivore> carnivores;
+    List<Herbivore> herbivores;
 
     public Paddock(Park park, String name) {
         this.park = park;
@@ -51,7 +52,7 @@ public class Paddock {
     }
 
     @OneToMany(mappedBy="paddock", fetch = FetchType.LAZY)
-    public ArrayList<Carnivore> getCarnivores() {
+    public List<Carnivore> getCarnivores() {
         return carnivores;
     }
 
@@ -60,7 +61,7 @@ public class Paddock {
     }
 
     @OneToMany(mappedBy="paddock", fetch = FetchType.LAZY)
-    public ArrayList<Herbivore> getHerbivores() {
+    public List<Herbivore> getHerbivores() {
         return herbivores;
     }
 

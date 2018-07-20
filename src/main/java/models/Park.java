@@ -1,16 +1,16 @@
 package models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "parks")
 public class Park {
     private int id;
     private String name;
-    private ArrayList<Staff> staff;
-    private ArrayList<Visitor> visitors;
-    private ArrayList<Paddock> paddocks;
+    private List<Staff> staff;
+    private List<Visitor> visitors;
+    private List<Paddock> paddocks;
 
     public Park() {
     }
@@ -40,29 +40,29 @@ public class Park {
     }
 
     @OneToMany(mappedBy="park", fetch = FetchType.LAZY)
-    public ArrayList<Staff> getStaff() {
+    public List<Staff> getStaff() {
         return staff;
     }
 
-    public void setStaff(ArrayList<Staff> staff) {
+    public void setStaff(List<Staff> staff) {
         this.staff = staff;
     }
 
     @OneToMany(mappedBy="park", fetch = FetchType.LAZY)
-    public ArrayList<Visitor> getVisitors() {
+    public List<Visitor> getVisitors() {
         return visitors;
     }
 
-    public void setVisitors(ArrayList<Visitor> visitors) {
+    public void setVisitors(List<Visitor> visitors) {
         this.visitors = visitors;
     }
 
     @OneToMany(mappedBy="park", fetch = FetchType.LAZY)
-    public ArrayList<Paddock> getPaddocks() {
+    public List<Paddock> getPaddocks() {
         return paddocks;
     }
 
-    public void setPaddocks(ArrayList<Paddock> paddocks) {
+    public void setPaddocks(List<Paddock> paddocks) {
         this.paddocks = paddocks;
     }
 }

@@ -1,20 +1,19 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "visitors")
 public class Visitor extends Person {
     private int age;
     private int height;
+    private Park park;
 
     public Visitor() {
     }
 
     public Visitor(String name, int age, int height,Park park) {
-        super(name, park);
+        super(name);
         this.age = age;
         this.height = height;
     }
@@ -35,5 +34,15 @@ public class Visitor extends Person {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="park_id", nullable=false)
+    public Park getPark() {
+        return park;
+    }
+
+    public void setPark(Park park) {
+        this.park = park;
     }
 }

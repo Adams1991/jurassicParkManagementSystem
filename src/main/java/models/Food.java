@@ -3,7 +3,7 @@ package models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "foodigs")
+@Table(name = "food")
 public class Food {
 
 
@@ -38,6 +38,7 @@ public class Food {
     public void setStaff(Staff staff) {
         this.staff = staff;
     }
+
     @Enumerated(value = EnumType.STRING)
     public FoodType getFood() {
         return food;

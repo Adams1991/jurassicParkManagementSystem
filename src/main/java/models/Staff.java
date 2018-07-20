@@ -3,19 +3,21 @@ package models;
 import db.DBHelper;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "staff")
 public class Staff extends Person {
     private RoleType job;
-    private ArrayList<Food> foods;
+    private List<Food> foods;
+    private Park park;
 
     public Staff(){}
 
     public Staff(String name, RoleType job, Park park) {
-        super(name, park);
+        super(name);
         this.job = job;
+        this.park = park;
     }
     @Enumerated(value = EnumType.STRING)
     public RoleType getJob() {
@@ -26,12 +28,22 @@ public class Staff extends Person {
         this.job = job;
     }
     @OneToMany(mappedBy = "staff", fetch = FetchType.LAZY)
-    public ArrayList<Food> getFoods() {
+    public List<Food> getFoods() {
         return foods;
     }
 
-    public void setFoods(ArrayList<Food> foods) {
+    public void setFoods(List<Food> foods) {
         this.foods = foods;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="park_id", nullable=false)
+    public Park getPark() {
+        return park;
+    }
+
+    public void setPark(Park park) {
+        this.park = park;
     }
 
 

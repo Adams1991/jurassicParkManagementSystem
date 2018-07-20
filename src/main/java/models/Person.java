@@ -6,18 +6,17 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "persons")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Person implements IEdible {
     private int id;
     private String name;
     private int nutritionalValue;
-    private Park park;
 
     public Person(){}
 
-    public Person(String name, Park park) {
+    public Person(String name) {
         this.name = name;
         this.nutritionalValue = 10;
-        this.park = park;
     }
 
     @Id
@@ -47,15 +46,7 @@ public abstract class Person implements IEdible {
     public void setNutritionalValue(int nutritionalValue) {
         this.nutritionalValue = nutritionalValue;
     }
-    @ManyToOne
-    @JoinColumn(name="park_id", nullable=false)
-    public Park getPark() {
-        return park;
-    }
 
-    public void setPark(Park park) {
-        this.park = park;
-    }
 
     public int nutritionalValueForEating(){
         return this.nutritionalValue;
