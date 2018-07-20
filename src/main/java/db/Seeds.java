@@ -1,7 +1,9 @@
 package db;
 
+import models.Carnivore;
 import models.Paddock;
 import models.Park;
+import models.SpeciesType;
 
 public class Seeds {
     public static void seedData() {
@@ -13,6 +15,9 @@ public class Seeds {
 
         Paddock paddock = new Paddock(park, "Raptor Enclosure");
         DBHelper.save(paddock);
+
+        Carnivore carnivore = new Carnivore("Alpha", 100, SpeciesType.TREX, paddock);
+        DBHelper.save(carnivore);
 
 
     }

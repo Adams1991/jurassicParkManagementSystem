@@ -16,6 +16,7 @@ public class MainController {
 
         ParkController parkController = new ParkController();
         PaddockController paddockContoller = new PaddockController();
+        CarnivoreController carnivoreController = new CarnivoreController();
 
         VelocityTemplateEngine velocityTemplateEngine = new VelocityTemplateEngine();
 
