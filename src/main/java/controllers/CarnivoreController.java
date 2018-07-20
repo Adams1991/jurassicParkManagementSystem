@@ -93,6 +93,7 @@ public class CarnivoreController {
 
             List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
             int id = Integer.parseInt(req.params(":id"));
+
             Carnivore carnivore = DBHelper.find(Carnivore.class, id);
             List<SpeciesType> species = Arrays.asList(SpeciesType.values());
             model.put("species", species);
