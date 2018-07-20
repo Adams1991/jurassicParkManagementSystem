@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 @Entity
 @Table(name = "herbivores")
-public class Herbivore extends Dinosaur implements IEdible  {
+public class Herbivore extends Dinosaur {
 
     public Herbivore() {
     }
@@ -19,7 +19,5 @@ public class Herbivore extends Dinosaur implements IEdible  {
         super(name, hungerLevel, species, paddock);
     }
 
-    public int nutritionalValueForEating(){
-        return species.getNutritionalValue();
-    };
+
 }
