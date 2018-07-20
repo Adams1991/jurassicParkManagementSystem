@@ -23,7 +23,7 @@ public class VisitorController {
 //        // READ
 //        get("/visitors", (req, res) -> { // get verb, set to /managers route with request & response
 //            Map<String, Object> model = new HashMap(); // creating new hashmap with string and object key/value
-//            model.put("template", "templates/visitors/index.vtl"); // put
+//            model.put("template", "templates/visitors/index.vtl.vtl"); // put
 //
 //            List<Visitor> visitors = DBHelper.getAll(Visitor.class);
 //            model.put("visitors", visitors);

@@ -1,9 +1,6 @@
 package db;
 
-import models.Carnivore;
-import models.Paddock;
-import models.Park;
-import models.SpeciesType;
+import models.*;
 
 public class Seeds {
     public static void seedData() {
@@ -18,6 +15,9 @@ public class Seeds {
 
         Carnivore carnivore = new Carnivore("Alpha", 100, SpeciesType.TREX, paddock);
         DBHelper.save(carnivore);
+
+        Herbivore herbivore = new Herbivore("Beta", 100, SpeciesType.DIPLODOCUS, paddock);
+        DBHelper.save(herbivore);
 
 
     }

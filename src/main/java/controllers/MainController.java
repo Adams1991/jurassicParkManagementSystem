@@ -1,6 +1,7 @@
 package controllers;
 
 import db.Seeds;
+import models.Herbivore;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -17,6 +18,7 @@ public class MainController {
         ParkController parkController = new ParkController();
         PaddockController paddockContoller = new PaddockController();
         CarnivoreController carnivoreController = new CarnivoreController();
+        HerbivoreController herbivoreController = new HerbivoreController();
 
         VelocityTemplateEngine velocityTemplateEngine = new VelocityTemplateEngine();
 

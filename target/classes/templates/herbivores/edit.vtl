@@ -1,10 +1,9 @@
-<h1>Create New Dino</h1>
+<h1>Edit Dino</h1>
 
-<form action="/carnivores" method="post">
+<form action="/herbivores/$herbivore.getId()" method="post">
 
     <label for="name">Name:</label>
-    <input type="inputbox" id="name" name="name" required="true">
-
+    <input type="inputbox" id="name" name="name" value="$herbivore.getName()">
 
     <label for="paddock">Paddock:</label>
     <select name="paddock" id="paddock">
@@ -19,10 +18,6 @@
         <option value="$specie">$specie</option>
         #end
     </select>
-
-
-
-
 
     <input type="submit" value="save">
 
