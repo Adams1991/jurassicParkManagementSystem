@@ -57,7 +57,6 @@ public class Staff extends Person {
         for (Food food : foods) {
             if (food.getFood() == foodType)
                 return foodType.nutritionalValueForEating();
-            DBHelper.delete(food);
         }
         return 0;
     }
