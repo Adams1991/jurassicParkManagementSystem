@@ -4,12 +4,12 @@ import models.*;
 public class Runner {
     public static void main(String[] args) {
 
-        DBHelper.deleteAll(Park.class);
-        DBHelper.deleteAll(Staff.class);
-        DBHelper.deleteAll(Paddock.class);
-        DBHelper.deleteAll(Carnivore.class);
-        DBHelper.deleteAll(Herbivore.class);
-        DBHelper.deleteAll(Visitor.class);
+//        DBHelper.deleteAll(Park.class);
+//        DBHelper.deleteAll(Staff.class);
+//        DBHelper.deleteAll(Paddock.class);
+//        DBHelper.deleteAll(Carnivore.class);
+//        DBHelper.deleteAll(Herbivore.class);
+//        DBHelper.deleteAll(Visitor.class);
 
         Park park = new Park("Jurassic Park");
         DBHelper.save(park);
