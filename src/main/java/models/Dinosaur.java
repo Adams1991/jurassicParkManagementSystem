@@ -9,7 +9,7 @@ import java.util.ArrayList;
 @Entity
 @Table(name="dinosaurs")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Dinosaur implements IEdible {
+public abstract class Dinosaur  implements IEdible {
     int id;
     String name;
     int hungerLevel;
@@ -75,8 +75,8 @@ public abstract class Dinosaur implements IEdible {
         this.paddock = paddock;
     }
 
-
     public int nutritionalValueForEating(){
         return species.getNutritionalValue();
     };
+
 }
