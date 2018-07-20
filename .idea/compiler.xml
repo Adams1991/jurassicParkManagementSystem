@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="joint_project_jurassic_park" target="1.5" />
+      <module name="joint_project_jurassic_park" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

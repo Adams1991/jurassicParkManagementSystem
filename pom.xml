@@ -7,6 +7,19 @@
     <groupId>com.codeclan.jurassicParkManagementSystem</groupId>
     <artifactId>jurassicParkManagementSystem</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -57,5 +70,8 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+
+
 
 </project>

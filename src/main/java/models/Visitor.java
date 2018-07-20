@@ -16,6 +16,7 @@ public class Visitor extends Person {
         super(name);
         this.age = age;
         this.height = height;
+        this.park = park;
     }
 
     @Column(name = "age")
