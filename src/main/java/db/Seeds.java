@@ -1,8 +1,6 @@
 package db;
 
-import models.Paddock;
-import models.Park;
-import models.Visitor;
+import models.*;
 
 public class Seeds {
     public static void seedData() {
@@ -18,6 +16,8 @@ public class Seeds {
         Visitor visitor = new Visitor("David Pears", 40, 180, park);
         DBHelper.save(visitor);
 
+        Staff staff = new Staff("Stewart", RoleType.GAMEKEEPER, park);
+        DBHelper.save(staff);
 
     }
 }
