@@ -27,7 +27,7 @@ public class Staff extends Person {
     public void setJob(RoleType job) {
         this.job = job;
     }
-    @OneToMany(mappedBy = "staff", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "staff", fetch = FetchType.EAGER)
     public List<Food> getFoods() {
         return foods;
     }

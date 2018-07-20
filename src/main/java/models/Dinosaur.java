@@ -72,7 +72,7 @@ public abstract class Dinosaur  implements IEdible {
     }
 
     public void eat(int nutritionalValue){
-        this.hungerLevel += nutritionalValue;
+        setHungerLevel(this.hungerLevel += nutritionalValue);
     }
 
 
