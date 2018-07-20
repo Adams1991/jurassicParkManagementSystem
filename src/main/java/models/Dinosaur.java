@@ -79,4 +79,8 @@ public abstract class Dinosaur  implements IEdible {
         return species.getNutritionalValue();
     }
 
+    public void eat(int nutritionalValue){
+        this.hungerLevel += nutritionalValue;
+    }
+
 }

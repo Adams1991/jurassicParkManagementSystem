@@ -10,20 +10,23 @@ import static org.junit.Assert.*;
 public class ParkTest {
 
     Park park;
+    Staff staffMember;
+    Paddock tRexPen;
+    Carnivore tRex;
     ArrayList staff;
     ArrayList paddocks;
     ArrayList visitors;
-
-
-
+    ArrayList<Carnivore> tyranasaurs;
 
 
     @Before
     public void setUp() {
-    park = new Park ("Park One");
-    paddocks = new ArrayList<Paddock>();
-    visitors = new ArrayList<Visitor>();
-    staff = new ArrayList<Staff>();
+        staffMember = new Staff("Bob Geldolf", RoleType.GAMEKEEPER, park);
+        tRexPen = new Paddock(park, "TRex Enclosure");
+        park = new Park("Park One");
+        paddocks = new ArrayList<Paddock>();
+        visitors = new ArrayList<Visitor>();
+        staff = new ArrayList<Staff>();
     }
 
     @Test
@@ -69,4 +72,5 @@ public class ParkTest {
         park.setPaddocks(paddocks);
         assertEquals(paddocks, park.getPaddocks());
     }
+
 }

@@ -62,5 +62,11 @@ public class CarnivoreTest {
         assertEquals(null, carnivore.getPaddock());
     }
 
+    @Test
+    public void feedDinosaur(){
+        carnivore.eat(5);
+        assertEquals(105, carnivore.getHungerLevel());
+    }
+
 
 }
