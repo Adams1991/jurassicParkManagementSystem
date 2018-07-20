@@ -1,5 +1,7 @@
 package models;
 
+import db.DBHelper;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 
@@ -33,4 +35,23 @@ public class Staff extends Person {
     }
 
 
+//    public int feedDinosaur(FoodType foodType) {
+//            return foodType.nutritionalValueForEating();
+//        }
+//    }
+
+
+    public int feedDinosaur(FoodType foodType) {
+        for (Food food : foods) {
+            if (food.getFood() == foodType)
+                return foodType.nutritionalValueForEating();
+            DBHelper.delete(food);
+        }
+        return 0;
+    }
+
+    public int foodsCount() {
+        return foods.size();
+    }
 }
+

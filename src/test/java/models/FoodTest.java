@@ -26,4 +26,9 @@ public class FoodTest {
     public void getFood() {
         assertEquals(FoodType.COW, food.getFood());
     }
+
+    @Test
+    public void getNutritionalValue(){
+        assertEquals(100, food.getFood().nutritionalValueForEating());
+    }
 }
