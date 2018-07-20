@@ -15,6 +15,7 @@ public class MainController {
         Seeds.seedData();
 
         ParkController parkController = new ParkController();
+        PaddockController paddockContoller = new PaddockController();
 
         VelocityTemplateEngine velocityTemplateEngine = new VelocityTemplateEngine();
 

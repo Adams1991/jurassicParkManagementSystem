@@ -1,0 +1,18 @@
+<h1>Add a new manager</h1>
+
+<form action="/paddocks" method="post">
+
+    <label for="name">Name:</label>
+    <input type="inputbox" id="name" name="name" required="true">
+
+    <label for="park">Paddock:</label>
+    <select name="park" id="park">
+
+        #foreach ($park in $parks)
+        <option value="$park.getId()">$park.getName()</option>
+        #end
+    </select>
+
+    <input type="submit" value="save">
+
+</form>
