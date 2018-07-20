@@ -1,0 +1,43 @@
+<p class="pageHeader">All Carnivores</p>
+
+
+
+<div>
+    <a href="/carnivores/new" class="button center">New Carnivore</a>
+</div>
+
+<br>
+
+<div class="container">
+
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Hunger Level</th>
+            <th>Paddock</th>
+            <th>Species</th>
+            
+        </tr>
+
+        #foreach($carnivore in $carnivores)
+        <tr>
+            <td>$carnivore.getName()</td>
+            <td>$carnivore.getHungerLevel()</td>
+            <td>$carnivore.getPaddock().getName()</td>
+            <td>$carnivore.getSpecies()</td>
+            <td><form method="post" action="/carnivores/$carnivore.getId()/delete">
+                <input type="submit" value="delete"/>
+
+            </form>
+            </td>
+            <td>
+                <a href="/carnivores/$carnivore.getId()/edit">Do Some Gene Splicing</a>
+            </td>
+        </tr>
+        #end
+
+    </table>
+
+
+</div>

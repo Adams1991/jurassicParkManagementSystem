@@ -4,6 +4,8 @@ package models;
 import behaviours.IEdible;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -72,5 +74,7 @@ public abstract class Dinosaur  implements IEdible {
     public void eat(int nutritionalValue){
         this.hungerLevel += nutritionalValue;
     }
+
+
 
 }

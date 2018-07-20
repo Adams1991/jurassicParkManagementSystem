@@ -21,6 +21,11 @@ public class Seeds {
 
         Food food = new Food(FoodType.BADLYBEHAVEDCHILD,staff);
         DBHelper.save(food);
+        Carnivore carnivore = new Carnivore("Alpha", 100, SpeciesType.TREX, paddock);
+        DBHelper.save(carnivore);
+
+        Herbivore herbivore = new Herbivore("Beta", 100, SpeciesType.DIPLODOCUS, paddock);
+        DBHelper.save(herbivore);
 
     }
 }

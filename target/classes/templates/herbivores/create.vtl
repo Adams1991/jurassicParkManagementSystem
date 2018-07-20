@@ -1,0 +1,29 @@
+<h1>Create New Dino</h1>
+
+<form action="/herbivores" method="post">
+
+    <label for="name">Name:</label>
+    <input type="inputbox" id="name" name="name" required="true">
+
+
+    <label for="paddock">Paddock:</label>
+    <select name="paddock" id="paddock">
+        #foreach ($paddock in $paddocks)
+        <option value="$paddock.getId()">$paddock.getName()</option>
+        #end
+    </select>
+
+    <label for="specie">Species:</label>
+    <select name="specie" id="specie">
+        #foreach ($specie in $species)
+        <option value="$specie">$specie</option>
+        #end
+    </select>
+
+
+
+
+
+    <input type="submit" value="save">
+
+</form>
