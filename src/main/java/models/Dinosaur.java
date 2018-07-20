@@ -4,7 +4,7 @@ package models;
 import behaviours.IEdible;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+
 
 @Entity
 @Table(name="dinosaurs")
