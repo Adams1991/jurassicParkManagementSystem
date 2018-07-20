@@ -1,0 +1,28 @@
+<p class="pageHeader">All Parks</p>
+
+<div>
+    <div>
+        <a href="/parks/new">New Park</a>
+    </div>
+    <table>
+
+        <tr>
+            <th>Park</th>
+        </tr>
+
+
+        #foreach($park in $parks)
+        <tr>
+            <td>$park.getName()</td>
+            <td><form method="post" action="/parks/$park.getId()/delete">
+                <input type="submit" value="delete"/>
+            </form>
+            <td>
+                <a href="/parks/$park.getId()/edit">Edit Park</a>
+            </td>
+        </tr>
+        #end
+
+
+    </table>
+</div>
