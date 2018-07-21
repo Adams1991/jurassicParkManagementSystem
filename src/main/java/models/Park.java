@@ -7,6 +7,7 @@ import java.util.List;
 @Table(name = "parks")
 public class Park {
     private int id;
+    private int till;
     private String name;
     private List<Staff> staff;
     private List<Visitor> visitors;
@@ -15,8 +16,9 @@ public class Park {
     public Park() {
     }
 
-    public Park(String name) {
+    public Park(String name, int till) {
         this.name = name;
+        this.till = till;
     }
 
     @Id
@@ -39,7 +41,7 @@ public class Park {
         this.name = name;
     }
 
-    @OneToMany(mappedBy="park", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "park", fetch = FetchType.LAZY)
     public List<Staff> getStaff() {
         return staff;
     }
@@ -48,7 +50,7 @@ public class Park {
         this.staff = staff;
     }
 
-    @OneToMany(mappedBy="park", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "park", fetch = FetchType.LAZY)
     public List<Visitor> getVisitors() {
         return visitors;
     }
@@ -57,12 +59,21 @@ public class Park {
         this.visitors = visitors;
     }
 
-    @OneToMany(mappedBy="park", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "park", fetch = FetchType.LAZY)
     public List<Paddock> getPaddocks() {
         return paddocks;
     }
 
     public void setPaddocks(List<Paddock> paddocks) {
         this.paddocks = paddocks;
+    }
+
+    @Column(name = "till")
+    public int getTill() {
+        return this.till;
+    }
+
+    public void setTill(int till) {
+        this.till = till;
     }
 }

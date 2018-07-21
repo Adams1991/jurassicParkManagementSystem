@@ -9,10 +9,10 @@ public class Runner {
 
 
         //CRUD Functions for Park
-        Park park = new Park("Jurassic Park");
+        Park park = new Park("Jurassic Park", 1000);
         DBHelper.save(park);
 
-        Park park2 = new Park("Jurassic Park");
+        Park park2 = new Park("Jurassic Park", 1000);
         DBHelper.save(park2);
 
         park.setName("Disney");

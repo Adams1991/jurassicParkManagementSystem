@@ -23,7 +23,7 @@ public class ParkTest {
     public void setUp() {
         staffMember = new Staff("Bob Geldolf", RoleType.GAMEKEEPER, park);
         tRexPen = new Paddock(park, "TRex Enclosure");
-        park = new Park("Park One");
+        park = new Park("Park One",1000);
         paddocks = new ArrayList<Paddock>();
         visitors = new ArrayList<Visitor>();
         staff = new ArrayList<Staff>();

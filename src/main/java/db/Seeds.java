@@ -7,7 +7,7 @@ public class Seeds {
 
         DBHelper.deleteAll(Park.class);
 
-        Park park = new Park("Jurassic Park");
+        Park park = new Park("Jurassic Park", 1000);
         DBHelper.save(park);
 
         Paddock paddock = new Paddock(park, "Raptor Enclosure");

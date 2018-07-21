@@ -33,7 +33,7 @@ public class Paddock {
     }
 
     @ManyToOne
-    @JoinColumn(name="park_id", nullable=false)
+    @JoinColumn(name = "park_id", nullable = false)
     public Park getPark() {
         return park;
     }
@@ -51,7 +51,7 @@ public class Paddock {
         this.name = name;
     }
 
-    @OneToMany(mappedBy="paddock", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "paddock", fetch = FetchType.LAZY)
     public List<Carnivore> getCarnivores() {
         return carnivores;
     }
@@ -60,7 +60,7 @@ public class Paddock {
         this.carnivores = carnivores;
     }
 
-    @OneToMany(mappedBy="paddock", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "paddock", fetch = FetchType.LAZY)
     public List<Herbivore> getHerbivores() {
         return herbivores;
     }
@@ -68,4 +68,6 @@ public class Paddock {
     public void setHerbivores(List<Herbivore> herbivores) {
         this.herbivores = herbivores;
     }
+
 }
+
