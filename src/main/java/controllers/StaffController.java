@@ -134,12 +134,9 @@ public class StaffController {
 
             List<Food> staffFoods = DBStaff.getFoods(staff);
 
-
-
             model.put("staff", staff);
             model.put("dinosaurs", dinosaurs);
             model.put("staffFoods", staffFoods);
-
             model.put("template", "templates/staff/feed.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
 
@@ -155,6 +152,7 @@ public class StaffController {
             Staff staff = DBHelper.find(Staff.class, id);
 
             String food = req.queryParams("staffFoods");
+
             FoodType foodType = FoodType.valueOf(food.toUpperCase());
 
             int foodValue = staff.feedDinosaur(foodType);
