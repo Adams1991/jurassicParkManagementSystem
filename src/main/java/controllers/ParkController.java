@@ -1,7 +1,7 @@
 package controllers;
 
 import db.DBHelper;
-import models.Park;
+import models.*;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.Integer.parseInt;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
@@ -48,7 +49,8 @@ public class ParkController {
         post("/parks", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
-            Park park = new Park(name);
+            int till = parseInt(req.queryParams("till"));
+            Park park = new Park(name, till);
             DBHelper.save(park);
 
             res.redirect("/parks");
@@ -58,7 +60,7 @@ public class ParkController {
 
         // DELETE
         post("/parks/:id/delete", (req, res) -> {
-            int id = Integer.parseInt(req.params(":id"));
+            int id = parseInt(req.params(":id"));
             Park park = DBHelper.find(Park.class, id);
             DBHelper.delete(park);
             res.redirect("/parks");
@@ -69,7 +71,7 @@ public class ParkController {
         get("/parks/:id/edit", (req, res) -> {
             HashMap<String, Object> model = new HashMap();
 
-            int id = Integer.parseInt(req.params(":id"));
+            int id = parseInt(req.params(":id"));
             Park park = DBHelper.find(Park.class, id);
             model.put("park", park);
             model.put("template", "templates/parks/edit.vtl");
@@ -81,15 +83,25 @@ public class ParkController {
         post("parks/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
+            int till = parseInt(req.queryParams("till"));
 
-            int id = Integer.parseInt(req.params(":id"));
+            int id = parseInt(req.params(":id"));
             Park park = DBHelper.find(Park.class, id);
             park.setName(name);
+            park.setTill(till);
             DBHelper.update(park);
 
             res.redirect("/parks");
             return null;
         }, new VelocityTemplateEngine());
+
+//        //TAKE A BREAK GET
+//        get("/parks/:id/logout", (req, res) -> {
+//
+//
+//
+//
+//        }, new VelocityTemplateEngine());
 
     }
 }

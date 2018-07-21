@@ -3,6 +3,10 @@ package models;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import static org.junit.Assert.*;
 
 public class CarnivoreTest {
@@ -10,11 +14,10 @@ public class CarnivoreTest {
     Carnivore carnivore;
     Paddock paddock;
 
-
     @Before
-    public void setUp(){
+    public void setUp() {
+        carnivore = new Carnivore("Bob", 100, SpeciesType.RAPTOR, paddock);
         paddock = new Paddock();
-        carnivore = new Carnivore("Bob",  100, SpeciesType.RAPTOR, paddock );
     }
 
     @Test
@@ -51,22 +54,27 @@ public class CarnivoreTest {
     }
 
     @Test
-    public void getPaddock(){
+    public void getPaddock() {
         assertEquals(paddock, carnivore.getPaddock());
 
     }
 
     @Test
-    public void setPaddock(){
+    public void setPaddock() {
         carnivore.setPaddock(null);
         assertEquals(null, carnivore.getPaddock());
     }
 
     @Test
-    public void feedDinosaur(){
+    public void feedDinosaur() {
         carnivore.eat(5);
         assertEquals(105, carnivore.getHungerLevel());
     }
 
+    @Test
+    public void starveCarnivore(){
+        carnivore.starveCarnivore();
+        assertEquals(40, carnivore.getHungerLevel());
+    }
 
 }

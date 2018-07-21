@@ -50,10 +50,11 @@ public class PaddockController {
         post("/paddocks", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int ParkId = Integer.parseInt(req.queryParams("park"));
+            boolean isPaddockBroken = false;
             Park park = DBHelper.find(Park.class, ParkId);
             String name = req.queryParams("name");
 
-            Paddock paddock = new Paddock(park, name);
+            Paddock paddock = new Paddock(park, name, isPaddockBroken);
             DBHelper.save(paddock);
 
             res.redirect("/paddocks");
@@ -93,11 +94,11 @@ public class PaddockController {
             Park park = DBHelper.find(Park.class, parkId);
 
             String name = req.queryParams("name");
-
+            boolean isPaddockBroken = Boolean.parseBoolean(req.queryParams("false"));
             int id = Integer.parseInt(req.params(":id"));
             Paddock paddock = DBHelper.find(Paddock.class, id);
             paddock.setName(name);
-
+            paddock.setPaddockBroken(isPaddockBroken);
             paddock.setPark(park);
             DBHelper.update(paddock);
 

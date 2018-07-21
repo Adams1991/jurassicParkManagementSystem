@@ -12,7 +12,6 @@ import javax.persistence.Table;
 @Table(name = "carnivores")
 public class Carnivore extends Dinosaur {
     private Paddock paddock;
-
     public Carnivore() {
     }
 
@@ -31,8 +30,13 @@ public class Carnivore extends Dinosaur {
         this.paddock = paddock;
     }
 
+    public void starveCarnivore() {
+        int starveDuration = 60;
+        this.hungerLevel -= starveDuration;
+    }
 
-
-
+    public int kill(IEdible iEdible){
+        return iEdible.nutritionalValueForEating();
+    }
 
 }

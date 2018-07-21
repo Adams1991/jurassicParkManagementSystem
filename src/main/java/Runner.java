@@ -10,10 +10,10 @@ public class Runner {
 
 
         //CRUD Functions for Park
-        Park park = new Park("Jurassic Park");
+        Park park = new Park("Jurassic Park", 1000);
         DBHelper.save(park);
 
-        Park park2 = new Park("Jurassic Park");
+        Park park2 = new Park("Jurassic Park", 1000);
         DBHelper.save(park2);
 
         park.setName("Disney");
@@ -62,12 +62,12 @@ public class Runner {
         List<Person> allFolk = DBHelper.getAll(Person.class);
 
         //CRUD Function for Paddock
-        Paddock tRexEnclosure = new Paddock(park, "Tyranasaurs");
+        Paddock tRexEnclosure = new Paddock(park, "Tyranasaurs", false);
         DBHelper.save(tRexEnclosure);
         tRexEnclosure.setName("Bla");
         DBHelper.update(tRexEnclosure);
 
-        Paddock grassEateres = new Paddock(park, "Field");
+        Paddock grassEateres = new Paddock(park, "Field", false);
         DBHelper.save(grassEateres);
 
         List<Paddock> allPaddock = DBHelper.getAll(Paddock.class);

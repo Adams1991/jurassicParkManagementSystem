@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -11,15 +12,15 @@ public class PaddockTest {
 
     Paddock paddock;
     Park park;
-    private ArrayList<Herbivore> herbivores;
-    private ArrayList<Carnivore> carnivores;
+    List<Herbivore> herbivores;
+    List<Carnivore> carnivores;
+    Carnivore trex;
 
     @Before
     public void setUp() {
         park = new Park();
-        paddock = new Paddock(park, "Paddock One");
-        herbivores = new ArrayList<Herbivore>();
-        carnivores = new ArrayList<Carnivore>();
+        paddock = new Paddock(park, "Paddock One", false);
+        trex = new Carnivore("Trextacy",100, SpeciesType.TREX, paddock);
     }
 
     @Test
@@ -64,5 +65,17 @@ public class PaddockTest {
     public void setHerbivores() {
         paddock.setHerbivores(herbivores);
         assertEquals(herbivores, paddock.getHerbivores());
+    }
+
+    @Test
+    public void getBooleonForPaddockStatus(){
+        assertEquals(false, paddock.isPaddockBroken());
+    }
+
+    @Test
+    public void canBreakPaddock(){
+        trex.starveCarnivore();
+        paddock.breakout(trex);
+        assertEquals(true, paddock.isPaddockBroken());
     }
 }

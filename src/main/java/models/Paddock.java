@@ -1,21 +1,22 @@
 package models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "paddocks")
 public class Paddock {
-    int id;
-    Park park;
-    String name;
-    List<Carnivore> carnivores;
-    List<Herbivore> herbivores;
+    private int id;
+    private Park park;
+    private String name;
+    private List<Carnivore> carnivores;
+    private List<Herbivore> herbivores;
+    private boolean isPaddockBroken;
 
-    public Paddock(Park park, String name) {
+    public Paddock(Park park, String name, boolean isPaddockBroken) {
         this.park = park;
         this.name = name;
+        this.isPaddockBroken = false;
     }
 
     public Paddock() {
@@ -33,7 +34,7 @@ public class Paddock {
     }
 
     @ManyToOne
-    @JoinColumn(name="park_id", nullable=false)
+    @JoinColumn(name = "park_id", nullable = false)
     public Park getPark() {
         return park;
     }
@@ -51,6 +52,8 @@ public class Paddock {
         this.name = name;
     }
 
+
+
     @OneToMany(mappedBy="paddock", fetch = FetchType.EAGER)
     public List<Carnivore> getCarnivores() {
         return carnivores;
@@ -60,7 +63,7 @@ public class Paddock {
         this.carnivores = carnivores;
     }
 
-    @OneToMany(mappedBy="paddock", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "paddock", fetch = FetchType.LAZY)
     public List<Herbivore> getHerbivores() {
         return herbivores;
     }
@@ -70,9 +73,30 @@ public class Paddock {
     }
 
 
+    @Column(name = "is_paddock_broken")
+    public boolean isPaddockBroken() {
+        return this.isPaddockBroken;
+    }
+
+    public void setPaddockBroken(boolean paddockBroken) {
+        isPaddockBroken = paddockBroken;
+    }
+
+    public void addCarnivoreToCarnivorePaddock(Carnivore carnivore) {
+        carnivores.add(carnivore);
+    }
+
+    public void breakout(Carnivore carnivore) {
+        if (carnivore.hungerLevel < 50 && this.isPaddockBroken == false) {
+            setPaddockBroken(true);
+        }
+    }
+
     public int CarnAmount(){
         return this.carnivores.size();
     }
 
-
 }
+
+
+

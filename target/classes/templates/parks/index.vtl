@@ -8,12 +8,14 @@
 
         <tr>
             <th>Park</th>
+            <th>Till</th>
         </tr>
 
 
         #foreach($park in $parks)
         <tr>
             <td>$park.getName()</td>
+            <td>$park.getTill()</td>
             <td><form method="post" action="/parks/$park.getId()/delete">
                 <input type="submit" value="delete"/>
             </form>

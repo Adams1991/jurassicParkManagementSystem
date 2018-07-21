@@ -1,5 +1,7 @@
 package db;
 
+import models.Dinosaur;
+import models.Paddock;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -115,6 +117,6 @@ public class DBHelper {
         } finally {
             session.close();
         }
-    }
 
+    }
 }
