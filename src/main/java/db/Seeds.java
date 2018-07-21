@@ -13,6 +13,14 @@ public class Seeds {
         Paddock paddock = new Paddock(park, "Raptor Enclosure");
         DBHelper.save(paddock);
 
+        Paddock paddock3 = new Paddock(park, "TRex Enclosure");
+        DBHelper.save(paddock3);
+
+        Paddock holdingPaddock = new Paddock(park, "Holding Paddock");
+        DBHelper.save(holdingPaddock);
+
+
+
         Paddock paddock2 = new Paddock(park, "Herb Enclosure");
         DBHelper.save(paddock2);
 
@@ -24,8 +32,11 @@ public class Seeds {
 
         Food food = new Food(FoodType.BADLYBEHAVEDCHILD,staff);
         DBHelper.save(food);
-        Carnivore carnivore = new Carnivore("Alpha", 100, SpeciesType.TREX, paddock);
+        Carnivore carnivore = new Carnivore("Alpha", 100, SpeciesType.RAPTOR, paddock);
         DBHelper.save(carnivore);
+
+        Carnivore carnivore2 = new Carnivore("Alpha", 100, SpeciesType.TREX, paddock3);
+        DBHelper.save(carnivore2);
 
         Herbivore herbivore = new Herbivore("Beta", 100, SpeciesType.DIPLODOCUS, paddock2);
         DBHelper.save(herbivore);

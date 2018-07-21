@@ -38,20 +38,14 @@ public class CarnivoreController {
         get("/carnivores/new", (req, res) -> {
             HashMap<String, Object> model = new HashMap();
 
-            List<Paddock> paddocksWithCarn = new ArrayList<>();
-
-            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
-
-            for (Paddock paddock : paddocks) {
-                if (paddock.CarnAmount() != 0)
-                    paddocksWithCarn.add(paddock);
-            }
-
-            model.put("paddocks", paddocksWithCarn);
+            Paddock paddock = DBHelper.findByName(Paddock.class, "Holding Paddock");
+            model.put("paddock", paddock);
 
 
             List<SpeciesType> species = Arrays.asList(SpeciesType.values());
             model.put("species", species);
+
+
 
             model.put("template", "templates/carnivores/create.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
@@ -62,9 +56,9 @@ public class CarnivoreController {
         post("/carnivores", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
 
-            int paddockId = Integer.parseInt(req.queryParams("paddock"));
+//            int paddockId = Integer.parseInt(req.queryParams("paddock"));
 
-            Paddock paddock = DBHelper.find(Paddock.class, paddockId);
+            Paddock paddock = DBHelper.findByName(Paddock.class, "Holding Paddock");
 
             String speciesType = req.queryParams("specie");
 
@@ -99,21 +93,30 @@ public class CarnivoreController {
 
             List<Paddock> paddocksWithCarn = new ArrayList<>();
 
+            List<Paddock> paddocksWithType = new ArrayList<>();
+
             List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+
+            int id = Integer.parseInt(req.params(":id"));
+
+            Carnivore carnivore = DBHelper.find(Carnivore.class, id);
 
             for (Paddock paddock : paddocks) {
                 if (paddock.CarnAmount() != 0)
                     paddocksWithCarn.add(paddock);
             }
 
-            int id = Integer.parseInt(req.params(":id"));
+            for (Paddock paddockWithCarn : paddocksWithCarn) {
+                for (Carnivore carnivoreInPaddock : paddockWithCarn.getCarnivores()) {
+                    if (carnivore.getSpecies() == carnivoreInPaddock.getSpecies())
+                        paddocksWithType.add(paddockWithCarn);
+                }
+            }
 
-            Carnivore carnivore = DBHelper.find(Carnivore.class, id);
-            List<SpeciesType> species = Arrays.asList(SpeciesType.values());
 
-            model.put("species", species);
+
             model.put("carnivore", carnivore);
-            model.put("paddocks", paddocksWithCarn);
+            model.put("paddocks", paddocksWithType);
             model.put("template", "templates/carnivores/edit.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
 
@@ -131,10 +134,6 @@ public class CarnivoreController {
 
             Paddock paddock = DBHelper.find(Paddock.class, paddockId);
 
-            String speciesType = req.queryParams("specie");
-
-            SpeciesType speciesTypeEnum= SpeciesType.valueOf(speciesType.toUpperCase());
-
 
             int id = Integer.parseInt(req.params(":id"));
             Carnivore carnivore = DBHelper.find(Carnivore.class, id);
@@ -142,7 +141,6 @@ public class CarnivoreController {
 
             carnivore.setName(name);
             carnivore.setPaddock(paddock);
-            carnivore.setSpecies(speciesTypeEnum);
             DBHelper.update(carnivore);
 
             res.redirect("/carnivores");

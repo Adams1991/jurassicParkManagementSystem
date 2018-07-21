@@ -1,10 +1,11 @@
 <p class="pageHeader">All Carnivores</p>
 
 
-
-<div>
-    <a href="/carnivores/new" class="button center">New Carnivore</a>
-</div>
+#if( $paddock.CarnAmount() != 0 )
+<a href="/carnivores/new" class="button center">New Carnivore</a>
+#else
+<a>Move Carn from Holding</a>
+#end
 
 <br>
 
@@ -32,7 +33,7 @@
             </form>
             </td>
             <td>
-                <a href="/carnivores/$carnivore.getId()/edit">Do Some Gene Splicing</a>
+                <a href="/carnivores/$carnivore.getId()/edit">Move or Rename this Dino</a>
             </td>
         </tr>
         #end
