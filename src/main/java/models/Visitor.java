@@ -46,4 +46,6 @@ public class Visitor extends Person {
     public void setPark(Park park) {
         this.park = park;
     }
+
+
 }

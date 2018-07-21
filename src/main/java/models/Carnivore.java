@@ -1,5 +1,7 @@
 package models;
 
+import behaviours.IEdible;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,5 +34,9 @@ public class Carnivore extends Dinosaur {
     public void starveCarnivore() {
         int starveDuration = 60;
         this.hungerLevel -= starveDuration;
+    }
+
+    public int kill(IEdible iEdible){
+        return iEdible.nutritionalValueForEating();
     }
 }

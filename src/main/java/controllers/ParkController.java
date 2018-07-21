@@ -1,7 +1,7 @@
 package controllers;
 
 import db.DBHelper;
-import models.Park;
+import models.*;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -94,6 +94,14 @@ public class ParkController {
             res.redirect("/parks");
             return null;
         }, new VelocityTemplateEngine());
+
+//        //TAKE A BREAK GET
+//        get("/parks/:id/logout", (req, res) -> {
+//
+//
+//
+//
+//        }, new VelocityTemplateEngine());
 
     }
 }

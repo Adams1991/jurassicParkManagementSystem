@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -75,5 +76,10 @@ public class Park {
 
     public void setTill(int till) {
         this.till = till;
+    }
+
+    public void visitorGetEaten(Paddock paddock, Carnivore carnivore){
+        if (paddock.isPaddockBroken() == true);
+        carnivore.eat(10);
     }
 }
