@@ -10,15 +10,11 @@ public class Seeds {
         Park park = new Park("Jurassic Park", 1000);
         DBHelper.save(park);
 
-
-
         Paddock paddock3 = new Paddock(park, "TRex Enclosure", false);
         DBHelper.save(paddock3);
 
         Paddock holdingPaddock = new Paddock(park, "Holding Paddock", false);
         DBHelper.save(holdingPaddock);
-
-
 
         Paddock paddock = new Paddock(park, "Raptor Enclosure", false);
         DBHelper.save(paddock);

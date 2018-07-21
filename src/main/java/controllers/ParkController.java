@@ -1,13 +1,12 @@
 package controllers;
 
 import db.DBHelper;
+import db.DBPark;
 import models.*;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.lang.Integer.parseInt;
 import static spark.Spark.get;
@@ -98,10 +97,76 @@ public class ParkController {
 //        //TAKE A BREAK GET
 //        get("/parks/:id/logout", (req, res) -> {
 //
+//            Map<String, Object> model = new HashMap();
+//            model.put("template", "templates/parks/logout.vtl");
 //
+//            List<Park> parks = DBHelper.getAll(Park.class);
+//            model.put("parks", parks);
 //
+//            return new ModelAndView(model, "templates/layout.vtl");
 //
 //        }, new VelocityTemplateEngine());
+        
+        //TAKE A BREAK 
+        post("/parks/:id/logout", (req, res) -> {
+//            Map<String, Object> model = new HashMap<>();
+
+
+            int id = parseInt(req.params(":id"));
+            Park park = DBHelper.find(Park.class, id);
+            
+            List<Paddock> paddocks = DBPark.paddockInPark(park);
+            
+            List<Paddock> paddocksWithCarn = new ArrayList<>();
+            for (Paddock paddock : paddocks) {
+                if (paddock.CarnAmount() != 0)
+                    paddocksWithCarn.add(paddock);
+            }
+
+            for (Paddock paddock : paddocksWithCarn) {
+                for (Carnivore carnivore : paddock.getCarnivores()) {
+                    carnivore.starveCarnivore();
+                    DBHelper.update(carnivore);
+                    paddock.breakout(carnivore);
+                    DBHelper.update(paddock);
+                }
+            }
+
+            Visitor visitor  = new Visitor();
+            List<Visitor> visitors = DBPark.visitorsInPark(park);
+            Random rand = new Random();
+            int randomVisitorInArray = rand.nextInt(visitors.size())+1;
+
+            for (Paddock paddock : paddocksWithCarn) {
+                if (paddock.isPaddockBroken())
+                visitor = visitors.get(randomVisitorInArray);
+                DBHelper.update(park);
+            }
+
+            Carnivore carnivore = new Carnivore();
+            List<Carnivore> carnivores = DBHelper.getAll(Carnivore.class);
+            Random randCarn = new Random();
+            int randomCarnivoreInArray = rand.nextInt(carnivores.size())+1;
+
+            for (Paddock paddock : paddocksWithCarn) {
+                if (paddock.isPaddockBroken())
+                    carnivore = carnivores.get(randomCarnivoreInArray);
+                    DBHelper.update(paddock);
+            }
+            
+            int visitorMeat = carnivore.kill(visitor);
+            carnivore.eat(visitorMeat);
+            DBHelper.update(carnivore);
+           
+            DBHelper.delete(visitor);
+
+            DBHelper.update(park);
+
+            
+
+            res.redirect("/");
+            return null;
+        }, new VelocityTemplateEngine());
 
     }
 }

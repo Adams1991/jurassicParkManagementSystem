@@ -6,12 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.Random;
 
 
 @Entity
 @Table(name = "carnivores")
 public class Carnivore extends Dinosaur {
     private Paddock paddock;
+
     public Carnivore() {
     }
 
@@ -21,7 +23,7 @@ public class Carnivore extends Dinosaur {
     }
 
     @ManyToOne
-    @JoinColumn(name="paddock_id", nullable=false)
+    @JoinColumn(name = "paddock_id", nullable = false)
     public Paddock getPaddock() {
         return paddock;
     }
@@ -31,12 +33,12 @@ public class Carnivore extends Dinosaur {
     }
 
     public void starveCarnivore() {
-        int starveDuration = 60;
-        this.hungerLevel -= starveDuration;
+        Random rand = new Random();
+        int starveAmount = rand.nextInt(100);
+        setHungerLevel(hungerLevel -= starveAmount);
     }
 
-    public int kill(IEdible iEdible){
+    public int kill(IEdible iEdible) {
         return iEdible.nutritionalValueForEating();
     }
-
 }
