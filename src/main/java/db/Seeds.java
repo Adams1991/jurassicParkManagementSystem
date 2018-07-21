@@ -11,7 +11,7 @@ public class Seeds {
         DBHelper.save(park);
 
         Paddock paddock = new Paddock(park, "Raptor Enclosure");
-        DBHelper.save(paddock);
+
 
         Paddock paddock3 = new Paddock(park, "TRex Enclosure");
         DBHelper.save(paddock3);
