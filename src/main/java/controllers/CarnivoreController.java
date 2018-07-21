@@ -3,7 +3,6 @@ package controllers;
 import db.DBHelper;
 import models.Carnivore;
 import models.Paddock;
-import models.Park;
 import models.SpeciesType;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;

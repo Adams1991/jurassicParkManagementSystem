@@ -21,7 +21,10 @@
             </form>
             <td>
                 <a href="/parks/$park.getId()/edit">Edit Park</a>
-            </td>
+            </td><
+            <td><form method="post" action="/parks/$park.getId()/logout">
+                <input type="submit" value="logout"/>
+            </form>
         </tr>
         #end
 
