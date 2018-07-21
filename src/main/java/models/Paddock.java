@@ -51,7 +51,7 @@ public class Paddock {
         this.name = name;
     }
 
-    @OneToMany(mappedBy="paddock", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="paddock", fetch = FetchType.EAGER)
     public List<Carnivore> getCarnivores() {
         return carnivores;
     }
@@ -68,4 +68,11 @@ public class Paddock {
     public void setHerbivores(List<Herbivore> herbivores) {
         this.herbivores = herbivores;
     }
+
+
+    public int CarnAmount(){
+        return this.carnivores.size();
+    }
+
+
 }
