@@ -116,6 +116,7 @@ public class CarnivoreController {
                 }
             }
 
+            // gets rid of duplicates caused by eager loading
             Set<Paddock> hs = new HashSet<Paddock>();
             hs.addAll(paddocksWithType);
             paddocksWithType.clear();
