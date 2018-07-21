@@ -1,7 +1,7 @@
 <p class="pageHeader">All Carnivores</p>
 
 
-#if( $paddock.CarnAmount() != 0 )
+#if( $paddock.CarnAmount() == 0 )
 <a href="/carnivores/new" class="button center">New Carnivore</a>
 #else
 <a>Move Carn from Holding</a>

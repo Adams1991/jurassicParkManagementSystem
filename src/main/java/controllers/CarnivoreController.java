@@ -27,6 +27,9 @@ public class CarnivoreController {
             model.put("template", "templates/carnivores/index.vtl"); // put
 
             List<Carnivore> carnivores = DBHelper.getAll(Carnivore.class);
+            Paddock paddock = DBHelper.findByName(Paddock.class, "Holding Paddock");
+
+            model.put("paddock",  paddock);
             model.put("carnivores", carnivores);
 
             return new ModelAndView(model,"templates/layout.vtl");
@@ -113,7 +116,10 @@ public class CarnivoreController {
                 }
             }
 
-
+            Set<Paddock> hs = new HashSet<Paddock>();
+            hs.addAll(paddocksWithType);
+            paddocksWithType.clear();
+            paddocksWithType.addAll(hs);
 
             model.put("carnivore", carnivore);
             model.put("paddocks", paddocksWithType);
