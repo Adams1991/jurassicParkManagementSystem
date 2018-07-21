@@ -12,10 +12,10 @@ public class Seeds {
 
 
 
-        Paddock paddock3 = new Paddock(park, "TRex Enclosure");
+        Paddock paddock3 = new Paddock(park, "TRex Enclosure", false);
         DBHelper.save(paddock3);
 
-        Paddock holdingPaddock = new Paddock(park, "Holding Paddock");
+        Paddock holdingPaddock = new Paddock(park, "Holding Paddock", false);
         DBHelper.save(holdingPaddock);
 
 
@@ -24,7 +24,7 @@ public class Seeds {
         DBHelper.save(paddock);
 
 
-        Paddock paddock2 = new Paddock(park, "Herb Enclosure");
+        Paddock paddock2 = new Paddock(park, "Herb Enclosure", false);
         DBHelper.save(paddock2);
 
         Visitor visitor = new Visitor("David Pears", 40, 180, park);
