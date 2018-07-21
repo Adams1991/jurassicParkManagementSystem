@@ -7,10 +7,7 @@ import models.SpeciesType;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -40,8 +37,16 @@ public class HerbivoreController {
         get("/herbivores/new", (req, res) -> {
             HashMap<String, Object> model = new HashMap();
 
+            List<Paddock> paddocksWithoutCarn = new ArrayList<>();
+
             List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
-            model.put("paddocks", paddocks);
+
+            for (Paddock paddock : paddocks) {
+                if (paddock.CarnAmount() == 0)
+                    paddocksWithoutCarn.add(paddock);
+            }
+
+            model.put("paddocks", paddocksWithoutCarn);
 
             List<SpeciesType> species = Arrays.asList(SpeciesType.values());
             model.put("species", species);
@@ -90,13 +95,23 @@ public class HerbivoreController {
         get("/herbivores/:id/edit",(req, res) -> {
             HashMap<String, Object> model = new HashMap();
 
+            List<Paddock> paddocksWithoutCarn = new ArrayList<>();
+
             List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+
+            for (Paddock paddock : paddocks) {
+                if (paddock.CarnAmount() == 0)
+                    paddocksWithoutCarn.add(paddock);
+            }
+
+
+
             int id = Integer.parseInt(req.params(":id"));
             Herbivore herbivore = DBHelper.find(Herbivore.class, id);
             List<SpeciesType> species = Arrays.asList(SpeciesType.values());
             model.put("species", species);
             model.put("herbivore", herbivore);
-            model.put("paddocks", paddocks);
+            model.put("paddocks", paddocksWithoutCarn);
             model.put("template", "templates/herbivores/edit.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
 

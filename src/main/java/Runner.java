@@ -1,4 +1,5 @@
 import db.DBHelper;
+import db.DBHerbivore;
 import models.*;
 
 import java.util.List;
@@ -91,6 +92,9 @@ public class Runner {
 
         List<Carnivore> allCarn = DBHelper.getAll(Carnivore.class);
         List<Herbivore> allHerb = DBHelper.getAll(Herbivore.class);
+
+
+        List<Paddock> paddocksWithNoCarns = DBHerbivore.getPaddocksWithoutCarn();
 
 
 

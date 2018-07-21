@@ -13,6 +13,9 @@ public class Seeds {
         Paddock paddock = new Paddock(park, "Raptor Enclosure", false);
         DBHelper.save(paddock);
 
+        Paddock paddock2 = new Paddock(park, "Herb Enclosure");
+        DBHelper.save(paddock2);
+
         Visitor visitor = new Visitor("David Pears", 40, 180, park);
         DBHelper.save(visitor);
 
@@ -24,7 +27,7 @@ public class Seeds {
         Carnivore carnivore = new Carnivore("Alpha", 100, SpeciesType.TREX, paddock);
         DBHelper.save(carnivore);
 
-        Herbivore herbivore = new Herbivore("Beta", 100, SpeciesType.DIPLODOCUS, paddock);
+        Herbivore herbivore = new Herbivore("Beta", 100, SpeciesType.DIPLODOCUS, paddock2);
         DBHelper.save(herbivore);
 
     }
