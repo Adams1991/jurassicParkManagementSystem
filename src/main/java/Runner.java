@@ -61,12 +61,12 @@ public class Runner {
         List<Person> allFolk = DBHelper.getAll(Person.class);
 
         //CRUD Function for Paddock
-        Paddock tRexEnclosure = new Paddock(park, "Tyranasaurs");
+        Paddock tRexEnclosure = new Paddock(park, "Tyranasaurs", false);
         DBHelper.save(tRexEnclosure);
         tRexEnclosure.setName("Bla");
         DBHelper.update(tRexEnclosure);
 
-        Paddock grassEateres = new Paddock(park, "Field");
+        Paddock grassEateres = new Paddock(park, "Field", false);
         DBHelper.save(grassEateres);
 
         List<Paddock> allPaddock = DBHelper.getAll(Paddock.class);

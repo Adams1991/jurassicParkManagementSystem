@@ -10,7 +10,7 @@ public class Seeds {
         Park park = new Park("Jurassic Park", 1000);
         DBHelper.save(park);
 
-        Paddock paddock = new Paddock(park, "Raptor Enclosure");
+        Paddock paddock = new Paddock(park, "Raptor Enclosure", false);
         DBHelper.save(paddock);
 
         Visitor visitor = new Visitor("David Pears", 40, 180, park);

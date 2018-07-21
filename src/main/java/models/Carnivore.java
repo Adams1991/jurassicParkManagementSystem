@@ -1,18 +1,16 @@
 package models;
 
-import behaviours.IEdible;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.List;
 
 
 @Entity
 @Table(name = "carnivores")
 public class Carnivore extends Dinosaur {
     private Paddock paddock;
-
     public Carnivore() {
     }
 
@@ -31,4 +29,8 @@ public class Carnivore extends Dinosaur {
         this.paddock = paddock;
     }
 
+    public void starveCarnivore() {
+        int starveDuration = 60;
+        this.hungerLevel -= starveDuration;
+    }
 }

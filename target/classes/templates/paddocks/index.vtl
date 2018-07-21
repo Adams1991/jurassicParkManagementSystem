@@ -14,12 +14,14 @@
     <table>
         <tr>
             <th>Name</th>
+            <th>Paddock Is Broken</th>
             <th>Park</th>
         </tr>
 
         #foreach($paddock in $paddocks)
         <tr>
             <td>$paddock.getName()</td>
+            <td>$paddock.isPaddockBroken()</td>
             <td>$paddock.getPark().getName()</td>
             <td><form method="post" action="/paddocks/$paddock.getId()/delete">
                 <input type="submit" value="delete"/>

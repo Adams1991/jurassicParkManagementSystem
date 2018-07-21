@@ -15,8 +15,8 @@ public class CarnivoreTest {
     Paddock paddock;
 
     @Before
-    public void setUp(){
-        carnivore = new Carnivore("Bob",  100, SpeciesType.RAPTOR, paddock );
+    public void setUp() {
+        carnivore = new Carnivore("Bob", 100, SpeciesType.RAPTOR, paddock);
         paddock = new Paddock();
     }
 
@@ -54,29 +54,27 @@ public class CarnivoreTest {
     }
 
     @Test
-    public void getPaddock(){
+    public void getPaddock() {
         assertEquals(paddock, carnivore.getPaddock());
 
     }
 
     @Test
-    public void setPaddock(){
+    public void setPaddock() {
         carnivore.setPaddock(null);
         assertEquals(null, carnivore.getPaddock());
     }
 
     @Test
-    public void feedDinosaur(){
+    public void feedDinosaur() {
         carnivore.eat(5);
         assertEquals(105, carnivore.getHungerLevel());
     }
 
-
     @Test
-    public void isThereACarnivoreInPaddock(){
-
+    public void starveCarnivore(){
+        carnivore.starveCarnivore();
+        assertEquals(40, carnivore.getHungerLevel());
     }
-
-
 
 }
