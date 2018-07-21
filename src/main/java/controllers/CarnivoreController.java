@@ -7,10 +7,7 @@ import models.SpeciesType;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -29,6 +26,9 @@ public class CarnivoreController {
             model.put("template", "templates/carnivores/index.vtl"); // put
 
             List<Carnivore> carnivores = DBHelper.getAll(Carnivore.class);
+            Paddock paddock = DBHelper.findByName(Paddock.class, "Holding Paddock");
+
+            model.put("paddock",  paddock);
             model.put("carnivores", carnivores);
 
             return new ModelAndView(model,"templates/layout.vtl");
@@ -40,11 +40,14 @@ public class CarnivoreController {
         get("/carnivores/new", (req, res) -> {
             HashMap<String, Object> model = new HashMap();
 
-            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
-            model.put("paddocks", paddocks);
+            Paddock paddock = DBHelper.findByName(Paddock.class, "Holding Paddock");
+            model.put("paddock", paddock);
+
 
             List<SpeciesType> species = Arrays.asList(SpeciesType.values());
             model.put("species", species);
+
+
 
             model.put("template", "templates/carnivores/create.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
@@ -55,9 +58,9 @@ public class CarnivoreController {
         post("/carnivores", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
 
-            int paddockId = Integer.parseInt(req.queryParams("paddock"));
+//            int paddockId = Integer.parseInt(req.queryParams("paddock"));
 
-            Paddock paddock = DBHelper.find(Paddock.class, paddockId);
+            Paddock paddock = DBHelper.findByName(Paddock.class, "Holding Paddock");
 
             String speciesType = req.queryParams("specie");
 
@@ -90,14 +93,36 @@ public class CarnivoreController {
         get("/carnivores/:id/edit",(req, res) -> {
             HashMap<String, Object> model = new HashMap();
 
+            List<Paddock> paddocksWithCarn = new ArrayList<>();
+
+            List<Paddock> paddocksWithType = new ArrayList<>();
+
             List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+
             int id = Integer.parseInt(req.params(":id"));
 
             Carnivore carnivore = DBHelper.find(Carnivore.class, id);
-            List<SpeciesType> species = Arrays.asList(SpeciesType.values());
-            model.put("species", species);
+
+            for (Paddock paddock : paddocks) {
+                if (paddock.CarnAmount() != 0)
+                    paddocksWithCarn.add(paddock);
+            }
+
+            for (Paddock paddockWithCarn : paddocksWithCarn) {
+                for (Carnivore carnivoreInPaddock : paddockWithCarn.getCarnivores()) {
+                    if (carnivore.getSpecies() == carnivoreInPaddock.getSpecies())
+                        paddocksWithType.add(paddockWithCarn);
+                }
+            }
+
+            // gets rid of duplicates caused by eager loading
+            Set<Paddock> hs = new HashSet<Paddock>();
+            hs.addAll(paddocksWithType);
+            paddocksWithType.clear();
+            paddocksWithType.addAll(hs);
+
             model.put("carnivore", carnivore);
-            model.put("paddocks", paddocks);
+            model.put("paddocks", paddocksWithType);
             model.put("template", "templates/carnivores/edit.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
 
@@ -115,10 +140,6 @@ public class CarnivoreController {
 
             Paddock paddock = DBHelper.find(Paddock.class, paddockId);
 
-            String speciesType = req.queryParams("specie");
-
-            SpeciesType speciesTypeEnum= SpeciesType.valueOf(speciesType.toUpperCase());
-
 
             int id = Integer.parseInt(req.params(":id"));
             Carnivore carnivore = DBHelper.find(Carnivore.class, id);
@@ -126,7 +147,6 @@ public class CarnivoreController {
 
             carnivore.setName(name);
             carnivore.setPaddock(paddock);
-            carnivore.setSpecies(speciesTypeEnum);
             DBHelper.update(carnivore);
 
             res.redirect("/carnivores");

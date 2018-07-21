@@ -108,8 +108,6 @@ public class HerbivoreController {
 
             int id = Integer.parseInt(req.params(":id"));
             Herbivore herbivore = DBHelper.find(Herbivore.class, id);
-            List<SpeciesType> species = Arrays.asList(SpeciesType.values());
-            model.put("species", species);
             model.put("herbivore", herbivore);
             model.put("paddocks", paddocksWithoutCarn);
             model.put("template", "templates/herbivores/edit.vtl");
@@ -129,10 +127,6 @@ public class HerbivoreController {
 
             Paddock paddock = DBHelper.find(Paddock.class, paddockId);
 
-            String speciesType = req.queryParams("specie");
-
-            SpeciesType speciesTypeEnum= SpeciesType.valueOf(speciesType.toUpperCase());
-
 
             int id = Integer.parseInt(req.params(":id"));
             Herbivore herbivore = DBHelper.find(Herbivore.class, id);
@@ -140,7 +134,6 @@ public class HerbivoreController {
 
             herbivore.setName(name);
             herbivore.setPaddock(paddock);
-            herbivore.setSpecies(speciesTypeEnum);
             DBHelper.update(herbivore);
 
             res.redirect("/herbivores");
