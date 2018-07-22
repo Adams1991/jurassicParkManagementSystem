@@ -167,7 +167,7 @@ public class ParkController {
             carnivores = DBHelper.getAll(Carnivore.class);
 
 
-                    Carnivore carnivore = new Carnivore();
+            Carnivore carnivore = new Carnivore();
             Random randCarn = new Random();
             int randomCarnivoreInArray = randCarn.nextInt(carnivores.size())+1;
 
