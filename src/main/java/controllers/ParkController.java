@@ -135,44 +135,41 @@ public class ParkController {
 
             // Above methods working
 
-            Visitor visitor  = new Visitor();
+//            Visitor visitor  = new Visitor();
             List<Visitor> visitors = DBPark.visitorsInPark(park);
             Random rand = new Random();
             int randomVisitorInArray = rand.nextInt(visitors.size())+1;
+            // .get() causing error because of lazy loading but unable to use eager
+            // got around using get by using find by id in DBHelper
+            Visitor visitor = DBHelper.find(Visitor.class, randomVisitorInArray);
+            DBHelper.update(park);
 
             // altered so we only use broken paddocks to get carn list below
             Paddock brokenPaddock = new Paddock();
 
             for (Paddock paddock : paddocksWithCarn) {
-                if (paddock.isPaddockBroken())
-                visitor = visitors.get(randomVisitorInArray);
+                if (paddock.isPaddockBroken()){
                 brokenPaddock = paddock;
-                DBHelper.update(park);
+                DBHelper.update(park);}
             }
 
             Carnivore carnivore = new Carnivore();
-            List<Carnivore> carnivores = DBPaddock.carnivoresInPaddock(brokenPaddock);
+//            List<Carnivore> carnivores = DBPaddock.carnivoresInPaddock(brokenPaddock);
+            List<Carnivore> carnivores = DBHelper.getAll(Carnivore.class);
             Random randCarn = new Random();
+            //} catch (Exception var28) { error being caused here wheb paddocks not broken.
             int randomCarnivoreInArray = randCarn.nextInt(carnivores.size())+1;
 
+            // moved kill methods to under if statement so they are conditional
             for (Paddock paddock : paddocksWithCarn) {
-                if (paddock.isPaddockBroken())
+                if (paddock.isPaddockBroken()){
                     carnivore = carnivores.get(randomCarnivoreInArray);
                     DBHelper.update(paddock);
+                    int visitorMeat = carnivore.kill(visitor);
+                    carnivore.eat(visitorMeat);
+                    DBHelper.update(carnivore);
+                    DBHelper.delete(visitor);}
             }
-            
-            int visitorMeat = carnivore.kill(visitor);
-            carnivore.eat(visitorMeat);
-            DBHelper.update(carnivore);
-
-            // all potential updates/deletions needed
-            DBHelper.delete(visitor);
-            DBHelper.update(park);
-            DBHelper.update(carnivore);
-            DBHelper.update(visitor);
-            DBHelper.update(paddocks);
-            DBHelper.update(paddocksWithCarn);
-
             
 
             res.redirect("/");
