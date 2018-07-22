@@ -51,6 +51,7 @@ public class Park {
         this.staff = staff;
     }
 
+    // changed to eager to fix issue
     @OneToMany(mappedBy = "park", fetch = FetchType.LAZY)
     public List<Visitor> getVisitors() {
         return visitors;

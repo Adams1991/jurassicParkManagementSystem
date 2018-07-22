@@ -1,6 +1,7 @@
 package controllers;
 
 import db.DBHelper;
+import db.DBPaddock;
 import db.DBPark;
 import models.*;
 import spark.ModelAndView;
@@ -132,21 +133,27 @@ public class ParkController {
                 }
             }
 
+            // Above methods working
+
             Visitor visitor  = new Visitor();
             List<Visitor> visitors = DBPark.visitorsInPark(park);
             Random rand = new Random();
             int randomVisitorInArray = rand.nextInt(visitors.size())+1;
 
+            // altered so we only use broken paddocks to get carn list below
+            Paddock brokenPaddock = new Paddock();
+
             for (Paddock paddock : paddocksWithCarn) {
                 if (paddock.isPaddockBroken())
                 visitor = visitors.get(randomVisitorInArray);
+                brokenPaddock = paddock;
                 DBHelper.update(park);
             }
 
             Carnivore carnivore = new Carnivore();
-            List<Carnivore> carnivores = DBHelper.getAll(Carnivore.class);
+            List<Carnivore> carnivores = DBPaddock.carnivoresInPaddock(brokenPaddock);
             Random randCarn = new Random();
-            int randomCarnivoreInArray = rand.nextInt(carnivores.size())+1;
+            int randomCarnivoreInArray = randCarn.nextInt(carnivores.size())+1;
 
             for (Paddock paddock : paddocksWithCarn) {
                 if (paddock.isPaddockBroken())
@@ -157,10 +164,14 @@ public class ParkController {
             int visitorMeat = carnivore.kill(visitor);
             carnivore.eat(visitorMeat);
             DBHelper.update(carnivore);
-           
-            DBHelper.delete(visitor);
 
+            // all potential updates/deletions needed
+            DBHelper.delete(visitor);
             DBHelper.update(park);
+            DBHelper.update(carnivore);
+            DBHelper.update(visitor);
+            DBHelper.update(paddocks);
+            DBHelper.update(paddocksWithCarn);
 
             
 
