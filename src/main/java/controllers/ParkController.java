@@ -153,11 +153,22 @@ public class ParkController {
                 DBHelper.update(park);}
             }
 
-            Carnivore carnivore = new Carnivore();
-//            List<Carnivore> carnivores = DBPaddock.carnivoresInPaddock(brokenPaddock);
-            List<Carnivore> carnivores = DBHelper.getAll(Carnivore.class);
+            List<Carnivore> carnivores = new ArrayList<>();
+
+
+            //  checks if paddock broken then assigns carnivores to either be all carns or just carns in a broken paddock
+//            for (Paddock paddock : paddocksWithCarn) {
+//                if (paddock.isPaddockBroken()) {
+//                   carnivores = DBPaddock.carnivoresInPaddock(brokenPaddock);
+//                }else{
+//                carnivores = DBHelper.getAll(Carnivore.class);}
+//            }
+
+            carnivores = DBHelper.getAll(Carnivore.class);
+
+
+                    Carnivore carnivore = new Carnivore();
             Random randCarn = new Random();
-            //} catch (Exception var28) { error being caused here wheb paddocks not broken.
             int randomCarnivoreInArray = randCarn.nextInt(carnivores.size())+1;
 
             // moved kill methods to under if statement so they are conditional
