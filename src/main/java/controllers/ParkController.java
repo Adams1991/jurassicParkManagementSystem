@@ -97,8 +97,6 @@ public class ParkController {
         
         //TAKE A BREAK 
         post("/parks/:id/logout", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-
 
             int id = parseInt(req.params(":id"));
             Park park = DBHelper.find(Park.class, id);
@@ -140,7 +138,6 @@ public class ParkController {
             Random randForStaffOrVisitor = new Random();
             int randomPersonEaten = randForStaffOrVisitor.nextInt(2)+1;
 
-            // moved kill methods to under if statement so they are conditional
             for (Paddock paddock : paddocksWithCarn) {
                 if (paddock.isPaddockBroken()){
                     Carnivore carnivore = DBHelper.find(Carnivore.class , randomCarnivore);
