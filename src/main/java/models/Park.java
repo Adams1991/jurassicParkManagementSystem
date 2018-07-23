@@ -1,7 +1,14 @@
 package models;
 
+import db.DBHelper;
+import db.DBPark;
+
 import javax.persistence.*;
+
+import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Random;
 
 @Entity
 @Table(name = "parks")
@@ -79,9 +86,61 @@ public class Park {
         this.till = till;
     }
 
-    public void visitorGetEaten(Paddock paddock, Carnivore carnivore){
-        if (paddock.isPaddockBroken() == true);
+    public void visitorGetEaten(Paddock paddock, Carnivore carnivore) {
+        if (paddock.isPaddockBroken() == true) ;
         carnivore.eat(10);
+    }
+
+
+    public List<Paddock> returnPaddocksWithCarns(){
+        List<Paddock> paddocks = DBPark.paddockInPark(this);
+        List<Paddock> paddocksWithCarn = new ArrayList<>();
+        for (Paddock paddock : paddocks) {
+            if (paddock.CarnAmount() != 0)
+                paddocksWithCarn.add(paddock);
+        }
+        return paddocksWithCarn;
+    }
+
+    public List<Carnivore> returnListOfCarnsinPaddockList(List<Paddock> paddocksWithCarns){
+        List<Carnivore> carnivores = new ArrayList<>();
+        for (Paddock paddock : paddocksWithCarns) {
+            carnivores.addAll(paddock.getCarnivores());
+        }
+        return carnivores;
+    }
+
+    public void starveDinoInAListofPaddocks(List<Paddock> paddocksWithCarns) {
+        for (Paddock paddock : paddocksWithCarns) {
+            for (Carnivore carnivore : paddock.getCarnivores()) {
+                carnivore.starveCarnivore();
+                DBHelper.update(carnivore);
+                paddock.breakout(carnivore);
+                DBHelper.update(paddock);
+            }
+        }
+    }
+
+    public void eatVisitorIfPaddocksBroken(List<Paddock> paddocksWithCarns, Visitor visitor, Carnivore carnivore, Staff staff) {
+        Random randForStaffOrVisitor = new Random();
+        int randomPersonEaten = randForStaffOrVisitor.nextInt(2)+1;
+                    for (Paddock paddock : paddocksWithCarns) {
+                if (paddock.isPaddockBroken()){
+                    DBHelper.update(paddock);
+                    if (visitor != null && carnivore != null){
+                    int visitorMeat = carnivore.kill(visitor);
+                    carnivore.eat(visitorMeat);
+                    DBHelper.update(carnivore);}
+
+                    if(randomPersonEaten == 1){
+                        if (visitor != null){
+                    visitor.setHasBeenEaten(true);
+                    DBHelper.update(visitor);}}else{
+                        if (staff != null){
+                    staff.setHasBeenEaten(true);
+                    DBHelper.update(staff);}}
+                }
+            }
     }
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -94,3 +153,4 @@ public class Park {
         this.attraction = attraction;
     }
 }
+

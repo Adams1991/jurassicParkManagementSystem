@@ -104,8 +104,6 @@ public class HerbivoreController {
                     paddocksWithoutCarn.add(paddock);
             }
 
-
-
             int id = Integer.parseInt(req.params(":id"));
             Herbivore herbivore = DBHelper.find(Herbivore.class, id);
             model.put("herbivore", herbivore);

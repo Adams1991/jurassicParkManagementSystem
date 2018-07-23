@@ -97,70 +97,36 @@ public class ParkController {
         
         //TAKE A BREAK 
         post("/parks/:id/logout", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-
 
             int id = parseInt(req.params(":id"));
             Park park = DBHelper.find(Park.class, id);
-            
-            List<Paddock> paddocks = DBPark.paddockInPark(park);
-            
-            List<Paddock> paddocksWithCarn = new ArrayList<>();
-            for (Paddock paddock : paddocks) {
-                if (paddock.CarnAmount() != 0)
-                    paddocksWithCarn.add(paddock);
-            }
 
-            for (Paddock paddock : paddocksWithCarn) {
-                for (Carnivore carnivore : paddock.getCarnivores()) {
-                    carnivore.starveCarnivore();
-                    DBHelper.update(carnivore);
-                    paddock.breakout(carnivore);
-                    DBHelper.update(paddock);
-                }
-            }
+            // Get paddocks only with Carns in
+            List<Paddock> paddocksWithCarn = park.returnPaddocksWithCarns();
 
+            // Randomly starve dinos in above paddocks
+            park.starveDinoInAListofPaddocks(paddocksWithCarn);
+
+            //Get Random Visitor from DB
             List<Visitor> visitors = DBPark.visitorsInPark(park);
             Random rand = new Random();
             int randomVisitorInArray = rand.nextInt(visitors.size())+1;
             Visitor visitor = DBHelper.find(Visitor.class, randomVisitorInArray);
-            DBHelper.update(park);
 
-
+            // Get Random Staff From DB
             List<Staff> staff = DBPark.staffInPark(park);
             Random randStaff = new Random();
             int randomStaffInArray = randStaff.nextInt(staff.size())+(staff.size());
             Staff staffForEating = DBHelper.find(Staff.class, randomStaffInArray );
-            DBHelper.update(park);
 
-            List<Carnivore> carnivores = DBHelper.getAll(Carnivore.class);
+            // Get Random Carnivore From DB
+            List<Carnivore> carnivores = park.returnListOfCarnsinPaddockList(paddocksWithCarn);
             Random randCarn = new Random();
             int randomCarnivore = randCarn.nextInt(carnivores.size())+1;
+            Carnivore carnivore = DBHelper.find(Carnivore.class , randomCarnivore);
 
-            Random randForStaffOrVisitor = new Random();
-            int randomPersonEaten = randForStaffOrVisitor.nextInt(2)+1;
-
-            // moved kill methods to under if statement so they are conditional
-            for (Paddock paddock : paddocksWithCarn) {
-                if (paddock.isPaddockBroken()){
-                    Carnivore carnivore = DBHelper.find(Carnivore.class , randomCarnivore);
-                    DBHelper.update(paddock);
-
-                    if (visitor != null){
-                    int visitorMeat = carnivore.kill(visitor);
-                    carnivore.eat(visitorMeat);
-                    DBHelper.update(carnivore);}
-
-                    if(randomPersonEaten == 1){
-                        if (visitor != null){
-                    visitor.setHasBeenEaten(true);
-                    DBHelper.update(visitor);}}else{
-                        if (staffForEating != null){
-                    staffForEating.setHasBeenEaten(true);
-                    DBHelper.update(staffForEating);}}
-                }
-            }
-            
+            //Check if Paddocks broken and eat either a Visitor Or Guest if there are any
+            park.eatVisitorIfPaddocksBroken(paddocksWithCarn, visitor, carnivore, staffForEating);
 
             res.redirect("/");
             return null;

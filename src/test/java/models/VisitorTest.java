@@ -40,4 +40,10 @@ public class VisitorTest {
     public void hasPark(){
         assertEquals(jurassicPark, visitor.getPark());
     }
+
+    @Test
+    public void canSetWallet(){
+        visitor.setWallet(100);
+        assertEquals(100, visitor.getWallet());
+    }
 }

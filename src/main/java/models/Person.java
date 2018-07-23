@@ -40,6 +40,7 @@ public abstract class Person implements IEdible {
     public void setName(String name) {
         this.name = name;
     }
+
     @Column(name = "nutritional_value")
     public int getNutritionalValue() {
         return nutritionalValue;
