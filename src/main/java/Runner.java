@@ -118,7 +118,10 @@ public class Runner {
 
         List<Food> attractionsFood = attraction.getFoods();
 
+        List<Paddock> paddocksWithNoHerb = DBPaddock.paddocksWithNoHerb();
 
+
+        List<Paddock> emptyPaddocks = DBPaddock.emptyPaddocks();
 
 
     }

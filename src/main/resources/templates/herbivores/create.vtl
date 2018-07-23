@@ -9,7 +9,9 @@
     <label for="paddock">Paddock:</label>
     <select name="paddock" id="paddock">
         #foreach ($paddock in $paddocks)
+        #if( $paddock.CarnAmount() == 0 )
         <option value="$paddock.getId()">$paddock.getName()</option>
+        #end
         #end
     </select>
 
