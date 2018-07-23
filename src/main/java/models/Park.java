@@ -85,7 +85,7 @@ public class Park {
     }
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "attraction_id", nullable = false)
+    @JoinColumn(name = "attraction_id", nullable = true)
     public Attraction getAttraction() {
         return attraction;
     }

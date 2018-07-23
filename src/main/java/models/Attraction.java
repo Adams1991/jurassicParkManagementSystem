@@ -18,7 +18,7 @@ public class Attraction implements ISecurity {
     public Attraction() {
     }
 
-    public Attraction(String name, int till, Park park) {
+    public Attraction(String name,int till, Park park) {
         this.name = name;
         this.till = 0;
         this.park = park;
@@ -53,7 +53,7 @@ public class Attraction implements ISecurity {
         this.till = till;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "park_id", nullable = false)
     public Park getPark() {
         return park;

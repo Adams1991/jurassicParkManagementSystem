@@ -20,5 +20,6 @@
         <mapping class="models.Person"/>
         <mapping class="models.Staff"/>
         <mapping class="models.Visitor"/>
+        <mapping class="models.Attraction"/>
     </session-factory>
 </hibernate-configuration>

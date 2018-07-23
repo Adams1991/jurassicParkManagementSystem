@@ -1,4 +1,4 @@
-<p class="pageHeader">All Staff</p>
+<p class="pageHeader">All Attractions</p>
 
 
 
@@ -18,10 +18,10 @@
             <th>Park</th>
         </tr>
 
-        #foreach($staff in $staffs)
+        #foreach($attraction in $attractions)
         <tr>
             <td>$attraction.getName()</td>
-            <td>attraction.getJob()</td>
+            <td>$attraction.getTill()</td>
             <td>$attraction.getPark().getName()</td>
 
             <td><form method="post" action="/attractions/$attraction.getId()/delete">
@@ -30,10 +30,7 @@
             </form>
             </td>
             <td>
-                <a href="/staffs/$staff.getId()/edit">Edit Staff Member</a>
-            </td>
-            <td>
-                <a href="/staffs/$staff.getId()/feed">Feed Dinor</a>
+                <a href="/attractions/$attraction.getId()/edit">Edit Attraction</a>
             </td>
         </tr>
         #end

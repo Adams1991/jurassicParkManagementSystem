@@ -23,9 +23,9 @@ public class AttractionController {
 
         get("/attraction", (req, res) -> {
             Map<String, Object> model = new HashMap();
-            model.put("template", "templates/attraction/index.vtl");
+            model.put("template", "templates/attractions/index.vtl");
 
-            List<Attraction> attractions = DBHelper.getAll(Park.class);
+            List<Attraction> attractions = DBHelper.getAll(Attraction.class);
             model.put("attractions", attractions);
 
             return new ModelAndView(model, "templates/layout.vtl");
@@ -50,8 +50,6 @@ public class AttractionController {
             Map<String, Object> model = new HashMap<>();
 
             String name = req.queryParams("name");
-
-            int till = Integer.parseInt(req.queryParams("till"));
 
             int parkId = Integer.parseInt(req.queryParams("park"));
             Park park = DBHelper.find(Park.class, parkId);
@@ -85,7 +83,7 @@ public class AttractionController {
             Attraction attraction = DBHelper.find(Attraction.class, id);
             model.put("attraction", attraction);
             model.put("parks", park);
-            model.put("template", "templates/staff/edit.vtl");
+            model.put("template", "templates/attractions/edit.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
 
         }, new VelocityTemplateEngine());
