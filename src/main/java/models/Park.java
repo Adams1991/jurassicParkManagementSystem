@@ -18,6 +18,7 @@ public class Park {
     private List<Staff> staff;
     private List<Visitor> visitors;
     private List<Paddock> paddocks;
+    private DinoFeeding dinoFeeding;
 
     public Park() {
     }
@@ -89,6 +90,7 @@ public class Park {
         carnivore.eat(10);
     }
 
+
     public List<Paddock> returnPaddocksWithCarns(){
         List<Paddock> paddocks = DBPark.paddockInPark(this);
         List<Paddock> paddocksWithCarn = new ArrayList<>();
@@ -132,4 +134,14 @@ public class Park {
             }
     }
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dino_feeding_id", nullable = false)
+    public DinoFeeding getDinoFeeding() {
+        return dinoFeeding;
+    }
+
+    public void setDinoFeeding(DinoFeeding dinoFeeding) {
+        this.dinoFeeding = dinoFeeding;
+    }
 }
+

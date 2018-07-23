@@ -50,7 +50,6 @@ public abstract class Person implements IEdible {
         this.nutritionalValue = nutritionalValue;
     }
 
-
     public int nutritionalValueForEating(){
         return this.nutritionalValue;
     }

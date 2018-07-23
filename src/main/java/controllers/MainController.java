@@ -22,6 +22,7 @@ public class MainController {
         FoodController foodController = new FoodController();
         CarnivoreController carnivoreController = new CarnivoreController();
         HerbivoreController herbivoreController = new HerbivoreController();
+        DinoFeedingController dinoFeedingController = new DinoFeedingController();
 
         VelocityTemplateEngine velocityTemplateEngine = new VelocityTemplateEngine();
 

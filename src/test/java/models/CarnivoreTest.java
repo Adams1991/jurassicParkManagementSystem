@@ -71,10 +71,5 @@ public class CarnivoreTest {
         assertEquals(105, carnivore.getHungerLevel());
     }
 
-    @Test
-    public void starveCarnivore(){
-        carnivore.starveCarnivore();
-        assertEquals(40, carnivore.getHungerLevel());
-    }
 
 }
