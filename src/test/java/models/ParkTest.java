@@ -21,7 +21,7 @@ public class ParkTest {
 
     @Before
     public void setUp() {
-        staffMember = new Staff("Bob Geldolf", RoleType.GAMEKEEPER, park);
+        staffMember = new Staff("Bob Geldolf", RoleType.GAMEKEEPER, park, false);
         tRexPen = new Paddock(park, "TRex Enclosure", false);
         park = new Park("Park One",1000);
         paddocks = new ArrayList<Paddock>();

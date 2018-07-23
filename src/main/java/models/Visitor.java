@@ -12,8 +12,8 @@ public class Visitor extends Person {
     public Visitor() {
     }
 
-    public Visitor(String name, int age, int height,Park park) {
-        super(name);
+    public Visitor(String name, int age, int height,Park park, boolean hasBeenEaten) {
+        super(name, hasBeenEaten);
         this.age = age;
         this.height = height;
         this.park = park;

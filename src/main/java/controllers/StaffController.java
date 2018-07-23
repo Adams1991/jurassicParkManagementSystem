@@ -63,10 +63,11 @@ public class StaffController {
             String roleValue = req.queryParams("job");
             RoleType job = RoleType.valueOf(roleValue.toUpperCase());
 
+
             int parkId = Integer.parseInt(req.queryParams("park"));
             Park park = DBHelper.find(Park.class, parkId);
 
-            Staff staff = new Staff(name, job, park);
+            Staff staff = new Staff(name, job, park, false);
             DBHelper.save(staff);
 
             res.redirect("/staffs");

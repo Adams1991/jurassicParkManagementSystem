@@ -30,12 +30,12 @@ public class Runner {
 
         //CRUD Function for Staff
 
-        Staff staffMember = new Staff("Pavel Cody", RoleType.GAMEKEEPER, park);
+        Staff staffMember = new Staff("Pavel Cody", RoleType.GAMEKEEPER, park, false);
         DBHelper.save(staffMember);
         staffMember.setJob(RoleType.SECURITYGUARD);
         DBHelper.update(staffMember);
 
-        Staff staffMember2 =  new Staff("Pavel Cody", RoleType.GAMEKEEPER, park);;
+        Staff staffMember2 =  new Staff("Pavel Cody", RoleType.GAMEKEEPER, park, false);;
         DBHelper.save(staffMember2);
 
         List<Staff> allStaff = DBHelper.getAll(Staff.class);
@@ -46,12 +46,12 @@ public class Runner {
 
         //CRUD Function For Visitor
 
-        Visitor visitorMember = new Visitor("Pavel Cody", 10,182, park);
+        Visitor visitorMember = new Visitor("Pavel Cody", 10,182, park, false);
         DBHelper.save(visitorMember);
         visitorMember.setHeight(192);
         DBHelper.update(visitorMember);
 
-        Visitor visitorMember2 =  new Visitor("Pavel Cody", 10,182, park);;
+        Visitor visitorMember2 =  new Visitor("Pavel Cody", 10,182, park, false);
         DBHelper.save(visitorMember2);
 
         List<Visitor> allVisitor = DBHelper.getAll(Visitor.class);

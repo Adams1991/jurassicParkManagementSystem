@@ -14,8 +14,8 @@ public class Staff extends Person {
 
     public Staff(){}
 
-    public Staff(String name, RoleType job, Park park) {
-        super(name);
+    public Staff(String name, RoleType job, Park park, boolean hasBeenEaten) {
+        super(name, hasBeenEaten);
         this.job = job;
         this.park = park;
     }

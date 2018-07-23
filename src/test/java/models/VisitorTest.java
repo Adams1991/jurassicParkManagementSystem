@@ -13,7 +13,7 @@ public class VisitorTest {
     @Before
     public void setup(){
         jurassicPark = new Park();
-        visitor = new Visitor("Daniel Warren", 26, 182, jurassicPark);
+        visitor = new Visitor("Daniel Warren", 26, 182, jurassicPark, false);
     }
 
     @Test

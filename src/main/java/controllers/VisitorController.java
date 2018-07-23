@@ -56,7 +56,7 @@ public class VisitorController {
             int ParkId = Integer.parseInt(req.queryParams("park"));
             Park park = DBHelper.find(Park.class, ParkId);
 
-            Visitor visitor = new Visitor(name, age, height, park);
+            Visitor visitor = new Visitor(name, age, height, park, false);
             DBHelper.save(visitor);
 
             res.redirect("/visitors");

@@ -178,7 +178,8 @@ public class ParkController {
                     int visitorMeat = carnivore.kill(visitor);
                     carnivore.eat(visitorMeat);
                     DBHelper.update(carnivore);
-                    DBHelper.delete(visitor);}
+                    visitor.setHasBeenEaten(true);
+                    DBHelper.update(visitor);}
             }
             
 

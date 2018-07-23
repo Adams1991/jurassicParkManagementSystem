@@ -18,7 +18,7 @@ public class StaffTest {
     public void setup() {
         jurassicPark = new Park();
         foods = new ArrayList<Food>();
-        staff = new Staff("Jesus of Nazareth", RoleType.GAMEKEEPER, jurassicPark);
+        staff = new Staff("Jesus of Nazareth", RoleType.GAMEKEEPER, jurassicPark, false);
         food = new Food(FoodType.BADLYBEHAVEDCHILD, staff);
     }
 

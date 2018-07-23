@@ -11,12 +11,14 @@ public abstract class Person implements IEdible {
     private int id;
     private String name;
     private int nutritionalValue;
+    private boolean hasBeenEaten;
 
     public Person(){}
 
-    public Person(String name) {
+    public Person(String name, boolean hasBeenEaten) {
         this.name = name;
         this.nutritionalValue = 10;
+        this.hasBeenEaten = false;
     }
 
     @Id
@@ -50,5 +52,14 @@ public abstract class Person implements IEdible {
 
     public int nutritionalValueForEating(){
         return this.nutritionalValue;
+    }
+
+    @Column(name = "has_been_eaten")
+    public boolean isHasBeenEaten() {
+        return hasBeenEaten;
+    }
+
+    public void setHasBeenEaten(boolean hasBeenEaten) {
+        this.hasBeenEaten = hasBeenEaten;
     }
 }

@@ -13,7 +13,7 @@ public class FoodTest {
     @Before
     public void setup(){
         jurassicPark = new Park();
-        bob = new Staff("Bob Smith", RoleType.GAMEKEEPER, jurassicPark);
+        bob = new Staff("Bob Smith", RoleType.GAMEKEEPER, jurassicPark, false);
         food = new Food(FoodType.COW, bob);
     }
 

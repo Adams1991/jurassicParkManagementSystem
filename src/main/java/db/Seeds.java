@@ -22,16 +22,17 @@ public class Seeds {
         Paddock paddock2 = new Paddock(park, "Herb Enclosure", false);
         DBHelper.save(paddock2);
 
-        Visitor visitor = new Visitor("David Pears", 40, 180, park);
+        Visitor visitor = new Visitor("David Pears", 40, 180, park, false);
         DBHelper.save(visitor);
 
-        Staff staff = new Staff("Stewart", RoleType.GAMEKEEPER, park);
+        Staff staff = new Staff("Stewart", RoleType.GAMEKEEPER, park, false);
         DBHelper.save(staff);
 
         Food food = new Food(FoodType.BADLYBEHAVEDCHILD,staff);
         DBHelper.save(food);
         Food food2 = new Food(FoodType.BADLYBEHAVEDCHILD,staff);
         DBHelper.save(food2);
+
         Carnivore carnivore = new Carnivore("Alpha", 100, SpeciesType.RAPTOR, paddock);
         DBHelper.save(carnivore);
 
