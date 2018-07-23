@@ -60,7 +60,18 @@ public class DBPark {
     }
 
 
-
-
+    public static List<Attraction> getAllAttractionsInPark(Park park) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Attraction> results = null;
+        try {
+            Criteria cr = session.createCriteria(Attraction.class);
+            cr.add(Restrictions.eq("park", park));
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return results;
+    }
 
 }

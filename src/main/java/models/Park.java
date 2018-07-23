@@ -92,7 +92,7 @@ public class Park {
     }
 
 
-    public List<Paddock> returnPaddocksWithCarns(){
+    public List<Paddock> returnPaddocksWithCarns() {
         List<Paddock> paddocks = DBPark.paddockInPark(this);
         List<Paddock> paddocksWithCarn = new ArrayList<>();
         for (Paddock paddock : paddocks) {
@@ -102,7 +102,7 @@ public class Park {
         return paddocksWithCarn;
     }
 
-    public List<Carnivore> returnListOfCarnsinPaddockList(List<Paddock> paddocksWithCarns){
+    public List<Carnivore> returnListOfCarnsinPaddockList(List<Paddock> paddocksWithCarns) {
         List<Carnivore> carnivores = new ArrayList<>();
         for (Paddock paddock : paddocksWithCarns) {
             carnivores.addAll(paddock.getCarnivores());
@@ -123,24 +123,29 @@ public class Park {
 
     public void eatVisitorIfPaddocksBroken(List<Paddock> paddocksWithCarns, Visitor visitor, Carnivore carnivore, Staff staff) {
         Random randForStaffOrVisitor = new Random();
-        int randomPersonEaten = randForStaffOrVisitor.nextInt(2)+1;
-                    for (Paddock paddock : paddocksWithCarns) {
-                if (paddock.isPaddockBroken()){
-                    DBHelper.update(paddock);
-                    if (visitor != null && carnivore != null){
+        int randomPersonEaten = randForStaffOrVisitor.nextInt(2) + 1;
+        for (Paddock paddock : paddocksWithCarns) {
+            if (paddock.isPaddockBroken()) {
+                DBHelper.update(paddock);
+                if (visitor != null && carnivore != null) {
                     int visitorMeat = carnivore.kill(visitor);
                     carnivore.eat(visitorMeat);
-                    DBHelper.update(carnivore);}
+                    DBHelper.update(carnivore);
+                }
 
-                    if(randomPersonEaten == 1){
-                        if (visitor != null){
-                    visitor.setHasBeenEaten(true);
-                    DBHelper.update(visitor);}}else{
-                        if (staff != null){
-                    staff.setHasBeenEaten(true);
-                    DBHelper.update(staff);}}
+                if (randomPersonEaten == 1) {
+                    if (visitor != null) {
+                        visitor.setHasBeenEaten(true);
+                        DBHelper.update(visitor);
+                    }
+                } else {
+                    if (staff != null) {
+                        staff.setHasBeenEaten(true);
+                        DBHelper.update(staff);
+                    }
                 }
             }
+        }
     }
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -151,6 +156,14 @@ public class Park {
 
     public void setAttraction(Attraction attraction) {
         this.attraction = attraction;
+    }
+
+    public List<Visitor> getVisitorsWhoAreOver18() {
+        List<Visitor> suitableVisitors = new ArrayList<>();
+        for (Visitor visitor : visitors) {
+            attraction.isAllowed(visitor);
+        }
+        return suitableVisitors;
     }
 }
 

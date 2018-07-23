@@ -94,7 +94,7 @@ public class ParkController {
             res.redirect("/parks");
             return null;
         }, new VelocityTemplateEngine());
-        
+
         //TAKE A BREAK 
         post("/parks/:id/logout", (req, res) -> {
 
@@ -110,20 +110,20 @@ public class ParkController {
             //Get Random Visitor from DB
             List<Visitor> visitors = DBPark.visitorsInPark(park);
             Random rand = new Random();
-            int randomVisitorInArray = rand.nextInt(visitors.size())+1;
+            int randomVisitorInArray = rand.nextInt(visitors.size()) + 1;
             Visitor visitor = DBHelper.find(Visitor.class, randomVisitorInArray);
 
             // Get Random Staff From DB
             List<Staff> staff = DBPark.staffInPark(park);
             Random randStaff = new Random();
-            int randomStaffInArray = randStaff.nextInt(staff.size())+(staff.size());
-            Staff staffForEating = DBHelper.find(Staff.class, randomStaffInArray );
+            int randomStaffInArray = randStaff.nextInt(staff.size()) + (staff.size());
+            Staff staffForEating = DBHelper.find(Staff.class, randomStaffInArray);
 
             // Get Random Carnivore From DB
             List<Carnivore> carnivores = park.returnListOfCarnsinPaddockList(paddocksWithCarn);
             Random randCarn = new Random();
-            int randomCarnivore = randCarn.nextInt(carnivores.size())+1;
-            Carnivore carnivore = DBHelper.find(Carnivore.class , randomCarnivore);
+            int randomCarnivore = randCarn.nextInt(carnivores.size()) + 1;
+            Carnivore carnivore = DBHelper.find(Carnivore.class, randomCarnivore);
 
             //Check if Paddocks broken and eat either a Visitor Or Guest if there are any
             park.eatVisitorIfPaddocksBroken(paddocksWithCarn, visitor, carnivore, staffForEating);
@@ -132,6 +132,34 @@ public class ParkController {
             return null;
         }, new VelocityTemplateEngine());
 
+        //WATCH ATTRACTION (POST)
+
+        get("/parks/:id/attraction", (req, res) -> {
+            Map<String, Object> model = new HashMap();
+            int id = parseInt(req.params(":id"));
+            Park park = DBHelper.find(Park.class, id);
+            model.put("park", park);
+
+            List<Visitor> visitors = DBPark.visitorsInPark(park);
+            model.put("visitors", visitors);
+
+            List<Attraction> attractions = DBPark.getAllAttractionsInPark(park);
+            model.put("attractions", attractions);
+
+            List<Paddock> paddocksWithCarn = park.returnPaddocksWithCarns();
+            List<Carnivore> carnivores = park.returnListOfCarnsinPaddockList(paddocksWithCarn);
+            model.put("carnivores", carnivores);
+
+            model.put("template", "templates/parks/attraction.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        post("parks/:id", (req, res) -> {
+
+
+
+        },new VelocityTemplateEngine();
     }
+
 }
 
