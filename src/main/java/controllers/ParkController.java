@@ -94,7 +94,6 @@ public class ParkController {
             res.redirect("/parks");
             return null;
         }, new VelocityTemplateEngine());
-
         
         //TAKE A BREAK 
         post("/parks/:id/logout", (req, res) -> {
@@ -133,8 +132,6 @@ public class ParkController {
             int randomStaffInArray = randStaff.nextInt(staff.size())+(staff.size());
             Staff staffForEating = DBHelper.find(Staff.class, randomStaffInArray );
             DBHelper.update(park);
-
-
 
             List<Carnivore> carnivores = DBHelper.getAll(Carnivore.class);
             Random randCarn = new Random();
