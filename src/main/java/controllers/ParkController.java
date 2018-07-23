@@ -135,7 +135,6 @@ public class ParkController {
 
             // Above methods working
 
-//            Visitor visitor  = new Visitor();
             List<Visitor> visitors = DBPark.visitorsInPark(park);
             Random rand = new Random();
             int randomVisitorInArray = rand.nextInt(visitors.size())+1;
@@ -145,13 +144,13 @@ public class ParkController {
             DBHelper.update(park);
 
             // altered so we only use broken paddocks to get carn list below
-            Paddock brokenPaddock = new Paddock();
-
-            for (Paddock paddock : paddocksWithCarn) {
-                if (paddock.isPaddockBroken()){
-                brokenPaddock = paddock;
-                DBHelper.update(park);}
-            }
+//            Paddock brokenPaddock = new Paddock();
+//
+//            for (Paddock paddock : paddocksWithCarn) {
+//                if (paddock.isPaddockBroken()){
+//                brokenPaddock = paddock;
+//                DBHelper.update(park);}
+//            }
 
             List<Carnivore> carnivores = new ArrayList<>();
 

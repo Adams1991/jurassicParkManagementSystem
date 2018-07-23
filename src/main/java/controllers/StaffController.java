@@ -6,10 +6,7 @@ import models.*;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -26,6 +23,14 @@ public class StaffController {
             model.put("template", "templates/staff/index.vtl"); // put
 
             List<Staff> staffs = DBHelper.getAll(Staff.class);
+
+            // gets rid of duplicates caused by eager loading
+            Set<Staff> hs = new HashSet<Staff>();
+            hs.addAll(staffs);
+            staffs.clear();
+            staffs.addAll(hs);
+
+
             model.put("staffs", staffs);
 
             return new ModelAndView(model,"templates/layout.vtl");
@@ -151,9 +156,20 @@ public class StaffController {
 
             Staff staff = DBHelper.find(Staff.class, id);
 
+            // finds list of staff foods again
+            List<Food> staffFoods = DBStaff.getFoods(staff);
+
             String food = req.queryParams("staffFoods");
 
             FoodType foodType = FoodType.valueOf(food.toUpperCase());
+
+            // loops through staffFoods and deletes one which matchs chosen foodtype. Return null
+            // so it doesn't loop all the way through.
+            for (Food staffFood : staffFoods) {
+                if (staffFood.getFood() == foodType)
+                DBHelper.delete(staffFood);
+                DBHelper.update(staff);
+            }
 
             int foodValue = staff.feedDinosaur(foodType);
 
@@ -164,6 +180,7 @@ public class StaffController {
 
 
             DBHelper.update(dinosaur);
+            DBHelper.update(staff);
 
             res.redirect("/staffs");
             return null;
