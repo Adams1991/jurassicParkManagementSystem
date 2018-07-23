@@ -95,18 +95,6 @@ public class ParkController {
             return null;
         }, new VelocityTemplateEngine());
 
-//        //TAKE A BREAK GET
-//        get("/parks/:id/logout", (req, res) -> {
-//
-//            Map<String, Object> model = new HashMap();
-//            model.put("template", "templates/parks/logout.vtl");
-//
-//            List<Park> parks = DBHelper.getAll(Park.class);
-//            model.put("parks", parks);
-//
-//            return new ModelAndView(model, "templates/layout.vtl");
-//
-//        }, new VelocityTemplateEngine());
         
         //TAKE A BREAK 
         post("/parks/:id/logout", (req, res) -> {
@@ -133,50 +121,47 @@ public class ParkController {
                 }
             }
 
-            // Above methods working
-
             List<Visitor> visitors = DBPark.visitorsInPark(park);
             Random rand = new Random();
             int randomVisitorInArray = rand.nextInt(visitors.size())+1;
-            // .get() causing error because of lazy loading but unable to use eager
-            // got around using get by using find by id in DBHelper
             Visitor visitor = DBHelper.find(Visitor.class, randomVisitorInArray);
             DBHelper.update(park);
 
-            // altered so we only use broken paddocks to get carn list below
-//            Paddock brokenPaddock = new Paddock();
-//
-//            for (Paddock paddock : paddocksWithCarn) {
-//                if (paddock.isPaddockBroken()){
-//                brokenPaddock = paddock;
-//                DBHelper.update(park);}
-//            }
+
+            List<Staff> staff = DBPark.staffInPark(park);
+            Random randStaff = new Random();
+            int randomStaffInArray = randStaff.nextInt(staff.size())+(staff.size());
+            Staff staffForEating = DBHelper.find(Staff.class, randomStaffInArray );
+            DBHelper.update(park);
+
+
 
             List<Carnivore> carnivores = DBHelper.getAll(Carnivore.class);
             Random randCarn = new Random();
             int randomCarnivore = randCarn.nextInt(carnivores.size())+1;
 
-            //  checks if paddock broken then assigns carnivores to either be all carns or just carns in a broken paddock
-//            for (Paddock paddock : paddocksWithCarn) {
-//                if (paddock.isPaddockBroken()) {
-//                   carnivores = DBPaddock.carnivoresInPaddock(brokenPaddock);
-//                }else{
-//                carnivores = DBHelper.getAll(Carnivore.class);}
-//            }
-
-
-
+            Random randForStaffOrVisitor = new Random();
+            int randomPersonEaten = randForStaffOrVisitor.nextInt(2)+1;
 
             // moved kill methods to under if statement so they are conditional
             for (Paddock paddock : paddocksWithCarn) {
                 if (paddock.isPaddockBroken()){
                     Carnivore carnivore = DBHelper.find(Carnivore.class , randomCarnivore);
                     DBHelper.update(paddock);
+
+                    if (visitor != null){
                     int visitorMeat = carnivore.kill(visitor);
                     carnivore.eat(visitorMeat);
-                    DBHelper.update(carnivore);
+                    DBHelper.update(carnivore);}
+
+                    if(randomPersonEaten == 1){
+                        if (visitor != null){
                     visitor.setHasBeenEaten(true);
-                    DBHelper.update(visitor);}
+                    DBHelper.update(visitor);}}else{
+                        if (staffForEating != null){
+                    staffForEating.setHasBeenEaten(true);
+                    DBHelper.update(staffForEating);}}
+                }
             }
             
 
