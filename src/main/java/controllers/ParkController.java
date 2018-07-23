@@ -132,7 +132,7 @@ public class ParkController {
             return null;
         }, new VelocityTemplateEngine());
 
-        //WATCH ATTRACTION (POST)
+//        WATCH ATTRACTION (POST)
 
         get("/parks/:id/attraction", (req, res) -> {
             Map<String, Object> model = new HashMap();
@@ -140,11 +140,12 @@ public class ParkController {
             Park park = DBHelper.find(Park.class, id);
             model.put("park", park);
 
-            List<Visitor> visitors = DBPark.visitorsInPark(park);
+
+            List<Visitor> visitors= park.showVisitorsWhoAreOver18();
             model.put("visitors", visitors);
 
-            List<Attraction> attractions = DBPark.getAllAttractionsInPark(park);
-            model.put("attractions", attractions);
+            Attraction attraction = DBPark.getAttractionsinPark(park);
+            model.put("attraction", attraction);
 
             List<Paddock> paddocksWithCarn = park.returnPaddocksWithCarns();
             List<Carnivore> carnivores = park.returnListOfCarnsinPaddockList(paddocksWithCarn);
@@ -154,11 +155,13 @@ public class ParkController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        post("parks/:id", (req, res) -> {
-
-
-
-        },new VelocityTemplateEngine();
+//        post("parks/:id", (req, res) -> {
+//
+//
+//
+//
+//
+//        },new VelocityTemplateEngine();
     }
 
 }

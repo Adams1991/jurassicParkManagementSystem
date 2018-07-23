@@ -10,6 +10,9 @@ public class Seeds {
         Park park = new Park("Jurassic Park", 1000);
         DBHelper.save(park);
 
+        Attraction attraction = new Attraction("Watch A Kid Get Eaten", 0, park);
+        DBHelper.save(attraction);
+
         Paddock paddock3 = new Paddock(park, "TRex Enclosure", false);
         DBHelper.save(paddock3);
 
@@ -33,8 +36,6 @@ public class Seeds {
         Food food2 = new Food(FoodType.BADLYBEHAVEDCHILD,staff);
         DBHelper.save(food2);
 
-        Attraction attraction = new Attraction("Watch A Kid Get Eaten", 0, park);
-        DBHelper.save(attraction);
 
         Carnivore carnivore = new Carnivore("Alpha", 100, SpeciesType.RAPTOR, paddock);
         DBHelper.save(carnivore);

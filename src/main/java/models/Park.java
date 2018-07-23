@@ -4,6 +4,7 @@ import db.DBHelper;
 import db.DBPark;
 
 import javax.persistence.*;
+import javax.smartcardio.ATR;
 
 import java.util.ArrayList;
 
@@ -148,7 +149,7 @@ public class Park {
         }
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "attraction_id", nullable = true)
     public Attraction getAttraction() {
         return attraction;
@@ -158,12 +159,15 @@ public class Park {
         this.attraction = attraction;
     }
 
-    public List<Visitor> getVisitorsWhoAreOver18() {
+    public List<Visitor> showVisitorsWhoAreOver18() {
+        List<Visitor> visitors = DBPark.visitorsInPark(this);
+        Attraction attraction = DBPark.getAttractionsinPark(this);
         List<Visitor> suitableVisitors = new ArrayList<>();
         for (Visitor visitor : visitors) {
-            attraction.isAllowed(visitor);
+                if (attraction.isAllowed(visitor)) {
+                suitableVisitors.add(visitor);
+            }
         }
         return suitableVisitors;
     }
 }
-
