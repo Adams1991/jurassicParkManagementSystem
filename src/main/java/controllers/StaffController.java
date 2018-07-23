@@ -164,12 +164,13 @@ public class StaffController {
 
             FoodType foodType = FoodType.valueOf(food.toUpperCase());
 
-            // loops through staffFoods and deletes one which matchs chosen foodtype. Return null
+            // loops through staffFoods and deletes one which matchs chosen foodtype. break
             // so it doesn't loop all the way through.
             for (Food staffFood : staffFoods) {
                 if (staffFood.getFood() == foodType)
                 DBHelper.delete(staffFood);
                 DBHelper.update(staff);
+                break;
             }
 
             int foodValue = staff.feedDinosaur(foodType);
