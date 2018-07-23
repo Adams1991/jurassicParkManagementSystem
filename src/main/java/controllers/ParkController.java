@@ -113,19 +113,19 @@ public class ParkController {
             int randomVisitorInArray = rand.nextInt(visitors.size())+1;
             Visitor visitor = DBHelper.find(Visitor.class, randomVisitorInArray);
 
-            // Get Random Staff Fro DB
+            // Get Random Staff From DB
             List<Staff> staff = DBPark.staffInPark(park);
             Random randStaff = new Random();
             int randomStaffInArray = randStaff.nextInt(staff.size())+(staff.size());
             Staff staffForEating = DBHelper.find(Staff.class, randomStaffInArray );
 
-            // Get Random Carnivore
-            List<Carnivore> carnivores = DBHelper.getAll(Carnivore.class);
+            // Get Random Carnivore From DB
+            List<Carnivore> carnivores = park.returnListOfCarnsinPaddockList(paddocksWithCarn);
             Random randCarn = new Random();
             int randomCarnivore = randCarn.nextInt(carnivores.size())+1;
             Carnivore carnivore = DBHelper.find(Carnivore.class , randomCarnivore);
 
-            //Check if Paddocks broken and eat either a Vistor Or Guest if there are any
+            //Check if Paddocks broken and eat either a Visitor Or Guest if there are any
             park.eatVisitorIfPaddocksBroken(paddocksWithCarn, visitor, carnivore, staffForEating);
 
             res.redirect("/");

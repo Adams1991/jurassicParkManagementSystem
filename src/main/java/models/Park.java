@@ -101,6 +101,14 @@ public class Park {
         return paddocksWithCarn;
     }
 
+    public List<Carnivore> returnListOfCarnsinPaddockList(List<Paddock> paddocksWithCarns){
+        List<Carnivore> carnivores = new ArrayList<>();
+        for (Paddock paddock : paddocksWithCarns) {
+            carnivores.addAll(paddock.getCarnivores());
+        }
+        return carnivores;
+    }
+
     public void starveDinoInAListofPaddocks(List<Paddock> paddocksWithCarns) {
         for (Paddock paddock : paddocksWithCarns) {
             for (Carnivore carnivore : paddock.getCarnivores()) {
@@ -118,7 +126,7 @@ public class Park {
                     for (Paddock paddock : paddocksWithCarns) {
                 if (paddock.isPaddockBroken()){
                     DBHelper.update(paddock);
-                    if (visitor != null){
+                    if (visitor != null && carnivore != null){
                     int visitorMeat = carnivore.kill(visitor);
                     carnivore.eat(visitorMeat);
                     DBHelper.update(carnivore);}
