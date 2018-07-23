@@ -5,16 +5,19 @@ import behaviours.ISecurity;
 import javax.persistence.*;
 import java.util.List;
 
-public class DinoFeeding implements ISecurity{
+public class DinoFeeding implements ISecurity {
 
     private int id;
     private List<Food> foods;
     private int till;
     private Park park;
+    private String name;
 
-    public DinoFeeding(){}
+    public DinoFeeding() {
+    }
 
-    public DinoFeeding(int till, Park park) {
+    public DinoFeeding(String name, int till, Park park) {
+        this.name = name;
         this.till = 0;
         this.park = park;
     }
@@ -59,9 +62,9 @@ public class DinoFeeding implements ISecurity{
     }
 
     public boolean isAllowed(Visitor visitor) {
-        if(visitor.getAge() < 18) {
+        if (visitor.getAge() < 18) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -72,5 +75,14 @@ public class DinoFeeding implements ISecurity{
                 return foodType.nutritionalValueForEating();
         }
         return 0;
+    }
+
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
