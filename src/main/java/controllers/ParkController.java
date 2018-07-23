@@ -152,8 +152,9 @@ public class ParkController {
 //                DBHelper.update(park);}
 //            }
 
-            List<Carnivore> carnivores = new ArrayList<>();
-
+            List<Carnivore> carnivores = DBHelper.getAll(Carnivore.class);
+            Random randCarn = new Random();
+            int randomCarnivore = randCarn.nextInt(carnivores.size())+1;
 
             //  checks if paddock broken then assigns carnivores to either be all carns or just carns in a broken paddock
 //            for (Paddock paddock : paddocksWithCarn) {
@@ -163,17 +164,13 @@ public class ParkController {
 //                carnivores = DBHelper.getAll(Carnivore.class);}
 //            }
 
-            carnivores = DBHelper.getAll(Carnivore.class);
 
 
-            Carnivore carnivore = new Carnivore();
-            Random randCarn = new Random();
-            int randomCarnivoreInArray = randCarn.nextInt(carnivores.size())+1;
 
             // moved kill methods to under if statement so they are conditional
             for (Paddock paddock : paddocksWithCarn) {
                 if (paddock.isPaddockBroken()){
-                    carnivore = carnivores.get(randomCarnivoreInArray);
+                    Carnivore carnivore = DBHelper.find(Carnivore.class , randomCarnivore);
                     DBHelper.update(paddock);
                     int visitorMeat = carnivore.kill(visitor);
                     carnivore.eat(visitorMeat);

@@ -22,8 +22,19 @@ public class Seeds {
         Paddock paddock2 = new Paddock(park, "Herb Enclosure", false);
         DBHelper.save(paddock2);
 
-        Visitor visitor = new Visitor("David Pears", 40, 180, park);
+        Visitor visitor = new Visitor("David Pop", 40, 180, park);
         DBHelper.save(visitor);
+
+        Visitor visitor2 = new Visitor("David P", 40, 180, park);
+        DBHelper.save(visitor2);
+
+
+        Visitor visitor3 = new Visitor("David Pp", 40, 180, park);
+        DBHelper.save(visitor3);
+
+
+        Visitor visitor4 = new Visitor("David Pears", 40, 180, park);
+        DBHelper.save(visitor4);
 
         Staff staff = new Staff("Stewart", RoleType.GAMEKEEPER, park);
         DBHelper.save(staff);
