@@ -5,7 +5,6 @@ import models.*;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,9 +12,9 @@ import java.util.Map;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
-public class DinoFeedingController {
+public class AttractionController {
 
-    public DinoFeedingController() {
+    public AttractionController() {
         this.setupEndPoints();
     }
 
@@ -26,7 +25,7 @@ public class DinoFeedingController {
             Map<String, Object> model = new HashMap();
             model.put("template", "templates/attraction/index.vtl");
 
-            List<DinoFeeding> attractions = DBHelper.getAll(Park.class);
+            List<Attraction> attractions = DBHelper.getAll(Park.class);
             model.put("attractions", attractions);
 
             return new ModelAndView(model, "templates/layout.vtl");
@@ -57,8 +56,8 @@ public class DinoFeedingController {
             int parkId = Integer.parseInt(req.queryParams("park"));
             Park park = DBHelper.find(Park.class, parkId);
 
-            DinoFeeding dinoFeeding = new DinoFeeding(name, 0 , park);
-            DBHelper.save(dinoFeeding);
+            Attraction attraction = new Attraction(name, 0 , park);
+            DBHelper.save(attraction);
 
             res.redirect("/attractions");
             return null;
@@ -69,8 +68,8 @@ public class DinoFeedingController {
         // DELETE
         post("/attractions/:id/delete", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
-            DinoFeeding dinoFeeding = DBHelper.find(DinoFeeding.class, id);
-            DBHelper.delete(dinoFeeding);
+            Attraction attraction = DBHelper.find(Attraction.class, id);
+            DBHelper.delete(attraction);
             res.redirect("/attractions");
             return null;
         }, new VelocityTemplateEngine());
@@ -83,7 +82,7 @@ public class DinoFeedingController {
             int id = Integer.parseInt(req.params(":id"));
 
 
-            DinoFeeding attraction = DBHelper.find(DinoFeeding.class, id);
+            Attraction attraction = DBHelper.find(Attraction.class, id);
             model.put("attraction", attraction);
             model.put("parks", park);
             model.put("template", "templates/staff/edit.vtl");
@@ -103,7 +102,7 @@ public class DinoFeedingController {
             int till = Integer.parseInt(req.queryParams("till"));
 
             int id = Integer.parseInt(req.params(":id"));
-            DinoFeeding attraction = DBHelper.find(DinoFeeding.class,id);
+            Attraction attraction = DBHelper.find(Attraction.class,id);
             attraction.setName(name);
             attraction.setTill(till);
             attraction.setPark(park);

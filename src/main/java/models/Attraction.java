@@ -5,7 +5,9 @@ import behaviours.ISecurity;
 import javax.persistence.*;
 import java.util.List;
 
-public class DinoFeeding implements ISecurity {
+@Entity
+@Table(name = "attractions")
+public class Attraction implements ISecurity {
 
     private int id;
     private List<Food> foods;
@@ -13,10 +15,10 @@ public class DinoFeeding implements ISecurity {
     private Park park;
     private String name;
 
-    public DinoFeeding() {
+    public Attraction() {
     }
 
-    public DinoFeeding(String name, int till, Park park) {
+    public Attraction(String name, int till, Park park) {
         this.name = name;
         this.till = 0;
         this.park = park;
@@ -33,7 +35,7 @@ public class DinoFeeding implements ISecurity {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "dino_feeding", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "attraction", fetch = FetchType.LAZY)
     public List<Food> getFoods() {
         return foods;
     }

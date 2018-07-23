@@ -1,7 +1,6 @@
 package models;
 
 import javax.persistence.*;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -13,7 +12,7 @@ public class Park {
     private List<Staff> staff;
     private List<Visitor> visitors;
     private List<Paddock> paddocks;
-    private DinoFeeding dinoFeeding;
+    private Attraction attraction;
 
     public Park() {
     }
@@ -86,12 +85,12 @@ public class Park {
     }
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dino_feeding_id", nullable = false)
-    public DinoFeeding getDinoFeeding() {
-        return dinoFeeding;
+    @JoinColumn(name = "attraction_id", nullable = false)
+    public Attraction getAttraction() {
+        return attraction;
     }
 
-    public void setDinoFeeding(DinoFeeding dinoFeeding) {
-        this.dinoFeeding = dinoFeeding;
+    public void setAttraction(Attraction attraction) {
+        this.attraction = attraction;
     }
 }

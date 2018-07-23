@@ -5,37 +5,37 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class DinoFeedingTest {
+public class AttractionTest {
 
-    DinoFeeding dinoFeeding;
+    Attraction attraction;
     Park park;
     Visitor visitor;
 
     @Before
     public void setup(){
         park = new Park();
-        dinoFeeding = new DinoFeeding("Badly Behaved Child Feeding Frenzy",0, park);
+        attraction = new Attraction("Badly Behaved Child Feeding Frenzy",0, park);
         visitor = new Visitor("Freddy", 17, 160, park, false);
     }
 
     @Test
     public void hasTill(){
-        assertEquals(0, dinoFeeding.getTill());
+        assertEquals(0, attraction.getTill());
     }
 
     @Test
     public void hasPark(){
-        assertEquals(park, dinoFeeding.getPark());
+        assertEquals(park, attraction.getPark());
     }
 
     @Test
     public void isAllowedToWatchBadlyBehavedChildGetEaten(){
-        assertEquals(false, dinoFeeding.isAllowed(visitor));
+        assertEquals(false, attraction.isAllowed(visitor));
     }
 
     @Test
     public void hasName(){
-        assertEquals("Badly Behaved Child Feeding Frenzy", dinoFeeding.getName());
+        assertEquals("Badly Behaved Child Feeding Frenzy", attraction.getName());
     }
 
 }
