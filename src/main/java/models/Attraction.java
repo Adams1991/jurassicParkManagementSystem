@@ -11,16 +11,16 @@ public class Attraction implements ISecurity {
 
     private int id;
     private List<Food> foods;
-    private int till;
+    private int cost;
     private Park park;
     private String name;
 
     public Attraction() {
     }
 
-    public Attraction(String name, int till, Park park) {
+    public Attraction(String name, int cost, Park park) {
         this.name = name;
-        this.till = 0;
+        this.cost = 10;
         this.park = park;
     }
 
@@ -44,13 +44,13 @@ public class Attraction implements ISecurity {
         this.foods = foods;
     }
 
-    @Column(name = "till")
-    public int getTill() {
-        return till;
+    @Column(name = "cost")
+    public int getCost() {
+        return cost;
     }
 
-    public void setTill(int till) {
-        this.till = till;
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 
     @OneToOne(fetch = FetchType.EAGER)

@@ -54,7 +54,7 @@ public class AttractionController {
             int parkId = Integer.parseInt(req.queryParams("park"));
             Park park = DBHelper.find(Park.class, parkId);
 
-            Attraction attraction = new Attraction(name, 0 , park);
+            Attraction attraction = new Attraction(name, 10 , park);
             DBHelper.save(attraction);
 
             res.redirect("/attractions");
@@ -97,12 +97,12 @@ public class AttractionController {
             int parkId = Integer.parseInt(req.queryParams("park"));
             Park park = DBHelper.find(Park.class, parkId);
 
-            int till = Integer.parseInt(req.queryParams("till"));
+            int cost = Integer.parseInt(req.queryParams("cost"));
 
             int id = Integer.parseInt(req.params(":id"));
             Attraction attraction = DBHelper.find(Attraction.class,id);
             attraction.setName(name);
-            attraction.setTill(till);
+            attraction.setCost(cost);
             attraction.setPark(park);
             DBHelper.update(attraction);
 

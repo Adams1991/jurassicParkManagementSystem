@@ -59,4 +59,8 @@ public class Visitor extends Person {
     public void setWallet(int wallet) {
         this.wallet = wallet;
     }
+
+    public void buyTicketForAttraction(Attraction attraction){
+        this.wallet -= attraction.getCost();
+    }
 }

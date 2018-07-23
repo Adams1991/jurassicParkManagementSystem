@@ -8,14 +8,14 @@
     <table>
         <tr>
             <th>Name</th>
-            <th>Till</th>
+            <th>Cost</th>
             <th>Park</th>
         </tr>
 
         #foreach($attraction in $attractions)
         <tr>
             <td>$attraction.getName()</td>
-            <td>$attraction.getTill()</td>
+            <td>$attraction.getCost()</td>
             <td>$attraction.getPark().getName()</td>
 
             <td><form method="post" action="/attractions/$attraction.getId()/delete">

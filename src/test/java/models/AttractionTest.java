@@ -14,13 +14,13 @@ public class AttractionTest {
     @Before
     public void setup(){
         park = new Park();
-        attraction = new Attraction("Badly Behaved Child Feeding Frenzy",0, park);
+        attraction = new Attraction("Badly Behaved Child Feeding Frenzy",10, park);
         visitor = new Visitor("Freddy", 17, 160, park, false);
     }
 
     @Test
     public void hasTill(){
-        assertEquals(0, attraction.getTill());
+        assertEquals(10, attraction.getCost());
     }
 
     @Test
