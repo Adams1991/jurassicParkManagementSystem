@@ -1,8 +1,6 @@
 package db;
 
-import models.Paddock;
-import models.Park;
-import models.Visitor;
+import models.*;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -43,4 +41,22 @@ public class DBPark {
         }
         return results;
     }
+
+
+    public static List<Staff> staffInPark(Park park) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Staff> results = null;
+        try {
+            Criteria cr = session.createCriteria(Staff.class);
+            cr.add(Restrictions.eq("park", park));
+            results = cr.list();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return results;
+    }
+
+
 }
