@@ -172,7 +172,9 @@ public class Park {
     }
 
     public void visitorGoesToAttraction(Visitor visitor){
-        till += attraction.getCost();
+        setTill(till += attraction.getCost());
         visitor.buyTicketForAttraction(attraction);
+        DBHelper.update(visitor);
+        DBHelper.update(this);
     }
 }

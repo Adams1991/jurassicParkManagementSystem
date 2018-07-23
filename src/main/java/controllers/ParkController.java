@@ -1,11 +1,10 @@
 package controllers;
 
-import db.DBHelper;
-import db.DBPaddock;
-import db.DBPark;
+import db.*;
 import models.*;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
+import sun.security.x509.DNSName;
 
 import java.util.*;
 
@@ -132,7 +131,7 @@ public class ParkController {
             return null;
         }, new VelocityTemplateEngine());
 
-//        WATCH ATTRACTION (POST)
+//        WATCH ATTRACTION (Get)
 
         get("/parks/:id/attraction", (req, res) -> {
             Map<String, Object> model = new HashMap();
@@ -140,12 +139,13 @@ public class ParkController {
             Park park = DBHelper.find(Park.class, id);
             model.put("park", park);
 
-
             List<Visitor> visitors= park.showVisitorsWhoAreOver18();
             model.put("visitors", visitors);
 
-            Attraction attraction = DBPark.getAttractionsinPark(park);
-            model.put("attraction", attraction);
+
+            List<Food> attractionFoods = DBHelper.getAll(Food.class);
+
+            model.put("attractionFoods", attractionFoods);
 
             List<Paddock> paddocksWithCarn = park.returnPaddocksWithCarns();
             List<Carnivore> carnivores = park.returnListOfCarnsinPaddockList(paddocksWithCarn);
@@ -155,13 +155,52 @@ public class ParkController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-//        post("parks/:id", (req, res) -> {
-//
-//
-//
-//
-//
-//        },new VelocityTemplateEngine();
+      post(":id/attraction",(req, res) ->{
+
+            String food = req.queryParams("attractionFoods");
+
+            FoodType foodType = FoodType.valueOf(food.toUpperCase());
+
+           List<Food> attractionFoods = DBHelper.getAll(Food.class);
+
+            // loops through staffFoods and deletes one which matchs chosen foodtype. Return null
+            // so it doesn't loop all the way through.
+            for (Food foodForDeletion : attractionFoods) {
+                if (foodForDeletion.getFood() == foodType)
+                DBHelper.delete(foodForDeletion);
+                break;
+            }
+
+
+            int dinoId = Integer.parseInt(req.queryParams("carnivore"));
+            Carnivore carnivore = DBHelper.find(Carnivore.class, dinoId);
+
+            int foodValue = carnivore.kill(foodType);
+
+            carnivore.eat(foodValue);
+
+            DBHelper.update(carnivore);
+
+            int visitorId = Integer.parseInt(req.queryParams("visitor"));
+            Visitor visitor= DBHelper.find(Visitor.class,visitorId);
+
+           int parkId = parseInt(req.params(":id"));
+           Park park = DBHelper.find(Park.class, parkId);
+           Attraction attraction = DBPark.getAttractionsinPark(park);
+
+           visitor.buyTicketForAttraction(attraction);
+           DBHelper.update(visitor);
+
+           park.setAttraction(attraction);
+           DBHelper.update(park);
+
+           park.visitorGoesToAttraction(visitor);
+           DBHelper.update(attraction);
+
+
+            res.redirect("/");
+            return null;
+        }, new VelocityTemplateEngine());
     }
 
 }

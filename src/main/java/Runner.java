@@ -1,3 +1,4 @@
+import db.DBAttraction;
 import db.DBHelper;
 //import db.DBHerbivore;
 import db.DBPaddock;
@@ -16,6 +17,9 @@ public class Runner {
 
         Park park2 = new Park("Jurassic Park", 1000);
         DBHelper.save(park2);
+
+        Attraction attraction = new Attraction("Kid Gets Eaten", 10, park);
+        DBHelper.save(attraction);
 
         park.setName("Disney");
         DBHelper.update(park);
@@ -95,9 +99,24 @@ public class Runner {
         List<Carnivore> carnivoresInPaddock = DBPaddock.carnivoresInPaddock(tRexEnclosure);
         List<Herbivore> allHerb = DBHelper.getAll(Herbivore.class);
 
+        Food meal = new Food(FoodType.BADLYBEHAVEDCHILD, staffMember);
+        DBHelper.save(meal);
 
-//        List<Paddock> paddocksWithNoCarns = DBHerbivore.getPaddocksWithoutCarn();
 
+        List<Food> foods = DBHelper.getAll(Food.class);
+
+        foods.add(meal);
+
+        attraction.setFoods(foods);
+        DBHelper.update(attraction);
+
+        meal.setAttraction(attraction);
+        DBHelper.update(meal);
+
+        List<Food> foodsForAttraction = DBAttraction.getFoods(attraction);
+
+
+        List<Food> attractionsFood = attraction.getFoods();
 
 
 

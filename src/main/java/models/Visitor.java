@@ -61,6 +61,6 @@ public class Visitor extends Person {
     }
 
     public void buyTicketForAttraction(Attraction attraction){
-        this.wallet -= attraction.getCost();
+        setWallet(this.wallet -= attraction.getCost());
     }
 }
