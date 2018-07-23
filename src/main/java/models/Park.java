@@ -13,6 +13,7 @@ public class Park {
     private List<Staff> staff;
     private List<Visitor> visitors;
     private List<Paddock> paddocks;
+    private DinoFeeding dinoFeeding;
 
     public Park() {
     }
@@ -82,5 +83,15 @@ public class Park {
     public void visitorGetEaten(Paddock paddock, Carnivore carnivore){
         if (paddock.isPaddockBroken() == true);
         carnivore.eat(10);
+    }
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dino_feeding_id", nullable = false)
+    public DinoFeeding getDinoFeeding() {
+        return dinoFeeding;
+    }
+
+    public void setDinoFeeding(DinoFeeding dinoFeeding) {
+        this.dinoFeeding = dinoFeeding;
     }
 }

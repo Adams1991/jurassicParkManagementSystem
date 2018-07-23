@@ -10,6 +10,7 @@ public class Food {
     private int id;
     private Staff staff;
     private FoodType food;
+    private DinoFeeding dinoFeeding;
 
     public Food(){}
 
@@ -48,4 +49,14 @@ public class Food {
         this.food = food;
     }
 
+
+    @ManyToOne
+    @JoinColumn(name="dino_feeding_id", nullable=false)
+    public DinoFeeding getDinoFeeding() {
+        return dinoFeeding;
+    }
+
+    public void setDinoFeeding(DinoFeeding dinoFeeding) {
+        this.dinoFeeding = dinoFeeding;
+    }
 }
