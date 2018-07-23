@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.Random;
 
 @Entity
 @Table(name = "visitors")
@@ -8,6 +9,7 @@ public class Visitor extends Person {
     private int age;
     private int height;
     private Park park;
+    private int wallet;
 
     public Visitor() {
     }
@@ -17,6 +19,8 @@ public class Visitor extends Person {
         this.age = age;
         this.height = height;
         this.park = park;
+        Random rand = new Random();
+        this.wallet = rand.nextInt(100)+50;
     }
 
     @Column(name = "age")
@@ -47,5 +51,12 @@ public class Visitor extends Person {
         this.park = park;
     }
 
+    @Column(name = "wallet")
+    public int getWallet() {
+        return wallet;
+    }
 
+    public void setWallet(int wallet) {
+        this.wallet = wallet;
+    }
 }
