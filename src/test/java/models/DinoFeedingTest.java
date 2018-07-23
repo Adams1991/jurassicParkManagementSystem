@@ -9,11 +9,13 @@ public class DinoFeedingTest {
 
     DinoFeeding dinoFeeding;
     Park park;
+    Visitor visitor;
 
     @Before
     public void setup(){
         park = new Park();
         dinoFeeding = new DinoFeeding(0, park);
+        visitor = new Visitor("Freddy", 17, 160, park, false);
     }
 
     @Test
@@ -24,6 +26,11 @@ public class DinoFeedingTest {
     @Test
     public void hasPark(){
         assertEquals(park, dinoFeeding.getPark());
+    }
+
+    @Test
+    public void isAllowedToWatchBadlyBehavedChildGetEaten(){
+        assertEquals(false, dinoFeeding.isAllowed(visitor));
     }
 
 }
