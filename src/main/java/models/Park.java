@@ -170,4 +170,9 @@ public class Park {
         }
         return suitableVisitors;
     }
+
+    public void visitorGoesToAttraction(Visitor visitor){
+        till += attraction.getCost();
+        visitor.buyTicketForAttraction(attraction);
+    }
 }
