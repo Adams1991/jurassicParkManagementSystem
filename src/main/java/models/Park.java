@@ -1,5 +1,7 @@
 package models;
 
+import db.DBHelper;
+
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
@@ -82,5 +84,16 @@ public class Park {
     public void visitorGetEaten(Paddock paddock, Carnivore carnivore){
         if (paddock.isPaddockBroken() == true);
         carnivore.eat(10);
+    }
+
+    public void starveDinoInAListofPaddocks(List<Paddock> paddocksWithCarns){
+        for (Paddock paddock : paddocksWithCarns) {
+            for (Carnivore carnivore : paddock.getCarnivores()) {
+                carnivore.starveCarnivore();
+                DBHelper.update(carnivore);
+                paddock.breakout(carnivore);
+                DBHelper.update(paddock);
+            }
+        }
     }
 }

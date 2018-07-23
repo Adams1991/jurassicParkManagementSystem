@@ -109,14 +109,16 @@ public class ParkController {
                     paddocksWithCarn.add(paddock);
             }
 
-            for (Paddock paddock : paddocksWithCarn) {
-                for (Carnivore carnivore : paddock.getCarnivores()) {
-                    carnivore.starveCarnivore();
-                    DBHelper.update(carnivore);
-                    paddock.breakout(carnivore);
-                    DBHelper.update(paddock);
-                }
-            }
+            park.starveDinoInAListofPaddocks(paddocksWithCarn);
+
+//            for (Paddock paddock : paddocksWithCarn) {
+//                for (Carnivore carnivore : paddock.getCarnivores()) {
+//                    carnivore.starveCarnivore();
+//                    DBHelper.update(carnivore);
+//                    paddock.breakout(carnivore);
+//                    DBHelper.update(paddock);
+//                }
+//            }
 
             List<Visitor> visitors = DBPark.visitorsInPark(park);
             Random rand = new Random();
