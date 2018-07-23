@@ -58,7 +58,6 @@ public class Park {
         this.staff = staff;
     }
 
-    // changed to eager to fix issue
     @OneToMany(mappedBy = "park", fetch = FetchType.LAZY)
     public List<Visitor> getVisitors() {
         return visitors;
@@ -87,8 +86,15 @@ public class Park {
     }
 
     public void visitorGetEaten(Paddock paddock, Carnivore carnivore) {
-        if (paddock.isPaddockBroken() == true) ;
+        if (paddock.isPaddockBroken()) ;
         carnivore.eat(10);
+    }
+
+    public boolean hasPaddocks(){
+        if (this.paddocks.size() != 0){
+            return true;
+        }
+        return false;
     }
 
 

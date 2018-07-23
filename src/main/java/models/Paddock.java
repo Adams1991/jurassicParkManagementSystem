@@ -96,6 +96,10 @@ public class Paddock {
         return this.carnivores.size();
     }
 
+    public int HerbAmount(){
+        return this.herbivores.size();
+    }
+
 }
 
 

@@ -30,6 +30,7 @@ public class ParkController {
             List<Park> parks = DBHelper.getAll(Park.class);
             model.put("parks", parks);
 
+
             return new ModelAndView(model, "templates/layout.vtl");
 
         }, new VelocityTemplateEngine());
@@ -101,25 +102,35 @@ public class ParkController {
             int id = parseInt(req.params(":id"));
             Park park = DBHelper.find(Park.class, id);
 
+            //Checks thereas
+            List<Paddock> paddockCheckForPark = DBPark.paddockInPark(park);
+
+            //check if park has paddocks goign to redirect to funny page
+            if(paddockCheckForPark.size() == 0){res.redirect("/");}
+
+
             // Get paddocks only with Carns in
             List<Paddock> paddocksWithCarn = park.returnPaddocksWithCarns();
+
+            //check if paddocks have carns
+            if(paddocksWithCarn.size() == 0){res.redirect("/");}
 
             // Randomly starve dinos in above paddocks
             park.starveDinoInAListofPaddocks(paddocksWithCarn);
 
-            //Get Random Visitor from DB
+            //Get Random Visitor linked to park from DB
             List<Visitor> visitors = DBPark.visitorsInPark(park);
             Random rand = new Random();
             int randomVisitorInArray = rand.nextInt(visitors.size())+1;
             Visitor visitor = DBHelper.find(Visitor.class, randomVisitorInArray);
 
-            // Get Random Staff From DB
+            // Get Random Staff linked to park From DB
             List<Staff> staff = DBPark.staffInPark(park);
             Random randStaff = new Random();
             int randomStaffInArray = randStaff.nextInt(staff.size())+(staff.size());
             Staff staffForEating = DBHelper.find(Staff.class, randomStaffInArray );
 
-            // Get Random Carnivore From DB
+            // Get Random Carnivore linked to park From DB
             List<Carnivore> carnivores = park.returnListOfCarnsinPaddockList(paddocksWithCarn);
             Random randCarn = new Random();
             int randomCarnivore = randCarn.nextInt(carnivores.size())+1;
@@ -127,6 +138,7 @@ public class ParkController {
 
             //Check if Paddocks broken and eat either a Visitor Or Guest if there are any
             park.eatVisitorIfPaddocksBroken(paddocksWithCarn, visitor, carnivore, staffForEating);
+
 
             res.redirect("/");
             return null;

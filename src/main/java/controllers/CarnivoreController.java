@@ -1,6 +1,7 @@
 package controllers;
 
 import db.DBHelper;
+import db.DBPaddock;
 import models.Carnivore;
 import models.Paddock;
 import models.SpeciesType;
@@ -93,36 +94,35 @@ public class CarnivoreController {
         get("/carnivores/:id/edit",(req, res) -> {
             HashMap<String, Object> model = new HashMap();
 
-            List<Paddock> paddocksWithCarn = new ArrayList<>();
+            List<Paddock> paddocksWithCarn = DBPaddock.paddocksWithNoHerb();
 
-            List<Paddock> paddocksWithType = new ArrayList<>();
+            List<Paddock> emptyPaddocks = DBPaddock.emptyPaddocks();
 
-            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+            List<Paddock> paddocksWithTypeOrEmpty = new ArrayList<>();
 
             int id = Integer.parseInt(req.params(":id"));
 
             Carnivore carnivore = DBHelper.find(Carnivore.class, id);
 
-            for (Paddock paddock : paddocks) {
-                if (paddock.CarnAmount() != 0)
-                    paddocksWithCarn.add(paddock);
+            for (Paddock emptyPaddock : emptyPaddocks) {
+                paddocksWithTypeOrEmpty.add(emptyPaddock);
             }
 
             for (Paddock paddockWithCarn : paddocksWithCarn) {
                 for (Carnivore carnivoreInPaddock : paddockWithCarn.getCarnivores()) {
                     if (carnivore.getSpecies() == carnivoreInPaddock.getSpecies())
-                        paddocksWithType.add(paddockWithCarn);
+                        paddocksWithTypeOrEmpty.add(paddockWithCarn);
                 }
             }
 
             // gets rid of duplicates caused by eager loading
             Set<Paddock> hs = new HashSet<Paddock>();
-            hs.addAll(paddocksWithType);
-            paddocksWithType.clear();
-            paddocksWithType.addAll(hs);
+            hs.addAll(paddocksWithTypeOrEmpty);
+            paddocksWithTypeOrEmpty.clear();
+            paddocksWithTypeOrEmpty.addAll(hs);
 
             model.put("carnivore", carnivore);
-            model.put("paddocks", paddocksWithType);
+            model.put("paddocks", paddocksWithTypeOrEmpty);
             model.put("template", "templates/carnivores/edit.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
 

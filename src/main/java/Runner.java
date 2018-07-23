@@ -99,7 +99,10 @@ public class Runner {
 //        List<Paddock> paddocksWithNoCarns = DBHerbivore.getPaddocksWithoutCarn();
 
 
+        List<Paddock> paddocksWithNoHerb = DBPaddock.paddocksWithNoHerb();
 
+
+        List<Paddock> emptyPaddocks = DBPaddock.emptyPaddocks();
 
 
     }
