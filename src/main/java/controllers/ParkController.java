@@ -1,6 +1,7 @@
 package controllers;
 
 import db.DBHelper;
+import db.DBPaddock;
 import db.DBPark;
 import models.*;
 import spark.ModelAndView;
@@ -132,36 +133,53 @@ public class ParkController {
                 }
             }
 
-            Visitor visitor  = new Visitor();
+            // Above methods working
+
             List<Visitor> visitors = DBPark.visitorsInPark(park);
             Random rand = new Random();
             int randomVisitorInArray = rand.nextInt(visitors.size())+1;
-
-            for (Paddock paddock : paddocksWithCarn) {
-                if (paddock.isPaddockBroken())
-                visitor = visitors.get(randomVisitorInArray);
-                DBHelper.update(park);
-            }
-
-            Carnivore carnivore = new Carnivore();
-            List<Carnivore> carnivores = DBHelper.getAll(Carnivore.class);
-            Random randCarn = new Random();
-            int randomCarnivoreInArray = rand.nextInt(carnivores.size())+1;
-
-            for (Paddock paddock : paddocksWithCarn) {
-                if (paddock.isPaddockBroken())
-                    carnivore = carnivores.get(randomCarnivoreInArray);
-                    DBHelper.update(paddock);
-            }
-            
-            int visitorMeat = carnivore.kill(visitor);
-            carnivore.eat(visitorMeat);
-            DBHelper.update(carnivore);
-           
-            DBHelper.delete(visitor);
-
+            // .get() causing error because of lazy loading but unable to use eager
+            // got around using get by using find by id in DBHelper
+            Visitor visitor = DBHelper.find(Visitor.class, randomVisitorInArray);
             DBHelper.update(park);
 
+            // altered so we only use broken paddocks to get carn list below
+//            Paddock brokenPaddock = new Paddock();
+//
+//            for (Paddock paddock : paddocksWithCarn) {
+//                if (paddock.isPaddockBroken()){
+//                brokenPaddock = paddock;
+//                DBHelper.update(park);}
+//            }
+
+            List<Carnivore> carnivores = new ArrayList<>();
+
+
+            //  checks if paddock broken then assigns carnivores to either be all carns or just carns in a broken paddock
+//            for (Paddock paddock : paddocksWithCarn) {
+//                if (paddock.isPaddockBroken()) {
+//                   carnivores = DBPaddock.carnivoresInPaddock(brokenPaddock);
+//                }else{
+//                carnivores = DBHelper.getAll(Carnivore.class);}
+//            }
+
+            carnivores = DBHelper.getAll(Carnivore.class);
+
+
+            Carnivore carnivore = new Carnivore();
+            Random randCarn = new Random();
+            int randomCarnivoreInArray = randCarn.nextInt(carnivores.size())+1;
+
+            // moved kill methods to under if statement so they are conditional
+            for (Paddock paddock : paddocksWithCarn) {
+                if (paddock.isPaddockBroken()){
+                    carnivore = carnivores.get(randomCarnivoreInArray);
+                    DBHelper.update(paddock);
+                    int visitorMeat = carnivore.kill(visitor);
+                    carnivore.eat(visitorMeat);
+                    DBHelper.update(carnivore);
+                    DBHelper.delete(visitor);}
+            }
             
 
             res.redirect("/");

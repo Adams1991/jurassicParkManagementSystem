@@ -34,7 +34,7 @@ public class Carnivore extends Dinosaur {
 
     public void starveCarnivore() {
         Random rand = new Random();
-        int starveAmount = rand.nextInt(100);
+        int starveAmount = rand.nextInt(50);
         setHungerLevel(hungerLevel -= starveAmount);
     }
 

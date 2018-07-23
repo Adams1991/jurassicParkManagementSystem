@@ -1,27 +1,25 @@
 package db;
 
-import models.Food;
-import models.Staff;
+import models.Carnivore;
+import models.Paddock;
+import models.Park;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
-public class DBStaff {
-    private static Transaction transaction;
-    private static Session session;
+public class DBPaddock {
+    public static Session session;
 
-
-    public static List<Food> getFoods(Staff staff) {
+    public static List<Carnivore> carnivoresInPaddock(Paddock paddock) {
         session = HibernateUtil.getSessionFactory().openSession();
-        List<Food> results = null;
+        List<Carnivore> results = null;
         try {
-            Criteria cr = session.createCriteria(Food.class);
-            cr.add(Restrictions.eq("staff", staff));
-            results =  cr.list();
+            Criteria cr = session.createCriteria(Carnivore.class);
+            cr.add(Restrictions.eq("paddock", paddock));
+            results = cr.list();
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
@@ -29,8 +27,5 @@ public class DBStaff {
         }
         return results;
     }
-
-
-
 
 }
