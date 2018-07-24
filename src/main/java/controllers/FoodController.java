@@ -53,7 +53,7 @@ public class FoodController {
             Map<String, Object> model = new HashMap<>();
 
             String cuisineValue = req.queryParams("cuisine");
-            FoodType cuisine = FoodType.valueOf(cuisineValue.toUpperCase());
+            FoodType cuisine = FoodType.valueOf(cuisineValue);
 
             int staffId = Integer.parseInt(req.queryParams("staff"));
             Staff staff = DBHelper.find(Staff.class, staffId);
