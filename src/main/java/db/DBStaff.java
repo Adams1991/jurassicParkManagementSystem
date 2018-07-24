@@ -31,42 +31,5 @@ public class DBStaff {
         return results;
     }
 
-//    public static Food getFoods(FoodType foodType) {
-//        session = HibernateUtil.getSessionFactory().openSession();
-//        Food results = null;
-//        try {
-//            Criteria cr = session.createCriteria(Food.class);
-//            cr.add(Restrictions.eq("", staff));
-//            results =  cr.list
-//        } catch (HibernateException e) {
-//            e.printStackTrace();
-//        } finally {
-//            session.close();
-//        }
-//        return results;
-//    }
-//
-//
-//    public static Course getCourseFromLesson(Lesson lesson){
-//        session = HibernateUtil.getSessionFactory().openSession();
-//        Course course = null;
-//
-//        try{
-//            Criteria cr = session.createCriteria(Course.class);
-//            cr.createAlias("lessons", "lesson");
-//            cr.add(Restrictions.eq("lesson.id", lesson.getId()));
-//            course = (Course) cr.uniqueResult();
-//        }
-//        catch (HibernateException ex){
-//            ex.printStackTrace();
-//        }
-//        finally {
-//            session.close();
-//        }
-//        return course;
-//    }
-
-
-
 
 }

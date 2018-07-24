@@ -101,30 +101,32 @@ public class ParkController {
             int id = parseInt(req.params(":id"));
             Park park = DBHelper.find(Park.class, id);
 
-            //Checks thereas
+            //Gets all paddocks from a park
             List<Paddock> paddockCheckForPark = DBPark.paddockInPark(park);
 
             //check if park has paddocks goign to redirect to funny page
-            if(paddockCheckForPark.size() == 0){res.redirect("/");}
+            if(paddockCheckForPark.size() == 0){res.redirect("/error");}
 
 
             // Get paddocks only with Carns in
             List<Paddock> paddocksWithCarn = park.returnPaddocksWithCarns();
 
             //check if paddocks have carns
-            if(paddocksWithCarn.size() == 0){res.redirect("/");}
+            if(paddocksWithCarn.size() == 0){res.redirect("/error");}
 
             // Randomly starve dinos in above paddocks
             park.starveDinoInAListofPaddocks(paddocksWithCarn);
 
-            //Get Random Visitor linked to park from DB
+            //Get Random Visitor linked to park from DB and redirect to error page if none
             List<Visitor> visitors = DBPark.visitorsInPark(park);
+            if(visitors.size() == 0){res.redirect("/error");}
             Random rand = new Random();
             int randomVisitorInArray = rand.nextInt(visitors.size()) + 1;
             Visitor visitor = DBHelper.find(Visitor.class, randomVisitorInArray);
 
-            // Get Random Staff linked to park From DB
+            // Get Random Staff linked to park From DB and redirect to error page if none
             List<Staff> staff = DBPark.staffInPark(park);
+            if(staff.size() == 0){res.redirect("/error");}
             Random randStaff = new Random();
             int randomStaffInArray = randStaff.nextInt(staff.size()) + (staff.size());
             Staff staffForEating = DBHelper.find(Staff.class, randomStaffInArray);
@@ -175,8 +177,8 @@ public class ParkController {
 
            List<Food> attractionFoods = DBHelper.getAll(Food.class);
 
-            // loops through staffFoods and deletes one which matchs chosen foodtype. Return null
-            // so it doesn't loop all the way through.
+            // loops through staffFoods and deletes one which matches chosen foodtype. breaks
+            // so it doesn't loop all the way through when condition is met.
             for (Food foodForDeletion : attractionFoods) {
                 if (foodForDeletion.getFood() == foodType)
                 DBHelper.delete(foodForDeletion);
@@ -210,9 +212,22 @@ public class ParkController {
            DBHelper.update(attraction);
 
 
+
             res.redirect("/");
             return null;
         }, new VelocityTemplateEngine());
+
+
+// error page if any random produces a null value
+       get("/error", (req, res) -> {
+            Map<String, Object> model = new HashMap();
+            model.put("template", "templates/parks/error.vtl");
+
+
+            return new ModelAndView(model, "templates/layout.vtl");
+
+        }, new VelocityTemplateEngine());
+
     }
 
 }
