@@ -145,7 +145,14 @@ public class ParkController {
             park.eatVisitorIfPaddocksBroken(paddocksWithCarn, visitor, carnivore, staffForEating);
 
             // Get All people in park
+            List<Person> peopleEaten = new ArrayList<>();
             List<Person> peopleInPark = DBPark.peopleInPark(park);
+            for (Person person : peopleInPark) {
+                if(person.isHasBeenEaten()){
+                    peopleEaten.add(person);
+                }
+            }
+            model.put("peopleEaten", peopleEaten);
 
             //CarnsINPArk
             List<Carnivore> carnivoresinPark = DBPark.carnsInPark(park);
