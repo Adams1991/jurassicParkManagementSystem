@@ -9,9 +9,9 @@ import java.util.List;
 
 
 @Entity
-@Table(name="dinosaurs")
+@Table(name = "dinosaurs")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Dinosaur  implements IEdible {
+public abstract class Dinosaur implements IEdible {
     int id;
     String name;
     int hungerLevel;
@@ -67,14 +67,28 @@ public abstract class Dinosaur  implements IEdible {
     }
 
 
-    public int nutritionalValueForEating(){
+    public int nutritionalValueForEating() {
         return species.getNutritionalValue();
     }
 
-    public void eat(int nutritionalValue){
-        setHungerLevel(this.hungerLevel += nutritionalValue);
+    public void eat(int nutritionalValue) {
+        int minHungerLevel = 0;
+        if (this.hungerLevel < nutritionalValue) {
+            if (canHungerLevelGoBelowZero(nutritionalValue) == true) {
+                setHungerLevel(minHungerLevel);
+            } else {
+                setHungerLevel(this.hungerLevel -= nutritionalValue);
+            }
+        }
     }
 
+    public boolean canHungerLevelGoBelowZero(int nutritionalValue) {
+        if ((this.hungerLevel -= nutritionalValue) <= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 }
