@@ -1,0 +1,56 @@
+<p class="pageHeader">All People Dead or Alive</p>
+
+
+<br>
+
+<div class="container">
+
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Dead</th>
+        </tr>
+
+        #foreach($person in $people)
+        <tr>
+            <td>$person.getName()</td>
+            <td>$person.isHasBeenEaten()</td>
+
+            <td><form method="post" action="/visitors/$person.getId()/delete">
+                <input type="submit" value="delete"/>
+
+            </form>
+            </td>
+
+        </tr>
+        #end
+
+    </table>
+
+
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Dead</th>
+        </tr>
+
+        #foreach($staff in $staff)
+        <tr>
+            <td>$staff.getName()</td>
+            <td>$staff.isHasBeenEaten()</td>
+
+            <td><form method="post" action="/staffs/$staff.getId()/delete">
+                <input type="submit" value="delete"/>
+
+            </form>
+            </td>
+
+        </tr>
+        #end
+
+    </table>
+
+
+</div>

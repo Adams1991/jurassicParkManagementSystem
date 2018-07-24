@@ -53,46 +53,46 @@ public class Seeds {
         Visitor visitor5 = new Visitor("James Amos", 28, 184, park, false);
         DBHelper.save(visitor5);
 
-        Visitor visitor6 = new Visitor("Can Toraman", 29, 185, park, false);
-        DBHelper.save(visitor6);
-
-        Visitor visitor7 = new Visitor("Jesus", 2018, 189, park, false);
-        DBHelper.save(visitor7);
-
-        Visitor visitor8 = new Visitor("Gary Muir", 27, 182, park, false);
-        DBHelper.save(visitor8);
-
-        Visitor visitor9 = new Visitor("Magda Kisala", 28, 179, park, false);
-        DBHelper.save(visitor9);
-
-        Visitor visitor10 = new Visitor("Helen O'shea", 28, 175, park, false);
-        DBHelper.save(visitor10);
-
-        Visitor visitor11 = new Visitor("Ben Robinson", 24, 180, park, false);
-        DBHelper.save(visitor11);
-
-        Visitor visitor12 = new Visitor("Gregor Cox", 23, 190, park, false);
-        DBHelper.save(visitor12);
-
-        Visitor visitor13 = new Visitor("Will Cornish", 28, 195, park, false);
-        DBHelper.save(visitor13);
-
-
-        Visitor visitor14 = new Visitor("Iona MacBeth", 27, 185, park, false);
-        DBHelper.save(visitor14);
-
-
-        Visitor visitor15 = new Visitor("Stephen Rooney", 28, 185, park, false);
-        DBHelper.save(visitor15);
-
-
-        Visitor visitor16 = new Visitor("Chris Craig", 28, 185, park, false);
-        DBHelper.save(visitor16);
-
-
-        Visitor visitor17 = new Visitor("Stewart Charters", 28, 185, park, false);
-        DBHelper.save(visitor17);
-
+//        Visitor visitor6 = new Visitor("Can Toraman", 29, 185, park, false);
+//        DBHelper.save(visitor6);
+//
+//        Visitor visitor7 = new Visitor("Jesus", 2018, 189, park, false);
+//        DBHelper.save(visitor7);
+//
+//        Visitor visitor8 = new Visitor("Gary Muir", 27, 182, park, false);
+//        DBHelper.save(visitor8);
+//
+//        Visitor visitor9 = new Visitor("Magda Kisala", 28, 179, park, false);
+//        DBHelper.save(visitor9);
+//
+//        Visitor visitor10 = new Visitor("Helen O'shea", 28, 175, park, false);
+//        DBHelper.save(visitor10);
+//
+//        Visitor visitor11 = new Visitor("Ben Robinson", 24, 180, park, false);
+//        DBHelper.save(visitor11);
+//
+//        Visitor visitor12 = new Visitor("Gregor Cox", 23, 190, park, false);
+//        DBHelper.save(visitor12);
+//
+//        Visitor visitor13 = new Visitor("Will Cornish", 28, 195, park, false);
+//        DBHelper.save(visitor13);
+//
+//
+//        Visitor visitor14 = new Visitor("Iona MacBeth", 27, 185, park, false);
+//        DBHelper.save(visitor14);
+//
+//
+//        Visitor visitor15 = new Visitor("Stephen Rooney", 28, 185, park, false);
+//        DBHelper.save(visitor15);
+//
+//
+//        Visitor visitor16 = new Visitor("Chris Craig", 28, 185, park, false);
+//        DBHelper.save(visitor16);
+//
+//
+//        Visitor visitor17 = new Visitor("Stewart Charters", 28, 185, park, false);
+//        DBHelper.save(visitor17);
+//
         Staff staff = new Staff("Zsolt Something", RoleType.GAMEKEEPER, park, false);
         DBHelper.save(staff);
 
@@ -123,7 +123,11 @@ public class Seeds {
         Carnivore carnivore2 = new Carnivore("Spiney the Spinosaurus", 0, SpeciesType.SPINOSAURAUS, spinePaddock);
         DBHelper.save(carnivore2);
 
+<<<<<<< HEAD
         Carnivore carnivore3 = new Carnivore("Claws the Velociraptor", 0, SpeciesType.RAPTOR, raptorPaddock);
+=======
+        Carnivore carnivore3 = new Carnivore("Claws the Velociraptor", 50, SpeciesType.RAPTOR, raptorPaddock);
+>>>>>>> develop
         DBHelper.save(carnivore3);
 
         Carnivore carnivore4 = new Carnivore("Archy the Archaeopteryx", 0, SpeciesType.ARCHAEOPTERYX, archPaddock);
