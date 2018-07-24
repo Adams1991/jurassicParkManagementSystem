@@ -14,7 +14,6 @@
     <table>
         <tr>
             <th>Name</th>
-            <th>Hunger Level</th>
             <th>Paddock</th>
             <th>Species</th>
 
@@ -23,7 +22,6 @@
         #foreach($herbivore in $herbivores)
         <tr>
             <td>$herbivore.getName()</td>
-            <td>$herbivore.getHungerLevel()</td>
             <td>$herbivore.getPaddock().getName()</td>
             <td>$herbivore.getSpecies()</td>
             <td><form method="post" action="/herbivores/$herbivore.getId()/delete">
