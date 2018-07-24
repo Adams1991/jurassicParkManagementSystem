@@ -3,6 +3,8 @@ font-family: "Jurassic Park";
 src: url("/fonts/Jurassic Park.ttf") format("truetype");
 }
 
+
+
 .homepage_text {
   font-family: "Jurassic Park",serif;
   font-size: 11em;
@@ -77,4 +79,45 @@ body  {
    border-radius: 9px 9px 9px 9px;
    box-shadow: 1px 1px 11px #330033;
    background: #58B14C url("http://i62.tinypic.com/15xvbd5.png") no-repeat scroll 319px center;
+
+.video_error{
+  position: absolute;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.error_text{
+font-family: 'Jurassic Park', serif;
+  font-size: 3em;
+  text-align: center;
+  text-decoration-line: underline;
+  text-shadow: 0 0 1em #ccff15;
+}
+
+.nature_finds{
+font-family: 'Jurassic Park', serif;
+  font-size: 3em;
+  text-align: center;
+  text-decoration-line: underline;
+  text-shadow: 0 0 1em #ccff15;
+}
+
+.person_eaten{
+font-family: 'Jurassic Park', serif;
+  font-size: 3em;
+  text-align: center;
+  text-decoration-line: underline;
+  text-shadow: 0 0 1em #ccff15;
+}
+
+.delete_dead{
+font-family: 'Jurassic Park', serif;
+  font-size: 3em;
+  text-align: center;
+  text-decoration-line: underline;
+  text-shadow: 0 0 1em #ff0101;
+  color: inherit;
+>>>>>>> develop
 }

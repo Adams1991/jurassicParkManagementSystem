@@ -16,7 +16,7 @@ public class Paddock {
     public Paddock(Park park, String name, boolean isPaddockBroken) {
         this.park = park;
         this.name = name;
-        this.isPaddockBroken = false;
+        this.isPaddockBroken = isPaddockBroken;
     }
 
     public Paddock() {
