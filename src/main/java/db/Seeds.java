@@ -124,6 +124,7 @@ public class Seeds {
         DBHelper.save(carnivore2);
 
         Carnivore carnivore3 = new Carnivore("Claws the Velociraptor", 0, SpeciesType.RAPTOR, raptorPaddock);
+
         DBHelper.save(carnivore3);
 
         Carnivore carnivore4 = new Carnivore("Archy the Archaeopteryx", 0, SpeciesType.ARCHAEOPTERYX, archPaddock);

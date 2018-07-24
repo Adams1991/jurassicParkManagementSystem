@@ -9,10 +9,10 @@
 
 <br>
 
-<div class="container">
+<div>
 
 
-    <table>
+    <table cellspacing="20" >
         <tr>
             <th>Name</th>
             <th>Hunger Level</th>
@@ -24,16 +24,16 @@
         #foreach($carnivore in $carnivores)
         <tr>
             <td>$carnivore.getName()</td>
-            <td>$carnivore.getHungerLevel()</td>
+            <td class="numbers">$carnivore.getHungerLevel()</td>
             <td>$carnivore.getPaddock().getName()</td>
             <td>$carnivore.getSpecies()</td>
-            <td><form method="post" action="/carnivores/$carnivore.getId()/delete">
+            <td><form method="post" class="button" action="/carnivores/$carnivore.getId()/delete">
                 <input type="submit" value="delete"/>
 
             </form>
             </td>
             <td>
-                <a href="/carnivores/$carnivore.getId()/edit">Move or Rename this Dino</a>
+                <a href="/carnivores/$carnivore.getId()/edit">Edit Dino</a>
             </td>
         </tr>
         #end

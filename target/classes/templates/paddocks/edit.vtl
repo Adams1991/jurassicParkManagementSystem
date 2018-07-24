@@ -2,10 +2,10 @@
 
 <form action="/paddocks/$paddock.getId()" method="post">
 
-    <label for="name">First Name:</label>
+    <label for="name">Name:</label>
     <input type="inputbox" id="name" name="name" value="$paddock.getName()">
 
-    <label for="park">Department:</label>
+    <label for="park">Park:</label>
     <select name="park" id="park" selected="$paddock.getPark.getName()">
 
         #foreach ($park in $parks)

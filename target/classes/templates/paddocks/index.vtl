@@ -8,10 +8,10 @@
 
 <br>
 
-<div class="container">
 
 
-    <table>
+
+    <table cellspacing="30">
         <tr>
             <th>Name</th>
             <th>Amount Of Carnivores</th>
@@ -20,7 +20,7 @@
         #foreach($paddock in $paddocks)
         <tr>
             <td>$paddock.getName()</td>
-            <td>$paddock.getCarnivores().size()</td>
+            <td class="numbers">$paddock.getCarnivores().size()</td>
             <td><form method="post" action="/paddocks/$paddock.getId()/delete">
                 <input type="submit" value="delete"/>
 
@@ -35,4 +35,3 @@
     </table>
 
 
-</div>

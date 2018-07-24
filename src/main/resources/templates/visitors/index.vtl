@@ -8,10 +8,10 @@
 
 <br>
 
-<div class="container">
 
 
-    <table>
+
+    <table cellspacing="30">
         <tr>
             <th>Name</th>
             <th>Age</th>
@@ -23,9 +23,9 @@
         #foreach($visitor in $visitors)
         <tr>
             <td>$visitor.getName()</td>
-            <td>$visitor.getAge()</td>
-            <td>$visitor.getHeight()</td>
-            <td>$visitor.getWallet()</td>
+            <td class="numbers">$visitor.getAge()</td>
+            <td class="numbers">$visitor.getHeight()cm</td>
+            <td class="numbers">$visitor.getWallet()</td>
             <td>$visitor.getPark().getName()</td>
 
             <td><form method="post" action="/visitors/$visitor.getId()/delete">
@@ -42,4 +42,3 @@
     </table>
 
 
-</div>
