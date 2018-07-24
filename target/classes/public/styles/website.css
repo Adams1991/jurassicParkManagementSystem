@@ -4,10 +4,9 @@ src: url("/fonts/Jurassic Park.ttf") format("truetype");
 }
 
 .homepage_text {
-  font-family: "Jurassic Park";
-  font-size: 10em;
+  font-family: "Jurassic Park",serif;
+  font-size: 5em;
   text-align: center;
-  text-decoration-line: underline;
   text-shadow: 0 0 1em #ccff15;
 }
 
@@ -32,7 +31,7 @@ li {
 }
 
 .topnav a {
- font-family: "Jurassic Park";
+    font-family: "Jurassic Park",serif;
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -49,10 +48,6 @@ li {
 .topnav a.active {
     background-color: #4CAF50;
     color: white;
-}
-
-.links{
-text-decoration: none;
 }
 
 body  {
