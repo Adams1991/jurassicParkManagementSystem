@@ -6,11 +6,10 @@ src: url("/fonts/Jurassic Park.ttf") format("truetype");
 
 
 .homepage_text {
-  font-family: 'Jurassic Park', serif;
-  font-size: 3em;
+  font-family: "Jurassic Park",serif;
+  font-size: 5em;
   text-align: center;
-  text-decoration-line: underline;
-  text-shadow: 0 0 3px ;
+  text-shadow: 0 0 1em #ccff15;
 }
 
 li {
@@ -21,18 +20,26 @@ li {
   flex-direction: row;
 }
 
+.navimg{
+    float: right;
+    margin-right: 6em;
+    width:90px;
+    height: auto;
+}
+
 .topnav {
     background-color: #333;
     overflow: hidden;
 }
 
 .topnav a {
+    font-family: "Jurassic Park",serif;
     float: left;
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 2em;
 }
 
 .topnav a:hover {
@@ -43,10 +50,6 @@ li {
 .topnav a.active {
     background-color: #4CAF50;
     color: white;
-}
-
-.links{
-text-decoration: none;
 }
 
 body  {

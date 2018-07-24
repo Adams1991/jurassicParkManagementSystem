@@ -123,9 +123,13 @@ public class Seeds {
         Carnivore carnivore2 = new Carnivore("Spiney the Spinosaurus", 0, SpeciesType.SPINOSAURAUS, spinePaddock);
         DBHelper.save(carnivore2);
 
+<<<<<<< HEAD
 
         Carnivore carnivore3 = new Carnivore("Claws the Velociraptor", 0, SpeciesType.RAPTOR, raptorPaddock);
 
+=======
+        Carnivore carnivore3 = new Carnivore("Claws the Velociraptor", 0, SpeciesType.RAPTOR, raptorPaddock);
+>>>>>>> develop
         DBHelper.save(carnivore3);
 
         Carnivore carnivore4 = new Carnivore("Archy the Archaeopteryx", 0, SpeciesType.ARCHAEOPTERYX, archPaddock);
