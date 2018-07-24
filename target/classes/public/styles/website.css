@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 @font-face {
 font-family: "Jurassic Park";
 src: url("/fonts/Jurassic Park.ttf") format("truetype");
@@ -15,13 +13,8 @@ src: url("/fonts/Jurassic Park.ttf") format("truetype");
 }
 
 .homepage_text {
-<<<<<<< HEAD
   font-family: 'Jurassic Park',serif;
   font-size: 10em;
-=======
-  font-family: "Jurassic Park",serif;
-  font-size: 11em;
->>>>>>> develop
   text-align: center;
   text-shadow: 0 0 1em #ccff15;
 }
@@ -204,4 +197,3 @@ font-family: 'Jurassic Park', serif;
   text-decoration-line: underline;
   text-shadow: 0 0 1em #ccff15;
 }
->>>>>>> 41a77a64d735b408a2e7143d4623709fd32684fd
