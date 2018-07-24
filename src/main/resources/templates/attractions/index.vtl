@@ -5,7 +5,7 @@
 <div class="container">
 
 
-    <table>
+    <table cellspacing="30">
         <tr>
             <th>Name</th>
             <th>Cost</th>
@@ -15,10 +15,10 @@
         #foreach($attraction in $attractions)
         <tr>
             <td>$attraction.getName()</td>
-            <td>$attraction.getCost()</td>
+            <td class="numbers">$attraction.getCost()</td>
             <td>$attraction.getPark().getName()</td>
 
-            <td><form method="post" action="/attractions/$attraction.getId()/delete">
+            <td><form method="post" class="button" action="/attractions/$attraction.getId()/delete">
                 <input type="submit" value="delete"/>
 
             </form>
