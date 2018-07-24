@@ -11,7 +11,7 @@
     </select>
 
     <label for="dinosaur">Dinosaur:</label>
-    <select name="dinosaur" id="dinosaur">
+    <select class="dropdown" name="dinosaur" id="dinosaur">
 
         #foreach ($dinosaur in $dinosaurs)
         <option value="$dinosaur.getId()">$dinosaur.getName()</option>
