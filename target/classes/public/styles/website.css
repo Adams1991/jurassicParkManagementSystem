@@ -13,13 +13,8 @@ src: url("/fonts/Jurassic Park.ttf") format("truetype");
 }
 
 .homepage_text {
-<<<<<<< HEAD
   font-family: 'Jurassic Park',serif;
   font-size: 10em;
-=======
-  font-family: "Jurassic Park",serif;
-  font-size: 11em;
->>>>>>> develop
   text-align: center;
   text-shadow: 0 0 1em #ccff15;
 }
