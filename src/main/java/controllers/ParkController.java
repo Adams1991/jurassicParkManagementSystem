@@ -147,6 +147,10 @@ public class ParkController {
             // Get All people in park
             List<Person> peopleInPark = DBPark.peopleInPark(park);
 
+            //CarnsINPArk
+            List<Carnivore> carnivoresinPark = DBPark.carnsInPark(park);
+            model.put("carnivores", carnivoresinPark);
+
             //Loops through and changes root dependent on people being eaten
             for (Person person : peopleInPark) {
                 if (person.isHasBeenEaten()) {

@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import sun.util.resources.cldr.rn.CalendarData_rn_BI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DBPark {
@@ -89,5 +90,26 @@ public class DBPark {
         }
         return attraction;
     }
+    
+    public static List<Carnivore> carnsInPark(Park park) {
+        List<Paddock> paddocks = DBPark.paddockInPark(park);
+        List<Carnivore> results = new ArrayList<>();
+        for (Paddock paddock : paddocks) {
+            results.addAll(DBPaddock.carnivoresInPaddock(paddock));
+        }
+        return results;
+    }
+
+
+    public static List<Herbivore> herbsInPark(Park park) {
+        List<Paddock> paddocks = DBPark.paddockInPark(park);
+        List<Herbivore> results = new ArrayList<>();
+        for (Paddock paddock : paddocks) {
+            results.addAll(DBPaddock.HerbInPaddock(paddock));
+        }
+        return results;
+    }
+
+
 
 }

@@ -2,6 +2,7 @@ import db.DBAttraction;
 import db.DBHelper;
 //import db.DBHerbivore;
 import db.DBPaddock;
+import db.DBPark;
 import models.*;
 
 import java.util.List;
@@ -122,6 +123,9 @@ public class Runner {
 
 
         List<Paddock> emptyPaddocks = DBPaddock.emptyPaddocks();
+
+        List<Herbivore> herbsInPark = DBPark.herbsInPark(park);
+        List<Carnivore> carnInPark = DBPark.carnsInPark(park);
 
 
     }
