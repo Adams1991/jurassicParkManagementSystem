@@ -1,9 +1,14 @@
+@font-face {
+font-family: Jurassic Park;
+src: url(/fonts/Jurassic Park.ttf);
+}
+
 .homepage_text {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Jurassic Park', serif;
   font-size: 3em;
   text-align: center;
   text-decoration-line: underline;
-  text-shadow: 0 0 3px #FF0000;
+  text-shadow: 0 0 3px ;
 }
 
 li {
