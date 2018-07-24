@@ -18,7 +18,7 @@ public abstract class Person implements IEdible {
     public Person(String name, boolean hasBeenEaten) {
         this.name = name;
         this.nutritionalValue = 10;
-        this.hasBeenEaten = false;
+        this.hasBeenEaten = hasBeenEaten;
     }
 
     @Id

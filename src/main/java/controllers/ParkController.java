@@ -146,7 +146,12 @@ public class ParkController {
 
             // Get All people in park
             List<Person> peopleEaten = new ArrayList<>();
-            List<Person> peopleInPark = DBPark.peopleInPark(park);
+            List<Person> peopleInPark = new ArrayList<>();
+
+
+            peopleInPark.addAll(staff);
+            peopleInPark.addAll(visitors);
+
             for (Person person : peopleInPark) {
                 if(person.isHasBeenEaten()){
                     peopleEaten.add(person);
@@ -159,15 +164,23 @@ public class ParkController {
             model.put("carnivores", carnivoresinPark);
 
             //Loops through and changes root dependent on people being eaten
+
             for (Person person : peopleInPark) {
                 if (person.isHasBeenEaten()) {
                     model.put("template", "templates/parks/rampagelogout.vtl");
                     return new ModelAndView(model, "templates/layout.vtl");
-                } else {
+                }
+            }
+
+            for (Person person : peopleInPark) {
+                if (!person.isHasBeenEaten()) {
                     model.put("template", "templates/parks/normallogout.vtl");
                     return new ModelAndView(model, "templates/layout.vtl");
                 }
             }
+
+
+
             return null;
 
         }, new VelocityTemplateEngine());
@@ -247,6 +260,27 @@ public class ParkController {
        get("/error", (req, res) -> {
             Map<String, Object> model = new HashMap();
             model.put("template", "templates/parks/error.vtl");
+
+
+            return new ModelAndView(model, "templates/layout.vtl");
+
+        }, new VelocityTemplateEngine());
+
+// get to delete dead folk
+        get("/people", (req, res) -> {
+            Map<String, Object> model = new HashMap();
+            model.put("template", "templates/persons/index.vtl");
+
+            Park park = DBHelper.find(Park.class, 1);
+            model.put("park", park);
+
+
+            List<Staff> staff = DBPark.staffInPark(park);
+            List<Visitor> visitors = DBPark.visitorsInPark(park);
+
+
+            model.put("people", visitors);
+            model.put("staff" , staff);
 
 
             return new ModelAndView(model, "templates/layout.vtl");
