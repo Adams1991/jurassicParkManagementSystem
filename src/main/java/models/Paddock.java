@@ -87,7 +87,7 @@ public class Paddock {
     }
 
     public void breakout(Carnivore carnivore) {
-        if (carnivore.hungerLevel < 50 && this.isPaddockBroken == false) {
+        if (carnivore.hungerLevel > 50 && this.isPaddockBroken == false) {
             setPaddockBroken(true);
         }
     }

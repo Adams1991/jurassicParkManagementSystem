@@ -33,9 +33,10 @@ public class Carnivore extends Dinosaur {
     }
 
     public void starveCarnivore() {
+        int minHungerLevel = 0;
         Random rand = new Random();
         int starveAmount = rand.nextInt(50);
-        setHungerLevel(hungerLevel -= starveAmount);
+        setHungerLevel(hungerLevel += starveAmount);
     }
 
     public int kill(IEdible iEdible) {

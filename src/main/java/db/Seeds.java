@@ -7,7 +7,7 @@ public class Seeds {
 
         DBHelper.deleteAll(Park.class);
 
-        Park park = new Park("Jurassic Park", 1000);
+        Park park = new Park("Jurassic Park", 00);
         DBHelper.save(park);
 
         Attraction attraction = new Attraction("Watch A Kid Get Eaten", 0, park);
@@ -117,34 +117,34 @@ public class Seeds {
         Food food4 = new Food(FoodType.Goat,staff3);
         DBHelper.save(food4);
 
-        Carnivore carnivore = new Carnivore("Alpha the TRex", 100, SpeciesType.TREX, trexPaddock);
+        Carnivore carnivore = new Carnivore("Alpha the TRex", 0, SpeciesType.TREX, trexPaddock);
         DBHelper.save(carnivore);
 
-        Carnivore carnivore2 = new Carnivore("Spiney the Spinosaurus", 100, SpeciesType.SPINOSAURAUS, spinePaddock);
+        Carnivore carnivore2 = new Carnivore("Spiney the Spinosaurus", 0, SpeciesType.SPINOSAURAUS, spinePaddock);
         DBHelper.save(carnivore2);
 
-        Carnivore carnivore3 = new Carnivore("Claws the Velociraptor", 100, SpeciesType.RAPTOR, raptorPaddock);
+        Carnivore carnivore3 = new Carnivore("Claws the Velociraptor", 0, SpeciesType.RAPTOR, raptorPaddock);
         DBHelper.save(carnivore3);
 
-        Carnivore carnivore4 = new Carnivore("Archy the Archaeopteryx", 100, SpeciesType.ARCHAEOPTERYX, archPaddock);
+        Carnivore carnivore4 = new Carnivore("Archy the Archaeopteryx", 0, SpeciesType.ARCHAEOPTERYX, archPaddock);
         DBHelper.save(carnivore4);
 
-        Carnivore carnivore5 = new Carnivore(" Sharp Tooth the Carcharodontosaurus", 100, SpeciesType.CARCHARODONTOSAURUS, carchPaddock);
+        Carnivore carnivore5 = new Carnivore(" Sharp Tooth the Carcharodontosaurus", 0, SpeciesType.CARCHARODONTOSAURUS, carchPaddock);
         DBHelper.save(carnivore5);
 
-        Herbivore herbivore = new Herbivore("Argi the Argargentinosaurus", 100, SpeciesType.ARGARGENTINOSAURUS, paddock2);
+        Herbivore herbivore = new Herbivore("Argi the Argargentinosaurus", 0, SpeciesType.ARGARGENTINOSAURUS, paddock2);
         DBHelper.save(herbivore);
 
-        Herbivore herbivore1 = new Herbivore("Bach the Brachiosaurus", 100, SpeciesType.BRACHIOSAURUS, paddock2);
+        Herbivore herbivore1 = new Herbivore("Bach the Brachiosaurus", 0, SpeciesType.BRACHIOSAURUS, paddock2);
         DBHelper.save(herbivore1);
 
-        Herbivore herbivore2 = new Herbivore("Steggy the Stegosaurus", 100, SpeciesType.STEGOSAURUS, paddock2);
+        Herbivore herbivore2 = new Herbivore("Steggy the Stegosaurus", 0, SpeciesType.STEGOSAURUS, paddock2);
         DBHelper.save(herbivore2);
 
-        Herbivore herbivore3 = new Herbivore("Triple the Triceratops", 100, SpeciesType.TRICEROTOPS, paddock2);
+        Herbivore herbivore3 = new Herbivore("Triple the Triceratops", 0, SpeciesType.TRICEROTOPS, paddock2);
         DBHelper.save(herbivore3);
 
-        Herbivore herbivore4 = new Herbivore("Club the Ankylosaurus", 100, SpeciesType.ANKYLOSAURUS, paddock2);
+        Herbivore herbivore4 = new Herbivore("Club the Ankylosaurus", 0, SpeciesType.ANKYLOSAURUS, paddock2);
         DBHelper.save(herbivore4);
 
     }

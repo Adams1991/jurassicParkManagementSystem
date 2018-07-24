@@ -2,27 +2,22 @@
 <html>
 <head>
     <title>Parks</title>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/website.css">
 </head>
 <body>
 <!-- begin inner template-->
 
-<a href="/parks">parks</a>
-<br>
-<a href="/paddocks">paddocks</a>
-<br>
-<a href="/visitors">Visitors</a>
-<br>
-<a href="/staffs">Staff</a>
-<br>
-<a href="/carnivores">carnivores</a>
-<br>
-<a href="/herbivores">herbivores</a>
-<br>
-<a href="/foods">Foods</a>
-<br>
-<a href="/attraction">attractions</a>
-
-
+<div class="topnav">
+    <a href="/parks">Park Home Screen</a>
+    <a href="/paddocks">Paddocks</a>
+    <a href="/visitors">Visitors</a>
+    <a href="/staffs">Staff Management</a>
+    <a href="/carnivores">Carnivores</a>
+    <a href="/herbivores">Herbivores</a>
+    <a href="/foods">Foods Management</a>
+    <a href="/attraction">Attraction</a>
+</div>
 <div class="container">
     #parse( $template )
 </div>
