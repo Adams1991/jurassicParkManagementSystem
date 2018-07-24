@@ -33,5 +33,12 @@ public class MainController {
             model.put("template", "templates/home.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, velocityTemplateEngine);
+
+        get("/questions", (req, res) -> {
+            Map<String, Object> model = new HashMap();
+            model.put("template", "templates/questions.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, velocityTemplateEngine);
     }
+
 }

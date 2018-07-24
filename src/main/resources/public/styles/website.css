@@ -5,6 +5,13 @@ src: url("/fonts/Jurassic Park.ttf") format("truetype");
 
 
 
+.question {
+  font-family: "Jurassic Park",serif;
+  font-size: 12em;
+  text-align: center;
+  text-shadow: 0 0 1em #ccff15;
+}
+
 .homepage_text {
   font-family: "Jurassic Park",serif;
   font-size: 11em;
@@ -119,5 +126,4 @@ font-family: 'Jurassic Park', serif;
   text-decoration-line: underline;
   text-shadow: 0 0 1em #ff0101;
   color: inherit;
->>>>>>> develop
 }
