@@ -95,16 +95,18 @@ public class ParkController {
             return null;
         }, new VelocityTemplateEngine());
 
-        //TAKE A BREAK 
+        //logout post
         post("/parks/:id/logout", (req, res) -> {
-
+            Map<String, Object> model = new HashMap();
             int id = parseInt(req.params(":id"));
             Park park = DBHelper.find(Park.class, id);
+            model.put("park", park);
 
             //Gets all paddocks from a park
             List<Paddock> paddockCheckForPark = DBPark.paddockInPark(park);
+            model.put("paddocks", paddockCheckForPark);
 
-            //check if park has paddocks goign to redirect to funny page
+            //check if park has paddocks going to redirect to funny page
             if(paddockCheckForPark.size() == 0){res.redirect("/error");}
 
 
@@ -120,6 +122,7 @@ public class ParkController {
             //Get Random Visitor linked to park from DB and redirect to error page if none
             List<Visitor> visitors = DBPark.visitorsInPark(park);
             if(visitors.size() == 0){res.redirect("/error");}
+            model.put("visitors", visitors);
             Random rand = new Random();
             int randomVisitorInArray = rand.nextInt(visitors.size()) + 1;
             Visitor visitor = DBHelper.find(Visitor.class, randomVisitorInArray);
@@ -127,6 +130,7 @@ public class ParkController {
             // Get Random Staff linked to park From DB and redirect to error page if none
             List<Staff> staff = DBPark.staffInPark(park);
             if(staff.size() == 0){res.redirect("/error");}
+            model.put("staff", staff);
             Random randStaff = new Random();
             int randomStaffInArray = randStaff.nextInt(staff.size()) + (staff.size());
             Staff staffForEating = DBHelper.find(Staff.class, randomStaffInArray);
@@ -146,15 +150,17 @@ public class ParkController {
             //Loops through and changes root dependent on people being eaten
             for (Person person : peopleInPark) {
                 if (person.isHasBeenEaten()) {
-                    res.redirect("/");
-                    break;
+                    model.put("template", "templates/parks/rampagelogout.vtl");
+                    return new ModelAndView(model, "templates/layout.vtl");
                 } else {
-                    res.redirect("/error");
+                    model.put("template", "templates/parks/normallogout.vtl");
+                    return new ModelAndView(model, "templates/layout.vtl");
                 }
             }
             return null;
 
         }, new VelocityTemplateEngine());
+
 
 //        WATCH ATTRACTION (Get)
 
