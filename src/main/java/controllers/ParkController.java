@@ -140,9 +140,20 @@ public class ParkController {
             //Check if Paddocks broken and eat either a Visitor Or Guest if there are any
             park.eatVisitorIfPaddocksBroken(paddocksWithCarn, visitor, carnivore, staffForEating);
 
+            // Get All people in park
+            List<Person> peopleInPark = DBPark.peopleInPark(park);
 
-            res.redirect("/");
+            //Loops through and changes root dependent on people being eaten
+            for (Person person : peopleInPark) {
+                if (person.isHasBeenEaten()) {
+                    res.redirect("/");
+                    break;
+                } else {
+                    res.redirect("/error");
+                }
+            }
             return null;
+
         }, new VelocityTemplateEngine());
 
 //        WATCH ATTRACTION (Get)

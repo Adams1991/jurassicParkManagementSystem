@@ -59,6 +59,21 @@ public class DBPark {
         return results;
     }
 
+        public static List<Person> peopleInPark(Park park) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Person> results = null;
+        try {
+            Criteria cr = session.createCriteria(Person.class);
+            cr.add(Restrictions.eq("park", park));
+            results = cr.list();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return results;
+    }
+
 
     public static Attraction getAttractionsinPark(Park park) {
         session = HibernateUtil.getSessionFactory().openSession();
