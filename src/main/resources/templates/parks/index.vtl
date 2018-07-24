@@ -1,18 +1,18 @@
+<p class="pageHeader">All Parks</p>
 
-<div class="park">
-
-    <table cellspacing="30">
+<div>
+    <table>
 
         <tr>
             <th>Park</th>
-            <th>Till</th>
+            <th>Cost</th>
         </tr>
 
 
         #foreach($park in $parks)
         <tr>
             <td>$park.getName()</td>
-            <td class="numbers">$park.getTill()</td>
+            <td>$park.getTill()</td>
             <td><form method="post" action="/parks/$park.getId()/delete">
                 <input type="submit" value="delete"/>
             </form>

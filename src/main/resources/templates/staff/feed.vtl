@@ -3,7 +3,7 @@
 <form action="/$staff.getId()/feed" method="post">
     
 
-    <label for="staffFoods">Food:</label>
+    <label for="staffFoods">Job:</label>
     <select name="staffFoods" id="staffFoods">
         #foreach($staffFood in $staffFoods)
         <option value="$staffFood.getFood()">$staffFood.getFood().</option>
