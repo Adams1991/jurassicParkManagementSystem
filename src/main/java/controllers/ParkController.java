@@ -171,7 +171,7 @@ public class ParkController {
 
             String food = req.queryParams("attractionFoods");
 
-            FoodType foodType = FoodType.valueOf(food.toUpperCase());
+            FoodType foodType = FoodType.valueOf(food);
 
            List<Food> attractionFoods = DBHelper.getAll(Food.class);
 
@@ -199,9 +199,6 @@ public class ParkController {
            int parkId = parseInt(req.params(":id"));
            Park park = DBHelper.find(Park.class, parkId);
            Attraction attraction = DBPark.getAttractionsinPark(park);
-
-           visitor.buyTicketForAttraction(attraction);
-           DBHelper.update(visitor);
 
            park.setAttraction(attraction);
            DBHelper.update(park);
