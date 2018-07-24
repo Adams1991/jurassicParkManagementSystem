@@ -4,10 +4,10 @@ import behaviours.IEdible;
 
 public enum FoodType implements IEdible {
 
-    CHICKEN(2),
-    COW(100),
-    HAY(1),
-    BADLYBEHAVEDCHILD(5);
+    Chicken(2),
+    Cow(100),
+    Goat(25),
+    BadlyBehavedChild(5);
 
     private int nutritionalValue;
 

@@ -19,7 +19,7 @@ public class StaffTest {
         jurassicPark = new Park();
         foods = new ArrayList<Food>();
         staff = new Staff("Jesus of Nazareth", RoleType.GAMEKEEPER, jurassicPark, false);
-        food = new Food(FoodType.BADLYBEHAVEDCHILD, staff);
+        food = new Food(FoodType.BadlyBehavedChild, staff);
     }
 
     @Test
@@ -52,6 +52,6 @@ public class StaffTest {
         foods.add(food);
         foods.add(food);
         staff.setFoods(foods);
-        assertEquals(5, staff.feedDinosaur(FoodType.BADLYBEHAVEDCHILD));
+        assertEquals(5, staff.feedDinosaur(FoodType.BadlyBehavedChild));
     }
 }

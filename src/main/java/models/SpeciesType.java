@@ -6,11 +6,18 @@ import javax.persistence.Table;
 
 public enum SpeciesType {
 
-    TREX(2),
-    RAPTOR(100),
-    STEGOSAURUS(1),
-    TRICEROTOPS(1),
-    DIPLODOCUS(5);
+    TREX(50),
+    RAPTOR(5),
+    STEGOSAURUS(50),
+    TRICEROTOPS(50),
+    DIPLODOCUS(5),
+    SPINOSAURAUS(20),
+    ARCHAEOPTERYX(5),
+    CARCHARODONTOSAURUS(30),
+    ARGARGENTINOSAURUS(100),
+    BRACHIOSAURUS(80);
+
+
 
     private int nutritionalValue;
 

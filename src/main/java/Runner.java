@@ -100,7 +100,7 @@ public class Runner {
         List<Carnivore> carnivoresInPaddock = DBPaddock.carnivoresInPaddock(tRexEnclosure);
         List<Herbivore> allHerb = DBHelper.getAll(Herbivore.class);
 
-        Food meal = new Food(FoodType.BADLYBEHAVEDCHILD, staffMember);
+        Food meal = new Food(FoodType.BadlyBehavedChild, staffMember);
         DBHelper.save(meal);
 
 

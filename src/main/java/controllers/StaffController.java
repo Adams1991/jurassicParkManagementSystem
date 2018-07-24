@@ -136,12 +136,12 @@ public class StaffController {
 
             Staff staff = DBHelper.find(Staff.class, id);
 
-            List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
+            List<Carnivore> carnivores = DBHelper.getAll(Carnivore.class);
 
             List<Food> staffFoods = DBStaff.getFoods(staff);
 
             model.put("staff", staff);
-            model.put("dinosaurs", dinosaurs);
+            model.put("dinosaurs", carnivores);
             model.put("staffFoods", staffFoods);
             model.put("template", "templates/staff/feed.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
@@ -162,7 +162,7 @@ public class StaffController {
 
             String food = req.queryParams("staffFoods");
 
-            FoodType foodType = FoodType.valueOf(food.toUpperCase());
+            FoodType foodType = FoodType.valueOf(food);
 
             // loops through staffFoods and deletes one which matchs chosen foodtype. break
             // so it doesn't loop all the way through.
@@ -176,12 +176,12 @@ public class StaffController {
             int foodValue = staff.feedDinosaur(foodType);
 
             int dinoId = Integer.parseInt(req.queryParams("dinosaur"));
-            Dinosaur dinosaur = DBHelper.find(Dinosaur.class, dinoId);
+            Carnivore carnivore = DBHelper.find(Carnivore.class, dinoId);
 
-            dinosaur.eat(foodValue);
+            carnivore.eat(foodValue);
 
 
-            DBHelper.update(dinosaur);
+            DBHelper.update(carnivore);
             DBHelper.update(staff);
 
             res.redirect("/staffs");

@@ -14,7 +14,7 @@ public class FoodTest {
     public void setup(){
         jurassicPark = new Park();
         bob = new Staff("Bob Smith", RoleType.GAMEKEEPER, jurassicPark, false);
-        food = new Food(FoodType.COW, bob);
+        food = new Food(FoodType.Cow, bob);
     }
 
     @Test
@@ -24,7 +24,7 @@ public class FoodTest {
 
     @Test
     public void getFood() {
-        assertEquals(FoodType.COW, food.getFood());
+        assertEquals(FoodType.Cow, food.getFood());
     }
 
     @Test
