@@ -144,7 +144,7 @@ public class Seeds {
         Herbivore herbivore3 = new Herbivore("Triple the Triceratops", 100, SpeciesType.TRICEROTOPS, paddock2);
         DBHelper.save(herbivore3);
 
-        Herbivore herbivore4 = new Herbivore("Club the Ankylosaurus", 100, SpeciesType.DIPLODOCUS, paddock2);
+        Herbivore herbivore4 = new Herbivore("Club the Ankylosaurus", 100, SpeciesType.ANKYLOSAURUS, paddock2);
         DBHelper.save(herbivore4);
 
     }

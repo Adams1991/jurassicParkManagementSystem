@@ -15,8 +15,8 @@ public enum SpeciesType {
     ARCHAEOPTERYX(5),
     CARCHARODONTOSAURUS(30),
     ARGARGENTINOSAURUS(100),
-    BRACHIOSAURUS(80);
-
+    BRACHIOSAURUS(80),
+    ANKYLOSAURUS(30);
 
 
     private int nutritionalValue;
