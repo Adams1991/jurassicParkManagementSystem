@@ -50,9 +50,6 @@ public class Seeds {
         Visitor visitor4 = new Visitor("Ed Kinley", 35, 185, park, false);
         DBHelper.save(visitor4);
 
-        Visitor visitor5 = new Visitor("James Amos", 28, 184, park, false);
-        DBHelper.save(visitor5);
-
 //        Visitor visitor6 = new Visitor("Can Toraman", 29, 185, park, false);
 //        DBHelper.save(visitor6);
 //
