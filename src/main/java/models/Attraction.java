@@ -1,7 +1,6 @@
 package models;
 
 import behaviours.ISecurity;
-
 import javax.persistence.*;
 import java.util.List;
 

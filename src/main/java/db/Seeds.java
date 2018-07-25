@@ -41,7 +41,7 @@ public class Seeds {
         Visitor visitor1 = new Visitor("James Amos", 28, 185, park, false);
         DBHelper.save(visitor1);
 
-        Visitor visitor2 = new Visitor("James Henderson", 28, 185, park, false);
+        Visitor visitor2 = new Visitor("Jesus", 2018, 185, park, false);
         DBHelper.save(visitor2);
 
         Visitor visitor3 = new Visitor("Lee Burgess", 34, 185, park, false);
